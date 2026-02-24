@@ -723,9 +723,19 @@ function renderInvoice() {
       </div>
     </div>
 
+    <!-- 직인 / 서명 영역 -->
+    <div style="display:flex; justify-content:flex-end; align-items:center; margin-top:20px; padding-top:14px; border-top:1px solid #e0e0e0;">
+      <div style="text-align:right; margin-right:12px; font-size:11.5px; color:#555; line-height:1.8;">
+        <div>발 신</div>
+        <div style="font-size:13px; font-weight:700; color:#1a237e;">아남항공 주식회사</div>
+        <div>담당: ${manager}</div>
+      </div>
+      <img src="assets/images/company-stamp.png" alt="아남항공 직인" style="height:90px; width:auto; object-fit:contain;">
+    </div>
+
     <div class="inv-footer">
-      아남항공 주식회사 (크루즈링크) &nbsp;|&nbsp; 대표: 김영성 &nbsp;|&nbsp; 사업자등록번호: 104-81-84918<br>
-      서울특별시 강서구 마곡서로 152 두산더랜드타워 5층 &nbsp;|&nbsp; T. 02-3788-9119
+      아남항공 주식회사 (크루즈링크) &nbsp;|&nbsp; 대표이사: 김영성 &nbsp;|&nbsp; 사업자등록번호: 104-81-84918<br>
+      서울특별시 강서구 마곡서로 152, A-5층 &nbsp;|&nbsp; T. 02-3788-9119 &nbsp;|&nbsp; cruiselink.co.kr
     </div>
   `;
 }
