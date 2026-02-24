@@ -161,8 +161,14 @@
     <div class="container">
       <h2 class="section-title">추천 크루즈</h2>
       <p class="section-subtitle">가까운 출발일 기준 엄선된 크루즈</p>
-      <div id="recommendedCruises" class="cruise-grid">
-        <div class="loading"><div class="loading-spinner"></div><p>크루즈 정보를 불러오는 중...</p></div>
+      <div class="featured-slider-wrap">
+        <button class="featured-arrow featured-arrow-left" onclick="slideFeatured(-1)" aria-label="이전">&#8249;</button>
+        <div class="featured-slider" id="featuredSlider">
+          <div class="featured-track" id="featuredTrack">
+            <div class="loading"><div class="loading-spinner"></div><p>크루즈 정보를 불러오는 중...</p></div>
+          </div>
+        </div>
+        <button class="featured-arrow featured-arrow-right" onclick="slideFeatured(1)" aria-label="다음">&#8250;</button>
       </div>
     </div>
   </section>
@@ -258,18 +264,44 @@
 
     // Load recommended cruises from LOCAL JSON
     async function loadRecommended() {
-      const container = document.getElementById('recommendedCruises');
+      const track = document.getElementById('featuredTrack');
       try {
-        const cruises = await API.getRecommendedCruises(9);
+        const cruises = await API.getRecommendedCruises(12);
         if (cruises.length === 0) {
-          container.innerHTML = '<div class="empty-state"><span class="emoji">🔍</span><p>표시할 크루즈가 없습니다</p></div>';
+          track.innerHTML = '<div class="empty-state"><span class="emoji">🔍</span><p>표시할 크루즈가 없습니다</p></div>';
           return;
         }
-        container.innerHTML = cruises.map(c => Components.localCruiseCard(c)).join('');
+        track.innerHTML = cruises.map(c => Components.localCruiseCard(c)).join('');
+        updateFeaturedArrows();
       } catch (e) {
         console.error(e);
-        container.innerHTML = '<div class="empty-state"><span class="emoji">⚠️</span><p>데이터를 불러올 수 없습니다</p></div>';
+        track.innerHTML = '<div class="empty-state"><span class="emoji">⚠️</span><p>데이터를 불러올 수 없습니다</p></div>';
       }
+    }
+
+    // Featured slider logic
+    let featuredPos = 0;
+    function getFeaturedCardWidth() {
+      const track = document.getElementById('featuredTrack');
+      const card = track.querySelector('.cruise-card');
+      if (!card) return 0;
+      return card.offsetWidth + 24;
+    }
+    function getFeaturedMax() {
+      const track = document.getElementById('featuredTrack');
+      const total = track.querySelectorAll('.cruise-card').length;
+      return Math.max(0, total - 3);
+    }
+    function slideFeatured(dir) {
+      featuredPos = Math.max(0, Math.min(getFeaturedMax(), featuredPos + dir));
+      const track = document.getElementById('featuredTrack');
+      track.style.transform = 'translateX(-' + (featuredPos * getFeaturedCardWidth()) + 'px)';
+      updateFeaturedArrows();
+    }
+    function updateFeaturedArrows() {
+      const max = getFeaturedMax();
+      document.querySelector('.featured-arrow-left').style.opacity = featuredPos <= 0 ? '0.3' : '1';
+      document.querySelector('.featured-arrow-right').style.opacity = featuredPos >= max ? '0.3' : '1';
     }
 
     // Search from LOCAL JSON
