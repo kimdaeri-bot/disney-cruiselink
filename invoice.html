@@ -580,8 +580,14 @@ function renderInvoice() {
 
   document.getElementById('invoiceDoc').innerHTML = `
     <!-- 헤더 -->
-    <div class="inv-header">
-      <div class="inv-brand">CRUISELINK · 크루즈링크</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+      <img src="assets/images/cruiselink-logo.png" alt="Cruise Link" style="height:44px;width:auto;object-fit:contain;">
+      <div style="text-align:right;font-size:11px;color:#888;">
+        발신일: ${fmtDate(issueDate)}<br>
+        담당: ${manager}
+      </div>
+    </div>
+    <div class="inv-header" style="margin-bottom:18px;">
       <div class="inv-title-main">CONFIRM &amp; INVOICE</div>
       <div class="inv-subtitle">${customer} 고객님 크루즈링크 ${ship} 예약 인보이스</div>
     </div>
@@ -818,33 +824,41 @@ function updatePreviewScale() {
 function doPrint() {
   const doc = document.getElementById('invoiceDoc');
 
-  // 자동 배율: A4 usable height (8mm 마진 기준) = 약 1105px
-  const A4_H = 1105;
-  const docH = doc.scrollHeight;
-  let printZoom = manualScale !== null ? manualScale : 1;
-  if (manualScale === null && docH > A4_H) {
-    printZoom = Math.max(0.55, A4_H / docH);
-  }
-
-  // zoom 방식 적용 (Chrome 인쇄 레이아웃 반영)
-  doc.style.zoom = printZoom < 0.995 ? printZoom : '';
+  // ① 먼저 zoom/transform 완전 리셋 → 자연 높이 측정
+  doc.style.zoom = '';
   doc.style.transform = '';
 
-  // document.title → 인쇄 헤더에 표시될 텍스트 제거
-  const customer = document.getElementById('f_customer').value || '';
-  const ship = document.getElementById('f_ship').value || '';
-  const issueDate = document.getElementById('f_issuedate').value || '';
-  const prevTitle = document.title;
-  document.title = [customer, ship, issueDate].filter(Boolean).join('_') || ' ';
+  requestAnimationFrame(() => {
+    // A4 (@page margin:8mm) 실사용 높이: 1123px - (8mm×2×3.78px/mm) = 약 1063px
+    // 이미지 등 동적 콘텐츠 여유를 위해 보수적으로 1020px 사용
+    const A4_H = 1020;
+    const docH = doc.scrollHeight;
+    let printZoom = manualScale !== null ? manualScale : 1;
 
-  setTimeout(() => {
-    window.print();
+    if (manualScale === null && docH > A4_H) {
+      printZoom = Math.max(0.45, A4_H / docH);
+    }
+
+    // ② zoom 적용 (Chrome Save as PDF 레이아웃에 반영됨)
+    doc.style.zoom = printZoom < 0.99 ? String(printZoom.toFixed(3)) : '';
+
+    // ③ document.title → 인쇄 헤더에서 제거
+    const customer = document.getElementById('f_customer').value || '';
+    const ship = document.getElementById('f_ship').value || '';
+    const issueDate = document.getElementById('f_issuedate').value || '';
+    const prevTitle = document.title;
+    document.title = [customer, ship, issueDate].filter(Boolean).join('_') || '\u00A0';
+
+    // ④ 브라우저가 zoom 적용 렌더 완료 후 인쇄
     setTimeout(() => {
-      document.title = prevTitle;
-      doc.style.zoom = '';
-      updatePreviewScale();
-    }, 800);
-  }, 100);
+      window.print();
+      setTimeout(() => {
+        document.title = prevTitle;
+        doc.style.zoom = '';
+        updatePreviewScale();
+      }, 1000);
+    }, 200);
+  });
 }
 
 // ===== 초기 실행 =====
