@@ -506,7 +506,15 @@ const Translations = {
   // 크루즈 라인 한글
   operatorKo: {
     'MSC Cruises': 'MSC 크루즈',
-    'Norwegian Cruise Line': '노르웨이전 크루즈 라인'
+    'Norwegian Cruise Line': '노르웨이전 크루즈 라인',
+    'Royal Caribbean International': '로얄 캐리비안',
+    'Celebrity Cruises': '셀러브리티 크루즈',
+    'Princess Cruises': '프린세스 크루즈',
+    'Carnival Cruise Line': '카니발 크루즈 라인',
+    'Oceania Cruises': '오세아니아 크루즈',
+    'Regent Seven Seas Cruises': '리젠트 세븐시즈 크루즈',
+    'Explora Journeys': '엑스플로라 저니스',
+    'Celebrity River Cruises': '셀러브리티 리버 크루즈'
   },
 
   // 지역명 한글

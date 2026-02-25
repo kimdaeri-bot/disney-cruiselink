@@ -27,7 +27,8 @@ const API = {
   // ===== LOCAL JSON (목록/검색/필터용) =====
 
   _localShips: null,
-  _localCruises: null,
+  _destCache: {},   // 목적지별 캐시
+  _featuredCache: null,
 
   async loadLocalShips() {
     if (this._localShips) return this._localShips;
@@ -38,26 +39,52 @@ const API = {
     return this._localShips;
   },
 
-  async loadLocalCruises() {
-    if (this._localCruises) return this._localCruises;
+  // 목적지별 파일 로드 (없으면 전체 파일 폴백)
+  async loadCruisesByDest(dest) {
+    if (this._destCache[dest]) return this._destCache[dest];
     try {
-      const res = await fetch('assets/data/cruises.json');
-      this._localCruises = await res.json();
-    } catch { this._localCruises = []; }
-    return this._localCruises;
+      const res = await fetch(`assets/data/cruises-${dest}.json`);
+      if (!res.ok) throw new Error('no split file');
+      const data = await res.json();
+      this._destCache[dest] = data;
+      return data;
+    } catch {
+      // 분할 파일 없으면 전체 파일에서 필터
+      const all = await this.loadAllCruises();
+      const filtered = all.filter(c => c.destination === dest);
+      this._destCache[dest] = filtered;
+      return filtered;
+    }
   },
 
-  // Filter local cruises
+  // 전체 cruises.json (폴백용 — 분할 파일 있으면 사용 안 함)
+  _allCruisesCache: null,
+  async loadAllCruises() {
+    if (this._allCruisesCache) return this._allCruisesCache;
+    try {
+      const res = await fetch('assets/data/cruises.json');
+      this._allCruisesCache = await res.json();
+    } catch { this._allCruisesCache = []; }
+    return this._allCruisesCache;
+  },
+
+  // 레거시 호환 (cruise-view.html 등에서 사용)
+  async loadLocalCruises() {
+    return this.loadAllCruises();
+  },
+
+  // Filter local cruises — dest 지정 시 분할 파일 로드
   async filterCruises({ dest, operator, operators, ports, month, duration, limit, minDate } = {}) {
-    const cruises = await this.loadLocalCruises();
+    // dest 있으면 해당 목적지 파일만 로드
+    const cruises = dest ? await this.loadCruisesByDest(dest) : await this.loadAllCruises();
     const now = minDate || new Date().toISOString().slice(0, 10);
     return cruises.filter(c => {
       if (c.dateFrom < now) return false;
       if (dest && c.destination !== dest) return false;
       // Multi-select operators
-      if (operators?.length > 0 && !operators.some(op => c.operator.includes(op))) return false;
+      if (operators?.length > 0 && !operators.some(op => c.operator?.includes(op))) return false;
       // Legacy single operator
-      if (operator && !operators?.length && !c.operator.includes(operator)) return false;
+      if (operator && !operators?.length && !c.operator?.includes(operator)) return false;
       // Multi-select departure ports
       if (ports?.length > 0) {
         const startKo = c.startsAt?.nameKo || c.startsAt?.name || '';
@@ -74,40 +101,48 @@ const API = {
     }).slice(0, limit || 9999);
   },
 
-  // Get recommended cruises (curated 9 picks, 2+ months out)
+  // 추천 크루즈 — featured.json (극소용량) 로드
   async getRecommendedCruises(count = 9) {
-    const FEATURED_REFS = [
-      'MSCBE20260510TYOTYO',        // 한국출발 - MSC 벨리시마 7박
-      'NCLENC-20260503-07-SEA-SEA',  // 알래스카 - NCL 앙코르 7박
-      'MSCEU20260417BCNBCN',         // 지중해 - MSC 월드 유로파 7박
-      'MSCAM20260418MIAMIA',         // 카리브해 - MSC 월드 아메리카 7박
-      'MSCER20260502KELKEL',         // 북유럽 - MSC 유리비아 7박
-      'MSCEU20261128DXBDXB',         // 아시아 - MSC 월드 유로파 7박
-      'NCLAME-20260502-07-HNL-HNL',  // 하와이 - NCL 프라이드 오브 아메리카 7박
-      'NCLJOY-20260425-18-MIA-SEA',  // 남미 - NCL 조이 18박
-      'NCLSPR-20261212-11-SYD-SYD',  // 오세아니아 - NCL 스피릿 11박
-    ];
-    const cruises = await this.loadLocalCruises();
-    const now = new Date();
-    const twoMonths = new Date(now.getTime() + 60 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-    const refMap = {};
-    cruises.forEach(c => { refMap[c.ref] = c; });
-    return FEATURED_REFS
-      .map(ref => refMap[ref])
-      .filter(c => c && c.dateFrom >= twoMonths);
+    if (!this._featuredCache) {
+      try {
+        const res = await fetch('assets/data/featured.json');
+        if (res.ok) {
+          this._featuredCache = await res.json();
+        } else {
+          throw new Error('no featured.json');
+        }
+      } catch {
+        // 폴백: 전체 파일에서 FEATURED_REFS 추출
+        const FEATURED_REFS = [
+          'MSCBE20260510TYOTYO','NCLENC-20260503-07-SEA-SEA','MSCEU20260417BCNBCN',
+          'MSCAM20260418MIAMIA','MSCER20260502KELKEL','MSCEU20261128DXBDXB',
+          'NCLAME-20260502-07-HNL-HNL','NCLJOY-20260425-18-MIA-SEA','NCLSPR-20261212-11-SYD-SYD',
+        ];
+        const all = await this.loadAllCruises();
+        const refMap = {};
+        all.forEach(c => { refMap[c.ref] = c; });
+        this._featuredCache = FEATURED_REFS.map(r => refMap[r]).filter(Boolean);
+      }
+    }
+    const now = new Date().toISOString().slice(0, 10);
+    return this._featuredCache.filter(c => c && c.dateFrom >= now).slice(0, count);
   },
 
   async getRecommendedCruises2(count = 12) {
-    const FEATURED_REFS_1 = [
+    const FEATURED_REFS_1 = new Set([
       'MSCBE20260510TYOTYO','NCLENC-20260503-07-SEA-SEA','MSCEU20260417BCNBCN',
       'MSCAM20260418MIAMIA','MSCER20260502KELKEL','MSCEU20261128DXBDXB',
       'NCLAME-20260502-07-HNL-HNL','NCLJOY-20260425-18-MIA-SEA','NCLSPR-20261212-11-SYD-SYD',
-    ];
-    const cruises = await this.loadLocalCruises();
+    ]);
+    // 지중해/카리브 분할 파일로 빠르게 로드 (대표 목적지)
+    const [med, car] = await Promise.all([
+      this.loadCruisesByDest('mediterranean'),
+      this.loadCruisesByDest('caribbean'),
+    ]);
+    const pool = [...med, ...car];
     const now = new Date().toISOString().slice(0, 10);
-    const excluded = new Set(FEATURED_REFS_1);
-    return cruises
-      .filter(c => c.dateFrom >= now && !excluded.has(c.ref))
+    return pool
+      .filter(c => c.dateFrom >= now && !FEATURED_REFS_1.has(c.ref))
       .sort((a, b) => a.dateFrom.localeCompare(b.dateFrom))
       .slice(0, count);
   },
