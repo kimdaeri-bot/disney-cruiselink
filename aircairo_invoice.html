@@ -105,7 +105,8 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
 .inv-account-row .acc-label { color: #666; font-size: 11px; }
 .inv-account-row .acc-val { font-weight: 700; color: #222; }
 .inv-account-note { font-size: 10px; color: #c00; margin-top: 6px; line-height: 1.5; }
-.inv-stamp-area { display: flex; justify-content: flex-end; align-items: flex-end; gap: 16px; margin-bottom: 10px; }
+.inv-stamp-area { display: flex; flex-direction: column; align-items: stretch; margin-bottom: 10px; }
+.inv-stamp-below { display: flex; justify-content: flex-end; margin-top: 12px; }
 .inv-stamp-img { width: 240px; height: 240px; object-fit: contain; align-self: center; }
 .inv-nameplate { border: 1.5px solid #005baa; border-radius: 4px; padding: 10px 16px; font-size: 11px; line-height: 1.9; color: #333; flex: 1; }
 .inv-nameplate-company { font-size: 14px; font-weight: 900; color: #005baa; letter-spacing: 0.5px; }
@@ -144,7 +145,7 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
 .ct-sign-section { margin-top: 18px; }
 .ct-sign-date { font-size: 13px; font-weight: 700; text-align: center; margin-bottom: 20px; color: #333; }
 .ct-sign-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.ct-sign-box { border: 1px solid #ccc; border-radius: 4px; padding: 16px 20px; min-height: 300px; }
+.ct-sign-box { border: 1px solid #ccc; border-radius: 4px; padding: 16px 20px; min-height: 80px; }
 .ct-sign-title { font-size: 10px; color: #888; margin-bottom: 6px; letter-spacing: 1px; }
 .ct-sign-name { font-size: 14px; font-weight: 900; color: #005baa; margin-bottom: 4px; }
 .ct-sign-sub { font-size: 11px; color: #555; }
@@ -354,11 +355,13 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
     <div class="ct-sign-section">
       <div class="ct-sign-date" id="cv-sign-date"></div>
       <div class="ct-sign-row">
-        <div class="ct-sign-box">
-          <div class="ct-sign-title">갑 (GSA)</div>
-          <div class="ct-sign-name">에어카이로 항공 한국총대리점</div>
-          <div class="ct-sign-sub">아남항공 주식회사</div>
-          <div class="ct-sign-sub" id="cv-handler-info"></div>
+        <div>
+          <div class="ct-sign-box">
+            <div class="ct-sign-title">갑 (GSA)</div>
+            <div class="ct-sign-name">에어카이로 항공 한국총대리점</div>
+            <div class="ct-sign-sub">아남항공 주식회사</div>
+            <div class="ct-sign-sub" id="cv-handler-info"></div>
+          </div>
           <div class="ct-sign-stamp">
             <img src="assets/images/company-stamp.png" alt="직인" onerror="this.style.display='none'">
           </div>
@@ -682,7 +685,7 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
       </div>
     </div>
 
-    <!-- 직인 + 명판 -->
+    <!-- 명판 + 직인 (세로 배치) -->
     <div class="inv-stamp-area">
       <div class="inv-nameplate">
         <div class="inv-nameplate-company">아남항공 주식회사</div>
@@ -692,7 +695,9 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
         <div class="inv-nameplate-row">서울 강서구 마곡서로 152</div>
         <div class="inv-nameplate-row">두산 더 랜드타워 5층</div>
       </div>
-      <img class="inv-stamp-img" id="stampImg" src="assets/images/company-stamp.png" alt="직인" onerror="this.style.display='none'">
+      <div class="inv-stamp-below">
+        <img class="inv-stamp-img" id="stampImg" src="assets/images/company-stamp.png" alt="직인" onerror="this.style.display='none'">
+      </div>
     </div>
 
     <!-- 푸터 -->
