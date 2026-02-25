@@ -58,7 +58,7 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
 .invoice-doc {
   background: #fff;
   width: 794px;
-  min-height: 1123px;
+  min-height: auto;
   margin: 0 auto;
   padding: 28px 32px 24px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -105,8 +105,8 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
 .inv-account-row .acc-label { color: #666; font-size: 11px; }
 .inv-account-row .acc-val { font-weight: 700; color: #222; }
 .inv-account-note { font-size: 10px; color: #c00; margin-top: 6px; line-height: 1.5; }
-.inv-stamp-area { display: flex; flex-direction: column; align-items: stretch; margin-bottom: 10px; }
-.inv-stamp-below { display: flex; justify-content: flex-end; margin-top: 12px; }
+.inv-stamp-area { display: flex; flex-direction: row; align-items: center; gap: 16px; margin-bottom: 10px; }
+.inv-stamp-below { display: none; }
 .inv-stamp-img { width: 240px; height: 240px; object-fit: contain; align-self: center; }
 .inv-nameplate { border: 1.5px solid #005baa; border-radius: 4px; padding: 10px 16px; font-size: 11px; line-height: 1.9; color: #333; flex: 1; }
 .inv-nameplate-company { font-size: 14px; font-weight: 900; color: #005baa; letter-spacing: 0.5px; }
@@ -698,9 +698,7 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
         <div class="inv-nameplate-row">서울 강서구 마곡서로 152</div>
         <div class="inv-nameplate-row">두산 더 랜드타워 5층</div>
       </div>
-      <div class="inv-stamp-below">
-        <img class="inv-stamp-img" id="stampImg" src="assets/images/company-stamp.png" alt="직인" onerror="this.style.display='none'">
-      </div>
+      <img class="inv-stamp-img" id="stampImg" src="assets/images/company-stamp.png" alt="직인" onerror="this.style.display='none'">
     </div>
 
     <!-- 푸터 -->
