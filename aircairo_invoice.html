@@ -151,7 +151,7 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
 .ct-sign-title { font-size: 9px; color: #888; margin-bottom: 3px; letter-spacing: 1px; }
 .ct-sign-name { font-size: 12px; font-weight: 900; color: #005baa; margin-bottom: 2px; }
 .ct-sign-sub { font-size: 10px; color: #555; }
-.ct-sign-stamp { display: flex; justify-content: center; margin-top: 12px; }
+.ct-sign-stamp { display: flex; justify-content: flex-start; margin-top: 10px; }
 .ct-sign-stamp img { width: 160px; height: 160px; object-fit: contain; }
 
 /* ===== 인쇄 ===== */
@@ -357,25 +357,21 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
     <!-- 서명 -->
     <div class="ct-sign-section">
       <div class="ct-sign-date" id="cv-sign-date"></div>
-      <div style="display:flex;gap:20px;align-items:stretch;">
-        <div style="flex:1;display:flex;flex-direction:column;">
-          <div class="ct-sign-box">
-            <div class="ct-sign-title">갑 (GSA)</div>
-            <div class="ct-sign-name">에어카이로 항공 한국총대리점</div>
-            <div class="ct-sign-sub">아남항공 주식회사</div>
-            <div class="ct-sign-sub" id="cv-handler-info"></div>
-          </div>
-          <div class="ct-sign-stamp">
-            <img src="assets/images/company-stamp.png" alt="직인" onerror="this.style.display='none'">
-          </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="ct-sign-box">
+          <div class="ct-sign-title">갑 (GSA)</div>
+          <div class="ct-sign-name">에어카이로 항공 한국총대리점</div>
+          <div class="ct-sign-sub">아남항공 주식회사</div>
+          <div class="ct-sign-sub" id="cv-handler-info"></div>
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;">
-          <div class="ct-sign-box" style="flex:1;">
-            <div class="ct-sign-title">을 (여행사)</div>
-            <div class="ct-sign-name" id="cv-agency-sign"></div>
-            <div class="ct-sign-sub">담당자 귀하</div>
-          </div>
+        <div class="ct-sign-box">
+          <div class="ct-sign-title">을 (여행사)</div>
+          <div class="ct-sign-name" id="cv-agency-sign"></div>
+          <div class="ct-sign-sub">담당자 귀하</div>
         </div>
+      </div>
+      <div class="ct-sign-stamp">
+        <img src="assets/images/company-stamp.png" alt="직인" onerror="this.style.display='none'">
       </div>
     </div>
 
