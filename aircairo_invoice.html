@@ -1019,6 +1019,31 @@ function val(id) { return parseFloat(document.getElementById(id).value) || 0; }
 function str(id) { return document.getElementById(id).value.trim(); }
 function calcTotal() { updatePreview(); }
 
+// PNR 필터링: 헤더 / 그룹라인 / 항공편만 남김
+function filterPNR(raw) {
+  return raw.split('\n').filter(line => {
+    const t = line.trim();
+    if (!t) return false;
+    // 승객 이름 (1.HONG/GIL MR 형태)
+    if (/^\d+\s*\.\s*[A-Z]+\//.test(t)) return false;
+    // AP (사무소 정보)
+    if (/\d+\s+AP\s/.test(t)) return false;
+    // TK (발권 상태)
+    if (/\d+\s+TK\s/.test(t)) return false;
+    // SSR (서비스 요청)
+    if (/\d+\s+SSR\s/.test(t)) return false;
+    // SVC (Deposit 서비스)
+    if (/\d+\s+SVC\s/.test(t)) return false;
+    // FA/FB/FP/FE/FO (요금/EMD 정보)
+    if (/\d+\s+F[ABPEOI]\s/.test(t)) return false;
+    // EMD 상세 라인
+    if (/^EMD-|^INT-|^PAX-|^RFIC|^CPN-|^FARE\s|^EXCH|^TAX-|^TOTAL\s|^\/FC|^NON-END/.test(t)) return false;
+    // /SM /EG 같은 연속 항공편 부속 라인 (앞줄 항공편의 연속)
+    if (/^\s+\/SM\s/.test(line)) return false;
+    return true;
+  }).join('\n').trim();
+}
+
 function updatePreview() {
   document.getElementById('pv-issue-date').textContent = str('issueDate');
   document.getElementById('pv-handler').textContent = str('handler') + ' / ' + str('handlerTel');
@@ -1042,7 +1067,7 @@ function updatePreview() {
 
   const pnrBox = document.getElementById('pv-pnr-text');
   if (showPnrInDoc && str('pnrText')) {
-    pnrBox.textContent = str('pnrText');
+    pnrBox.textContent = filterPNR(str('pnrText'));
     pnrBox.style.display = 'block';
   } else {
     pnrBox.style.display = 'none';
