@@ -60,14 +60,22 @@
       try {
         const holiday = await API.getHoliday(ref);
         if (holiday) {
-          // Extract ship slug from holiday.ship URL (e.g. ".../ships/adventure-of-the-seas.json")
+          // Extract ship slug from holiday.ship URL
           const shipSlug = typeof holiday.ship === 'string'
             ? holiday.ship.split('/ships/')[1]?.replace('.json', '')
-            : null;
+            : (localCruise?.shipSlug || null);
 
           if (localCruise && localShip) {
             renderItinerary(holiday);
             renderPricing(holiday, shipDetail);
+            // 라이브 API로 선박 시설 업그레이드 (모든 선사 적용)
+            if (shipSlug) {
+              const shipLive = await API.getShipLive(shipSlug);
+              if (shipLive) {
+                const liveDetail = normalizeShipLive(shipLive);
+                updateShipSection(localCruise, localShip, shipDetail, liveDetail);
+              }
+            }
           } else {
             // No local data — fetch ship live in parallel then render
             const shipLive = shipSlug ? await API.getShipLive(shipSlug) : null;
@@ -82,6 +90,53 @@
           content.innerHTML = '<div class="empty-state"><span class="emoji">⚠️</span><p>데이터를 불러올 수 없습니다</p></div>';
         }
       }
+    }
+
+    // 라이브 API 데이터 → detail 포맷으로 정규화
+    function normalizeShipLive(sl) {
+      if (!sl) return null;
+      const mapItems = (arr, limit = 30) => (arr || []).slice(0, limit).map(item => ({
+        name: item.name || '',
+        image: item.images?.[0]?.href || '',
+        desc: (item.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 150),
+      }));
+      return {
+        dining: mapItems(sl.dining_options, 20),
+        entertainment: mapItems(sl.entertainment_types, 30),
+        health: mapItems(sl.health_fitness_types, 20),
+        kids: mapItems(sl.kid_teen_types, 15),
+        deckplans: mapItems(sl.deckplans, 20),
+        accommodations: mapItems(sl.accomodation_types, 24),
+        // ship facts from live API
+        facts: sl.ship_facts || {},
+        coverImage: sl.cover_image_href || sl.profile_image_href || '',
+        teaser: (sl.teaser || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(),
+      };
+    }
+
+    // 선박 섹션 라이브 업데이트
+    function updateShipSection(c, ship, detail, liveDetail) {
+      const section = document.getElementById('ship-detail-section');
+      if (!section) return;
+      // 라이브 데이터가 더 풍부하면 교체
+      const data = liveDetail || detail;
+      if (!data) return;
+      // facts 우선순위: liveDetail.facts > localShip
+      const facts = liveDetail?.facts || {};
+      const mergedShip = {
+        ...ship,
+        launchYear: facts.launch_year || ship.launchYear,
+        grossTonnage: facts.gross_tonnage || ship.grossTonnage,
+        capacity: facts.capacity || ship.capacity,
+        crewCount: facts.crew_count || ship.crewCount,
+        length: facts.length || ship.length,
+        width: facts.width || ship.width,
+        deckCount: facts.deck_count || ship.deckCount,
+        cabinCount: facts.cabin_count || ship.cabinCount,
+      };
+      const newHtml = renderShipSection(c, mergedShip, detail, liveDetail);
+      section.outerHTML = newHtml;
+      initAllSliders();
     }
 
     function renderPage(c, ship, detail, holiday) {
@@ -203,42 +258,62 @@
       content.innerHTML = html;
     }
 
-    function renderShipSection(c, ship, detail) {
-      let html = `
-      <section class="section" style="background:var(--gray-50)">
-        <div class="container">
-          <h2 class="section-title">🚢 ${c.shipTitleKo || c.shipTitle} 소개</h2>
-          ${(() => { const teaser = Translations.shipTeaser(c.shipTitle, c.shipTitleKo, c.operator, ship.shipClass, ship.capacity, ship.launchYear); return teaser ? `<p class="section-subtitle" style="max-width:800px;margin:0 auto 24px;text-align:center">${teaser}</p>` : ''; })()}
+    function renderShipSection(c, ship, detail, liveDetail = null) {
+      // 시설 데이터: detail(로컬) 우선, 없으면 liveDetail(라이브 API)
+      const facilityData = (detail?.dining?.length || detail?.entertainment?.length || detail?.deckplans?.length)
+        ? detail : liveDetail;
+      const shipName = c.shipTitleKo || c.shipTitle;
+      const facts = liveDetail?.facts || {};
 
+      // spec 값: liveDetail.facts 우선 → 로컬 ship 폴백
+      const launchYear = facts.launch_year || ship?.launchYear;
+      const grossTonnage = facts.gross_tonnage || ship?.grossTonnage;
+      const capacity = facts.capacity || ship?.capacity;
+      const crewCount = facts.crew_count || ship?.crewCount;
+      const length = facts.length || ship?.length;
+      const width = facts.width || ship?.width;
+      const deckCount = facts.deck_count || ship?.deckCount;
+      const cabinCount = facts.cabin_count || ship?.cabinCount;
+
+      // teaser: liveDetail.teaser 우선 → Translations 폴백
+      const teaser = liveDetail?.teaser
+        || Translations.shipTeaser(c.shipTitle, c.shipTitleKo, c.operator, ship?.shipClass, capacity, launchYear)
+        || '';
+
+      let html = `
+      <section class="section" id="ship-detail-section" style="background:var(--gray-50)">
+        <div class="container">
+          <h2 class="section-title">🚢 ${shipName} 소개</h2>
+          ${teaser ? `<p class="section-subtitle" style="max-width:800px;margin:0 auto 24px;text-align:center">${teaser}</p>` : ''}
           <div class="spec-grid">`;
 
       const specs = [
-        ['취항연도', ship.launchYear || '-'],
-        ['총톤수', ship.grossTonnage ? ship.grossTonnage.toLocaleString() + 't' : '-'],
-        ['최대정원', ship.capacity ? ship.capacity.toLocaleString() + '명' : '-'],
-        ['승무원', ship.crewCount ? ship.crewCount.toLocaleString() + '명' : '-'],
-        ['전장', ship.length ? ship.length + 'm' : '-'],
-        ['전폭', ship.width ? ship.width + 'm' : '-'],
-        ['데크', ship.deckCount ? ship.deckCount + '개' : '-'],
-        ['객실', ship.cabinCount ? ship.cabinCount.toLocaleString() + '실' : '-'],
+        ['취항연도', launchYear || '-'],
+        ['총톤수', grossTonnage ? Number(grossTonnage).toLocaleString() + 't' : '-'],
+        ['최대정원', capacity ? Number(capacity).toLocaleString() + '명' : '-'],
+        ['승무원', crewCount ? Number(crewCount).toLocaleString() + '명' : '-'],
+        ['전장', length ? length + 'm' : '-'],
+        ['전폭', width ? width + 'm' : '-'],
+        ['데크', deckCount ? deckCount + '개' : '-'],
+        ['객실', cabinCount ? Number(cabinCount).toLocaleString() + '실' : '-'],
       ];
       specs.forEach(([label, value]) => {
         html += `<div class="spec-item"><div class="spec-value">${value}</div><div class="spec-label">${label}</div></div>`;
       });
       html += `</div>`;
 
-      // Facility tabs from ships-detail.json
-      if (detail) {
+      // ── 시설 탭 (다이닝 / 엔터테인먼트 / 스파 / 키즈 / 덱플랜) ──
+      if (facilityData) {
         const tabs = [];
-        if (detail.dining?.length) tabs.push({id:'dining', label:`🍽️ 다이닝 (${detail.dining.length})`, items: detail.dining});
-        if (detail.entertainment?.length) tabs.push({id:'ent', label:`🎭 엔터테인먼트 (${detail.entertainment.length})`, items: detail.entertainment});
-        if (detail.health?.length) tabs.push({id:'health', label:`💆 스파·피트니스 (${detail.health.length})`, items: detail.health});
-        if (detail.kids?.length) tabs.push({id:'kids', label:`👶 키즈 (${detail.kids.length})`, items: detail.kids});
-        if (detail.deckplans?.length) tabs.push({id:'decks', label:`📐 덱플랜 (${detail.deckplans.length})`, items: detail.deckplans});
+        if (facilityData.dining?.length)        tabs.push({id:'dining', label:`🍽️ 다이닝 (${facilityData.dining.length})`,       items: facilityData.dining});
+        if (facilityData.entertainment?.length)  tabs.push({id:'ent',    label:`🎭 엔터테인먼트 (${facilityData.entertainment.length})`, items: facilityData.entertainment});
+        if (facilityData.health?.length)         tabs.push({id:'health', label:`💆 스파·피트니스 (${facilityData.health.length})`,  items: facilityData.health});
+        if (facilityData.kids?.length)           tabs.push({id:'kids',   label:`👶 키즈 (${facilityData.kids.length})`,            items: facilityData.kids});
+        if (facilityData.deckplans?.length)      tabs.push({id:'decks',  label:`📐 덱플랜 (${facilityData.deckplans.length})`,     items: facilityData.deckplans});
 
         if (tabs.length) {
           html += `<div class="ship-tabs" style="margin-top:40px">`;
-          html += `<div class="tabs">`;
+          html += `<div class="tabs" style="flex-wrap:wrap;gap:4px 0">`;
           tabs.forEach((t, i) => {
             html += `<button class="tab-btn ${i===0?'active':''}" onclick="switchShipTab(this,'ship-panel-${t.id}')">${t.label}</button>`;
           });
@@ -246,16 +321,17 @@
 
           tabs.forEach((t, i) => {
             const sliderId = 'slider-' + t.id;
-            const items = t.id === 'decks' ? t.items : t.items.slice(0, 12);
+            const items = t.items.slice(0, t.id === 'decks' ? 30 : 20);
             html += `<div class="tab-content ${i===0?'active':''}" id="ship-panel-${t.id}">`;
             html += `<div class="facility-slider" id="${sliderId}">`;
             html += `<div class="facility-slides">`;
             items.forEach(item => {
-              const tr = Translations.facilityKo[item.name];
+              const tr = Translations.facilityKo?.[item.name];
               const name = tr ? tr.name : item.name;
-              const desc = tr ? tr.desc : null;
+              // desc: facilityKo 번역 우선 → 라이브 desc 폴백
+              const desc = tr?.desc || item.desc || '';
               html += `<div class="facility-slide">`;
-              html += item.image ? `<img src="${item.image}" alt="${name}" loading="lazy">` : '';
+              if (item.image) html += `<img src="${item.image}" alt="${name}" loading="lazy">`;
               html += `<div class="facility-slide-body"><div class="facility-slide-name">${name}</div>`;
               if (desc) html += `<div class="facility-slide-desc">${desc}</div>`;
               html += `</div></div>`;
@@ -270,12 +346,17 @@
           html += `</div>`;
         }
 
-        // Cabin preview
-        if (detail.accommodations?.length) {
+        // ── 객실 타입 그리드 ──
+        if (facilityData.accommodations?.length) {
           html += `<h3 style="font-size:1.2rem;font-weight:700;color:var(--navy);margin:40px 0 16px">🛏️ 객실 타입</h3>`;
           html += `<div class="cabin-grid">`;
-          detail.accommodations.slice(0, 8).forEach(a => {
-            html += `<div class="cabin-card">${a.image ? `<img src="${a.image}" alt="${a.name}" loading="lazy">` : ''}<div class="cabin-card-body"><h4>${Translations.accommodationName(a.name)}</h4></div></div>`;
+          facilityData.accommodations.slice(0, 12).forEach(a => {
+            const aName = Translations.accommodationName(a.name);
+            const aDesc = a.desc ? `<p style="font-size:0.78rem;color:var(--gray-600);margin:4px 0 0;line-height:1.4">${a.desc}</p>` : '';
+            html += `<div class="cabin-card">`;
+            if (a.image) html += `<img src="${a.image}" alt="${aName}" loading="lazy">`;
+            html += `<div class="cabin-card-body"><h4>${aName}</h4>${aDesc}</div>`;
+            html += `</div>`;
           });
           html += `</div>`;
         }
@@ -451,51 +532,14 @@
         </div>
       </section>`;
 
-      // Ship section from live API
-      if (shipLive) {
-        const specs = [
-          ['취항연도', facts.launch_year || '-'],
-          ['총톤수', facts.gross_tonnage ? facts.gross_tonnage.toLocaleString() + 't' : '-'],
-          ['최대정원', facts.capacity ? facts.capacity.toLocaleString() + '명' : '-'],
-          ['승무원', facts.crew_count ? facts.crew_count.toLocaleString() + '명' : '-'],
-          ['전장', facts.length ? facts.length + 'm' : '-'],
-          ['전폭', facts.width ? facts.width + 'm' : '-'],
-          ['데크', facts.deck_count ? facts.deck_count + '개' : '-'],
-          ['객실', facts.cabin_count ? facts.cabin_count.toLocaleString() + '실' : '-'],
-        ];
-
-        html += `
-        <section class="section" style="background:var(--gray-50)">
-          <div class="container">
-            <h2 class="section-title">🚢 ${shipName} 소개</h2>
-            <div class="spec-grid">`;
-        specs.forEach(([label, value]) => {
-          html += `<div class="spec-item"><div class="spec-value">${value}</div><div class="spec-label">${label}</div></div>`;
-        });
-        html += `</div>`;
-
-        // Section intros (dining / entertainment / health / kids)
-        const sectionDefs = [
-          { key: 'dining', label: '🍽️ 다이닝' },
-          { key: 'entertainment', label: '🎭 엔터테인먼트' },
-          { key: 'health_and_fitness', label: '💆 스파 & 피트니스' },
-          { key: 'kids_and_teens', label: '👶 키즈 & 틴즈' },
-        ];
-        const intros = sectionDefs.filter(s => shipLive[s.key]?.intro);
-        if (intros.length) {
-          html += `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px">`;
-          intros.forEach(s => {
-            const text = shipLive[s.key].intro.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 180);
-            html += `
-            <div style="background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,0.08)">
-              <h4 style="font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:8px">${s.label}</h4>
-              <p style="font-size:0.82rem;color:var(--gray-600);line-height:1.5">${text}…</p>
-            </div>`;
-          });
-          html += `</div>`;
-        }
-        html += `</div></section>`;
-      }
+      // Ship section — renderShipSection()으로 통합 (모든 선사 동일 디자인)
+      const liveDetail = normalizeShipLive(shipLive);
+      const cruiseProxy = {
+        shipTitle: holiday.ship_title || '',
+        shipTitleKo: Translations.shipName?.(holiday.ship_title || '') || holiday.ship_title || '',
+        operator: holiday.operator_title || '',
+      };
+      html += renderShipSection(cruiseProxy, {}, null, liveDetail);
 
       // Pricing placeholder
       html += `<section class="section" id="pricing-section"></section>`;
@@ -550,6 +594,7 @@
       content.innerHTML = html;
       renderItinerary(holiday);
       renderPricing(holiday, shipDetail);
+      initAllSliders();
     }
 
     function initSlider(containerId) {
