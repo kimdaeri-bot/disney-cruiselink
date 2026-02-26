@@ -60,6 +60,9 @@
               <button class="port-preset" onclick="togglePortPreset(event,this)" data-value="사우샘프턴">사우샘프턴</button>
             </div>
             <div id="msPortOptions"></div>
+            <div style="padding:8px;text-align:right;border-top:1px solid #eee">
+              <button class="dr-btn-ok" onclick="closeMulti('msPort');event.stopPropagation()" type="button">확인</button>
+            </div>
           </div>
         </div>
       </div>
@@ -67,7 +70,7 @@
         <label>선사</label>
         <div class="multi-select" id="msOperator" onclick="toggleMulti(this)">
           <div class="multi-select-display">전체</div>
-          <div class="multi-select-dropdown" style="min-width:300px;max-height:none;overflow:visible">
+          <div class="multi-select-dropdown" style="min-width:300px;max-height:none;overflow:visible" onclick="event.stopPropagation()">
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0">
               <div class="ms-option" data-value="Royal Caribbean" onclick="toggleOption(event, this)">로얄 캐리비안</div>
               <div class="ms-option" data-value="MSC" onclick="toggleOption(event, this)">MSC 크루즈</div>
@@ -78,6 +81,9 @@
               <div class="ms-option" data-value="Oceania" onclick="toggleOption(event, this)">오세아니아</div>
               <div class="ms-option" data-value="Regent" onclick="toggleOption(event, this)">리젠트</div>
               <div class="ms-option" data-value="Explora" onclick="toggleOption(event, this)">엑스플로라</div>
+            </div>
+            <div style="padding:8px;text-align:right;border-top:1px solid #eee">
+              <button class="dr-btn-ok" onclick="onOperatorConfirm();event.stopPropagation()" type="button">확인</button>
             </div>
           </div>
         </div>
@@ -340,25 +346,59 @@
       window._allShips = data;
     }).catch(()=>{});
 
+    // 선사 필터값 → ships.json operator 매칭 키
+    function _shipMatchesOperator(ship, filterOp) {
+      const op = (ship.operator || '').toLowerCase();
+      return op.includes(filterOp.toLowerCase());
+    }
+
+    function _getFilteredShips() {
+      const selectedOps = getMultiValues(document.getElementById('msOperator'));
+      let pool = window._allShips || [];
+      if (selectedOps.length > 0) {
+        pool = pool.filter(s => selectedOps.some(op => _shipMatchesOperator(s, op)));
+      }
+      return pool;
+    }
+
     function filterShipOptions(query) {
       const dd = document.getElementById('shipDropdown');
-      const q = query.trim().toLowerCase();
-      if (!q) { dd.style.display = 'none'; window._selectedShipSlug = ''; return; }
-      const matched = window._allShips.filter(s => {
+      const q = (query || '').trim().toLowerCase();
+      const pool = _getFilteredShips();
+
+      // 검색어 없을 때: 선사 선택됐으면 해당 선사 전체 목록 표시, 아니면 숨김
+      if (!q) {
+        const selectedOps = getMultiValues(document.getElementById('msOperator'));
+        if (selectedOps.length > 0) {
+          _renderShipDropdown(pool.slice(0, 30), dd);
+        } else {
+          dd.style.display = 'none';
+          window._selectedShipSlug = '';
+        }
+        return;
+      }
+
+      const matched = pool.filter(s => {
         const titleKo = (typeof Translations !== 'undefined' ? Translations.shipName(s.title) : '').toLowerCase();
         return s.title.toLowerCase().includes(q) || titleKo.includes(q) ||
           (s.operatorKo && s.operatorKo.toLowerCase().includes(q)) ||
           (s.operatorShort && s.operatorShort.toLowerCase().includes(q));
       }).slice(0, 20);
+
       if (!matched.length) {
         dd.innerHTML = '<div style="padding:8px 12px;color:#aaa;font-size:.85rem">검색 결과 없음</div>';
         dd.style.display = 'block'; return;
       }
-      dd.innerHTML = matched.map(s =>
+      _renderShipDropdown(matched, dd);
+    }
+
+    function _renderShipDropdown(ships, dd) {
+      const selectedOps = getMultiValues(document.getElementById('msOperator'));
+      dd.innerHTML = ships.map(s =>
         `<div class="ms-option" style="display:flex;justify-content:space-between;align-items:center"
           onclick="selectShip('${s.slug}','${s.title.replace(/'/g,'&#39;')}')">
-          <span>${s.title}</span>
-          <span style="color:#aaa;font-size:.75rem;margin-left:8px;white-space:nowrap">${s.operatorKo||s.operator||''}</span>
+          <span>${typeof Translations !== 'undefined' ? Translations.shipName(s.title) : s.title}</span>
+          ${selectedOps.length === 0 ? `<span style="color:#aaa;font-size:.75rem;margin-left:8px;white-space:nowrap">${s.operatorKo||s.operator||''}</span>` : ''}
         </div>`
       ).join('');
       dd.style.display = 'block';
@@ -368,6 +408,28 @@
       window._selectedShipSlug = slug;
       document.getElementById('filterShip').value = title;
       document.getElementById('shipDropdown').style.display = 'none';
+    }
+
+    // 선사 확인 버튼 클릭
+    function onOperatorConfirm() {
+      closeMulti('msOperator');
+      // 선택된 선사에 속하지 않는 선박 선택이면 초기화
+      if (window._selectedShipSlug) {
+        const selectedOps = getMultiValues(document.getElementById('msOperator'));
+        if (selectedOps.length > 0) {
+          const ship = (window._allShips || []).find(s => s.slug === window._selectedShipSlug);
+          if (ship && !selectedOps.some(op => _shipMatchesOperator(ship, op))) {
+            window._selectedShipSlug = '';
+            document.getElementById('filterShip').value = '';
+          }
+        }
+      }
+      // 선사가 선택됐으면 선박 드롭다운 업데이트
+      filterShipOptions(document.getElementById('filterShip').value || '');
+    }
+
+    function closeMulti(id) {
+      document.getElementById(id)?.classList.remove('open');
     }
 
     document.addEventListener('click', e => {
