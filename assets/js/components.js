@@ -110,7 +110,17 @@ const Components = {
         <div class="cruise-item-operator">${Translations.operatorName(c.operator)} · ${c.shipTitleKo || Translations.shipName(c.shipTitle)}</div>
         <div class="cruise-item-title">${c.title}</div>
         <div class="cruise-item-route">🚢 ${Translations.portRoute(c.portRouteKo || c.portRoute)}</div>
-        <div class="cruise-item-hashtags">${(c.hashtags||[]).map(t => `<span>${t.startsWith('#') && !/[\uAC00-\uD7A3]/.test(t) ? '#' + Translations.shipName(t.slice(1)) : t}</span>`).join('')}</div>
+        <div class="cruise-item-hashtags">${(c.hashtags||[]).map(t => {
+          if (!/[\uAC00-\uD7A3]/.test(t) && t.startsWith('#')) {
+            const raw = t.slice(1);
+            const ship = Translations.shipName(raw);
+            if (ship !== raw) return `<span>#${ship}</span>`;
+            const port = Translations.portName(raw);
+            if (port !== raw) return `<span>#${port}</span>`;
+            return ''; // 번역 불가 영문 태그 제거
+          }
+          return `<span>${t}</span>`;
+        }).filter(Boolean).join('')}</div>
         <div class="cruise-item-footer">
           <div>
             <div class="cruise-item-date">📅 ${API.formatDate(c.dateFrom)} ~ ${API.formatDate(c.dateTo)} · ${c.nights}박</div>

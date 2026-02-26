@@ -109,11 +109,16 @@
     // 라이브 API 데이터 → detail 포맷으로 정규화
     function normalizeShipLive(sl) {
       if (!sl) return null;
-      const mapItems = (arr, limit = 30) => (arr || []).slice(0, limit).map(item => ({
-        name: item.name || '',
-        image: item.images?.[0]?.href || '',
-        desc: (item.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 150),
-      }));
+      const cleanText = t => (t||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+      const mapItems = (arr, limit = 30) => (arr || []).slice(0, limit).map(item => {
+        const rawName = item.name || '';
+        const koName = Translations.facilityNameSmart(rawName);
+        const rawDesc = cleanText(item.description || '').slice(0, 150);
+        const koDesc = Translations.facilityKo[rawName]?.desc || Translations.koOnly(rawDesc) || '';
+        return { name: koName, image: item.images?.[0]?.href || '', desc: koDesc };
+      });
+      const rawTeaser = cleanText(sl.teaser || '');
+      const koTeaser = Translations.koOnly(rawTeaser) || '';
       return {
         dining: mapItems(sl.dining_options, 20),
         entertainment: mapItems(sl.entertainment_types, 30),
@@ -121,10 +126,9 @@
         kids: mapItems(sl.kid_teen_types, 15),
         deckplans: mapItems(sl.deckplans, 20),
         accommodations: mapItems(sl.accomodation_types, 24),
-        // ship facts from live API
         facts: sl.ship_facts || {},
         coverImage: sl.cover_image_href || sl.profile_image_href || '',
-        teaser: (sl.teaser || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(),
+        teaser: koTeaser,
       };
     }
 
@@ -177,7 +181,17 @@
             <span>🌏 ${countries}</span>
           </div>
           <div class="detail-hero-tags">
-            ${(c.hashtags||[]).slice(0,6).map(t => `<span class="hero-tag">${t}</span>`).join('')}
+            ${(c.hashtags||[]).slice(0,6).map(t => {
+              if (!/[\uAC00-\uD7A3]/.test(t) && t.startsWith('#')) {
+                const raw = t.slice(1);
+                const ship = Translations.shipName(raw);
+                if (ship !== raw) return `<span class="hero-tag">#${ship}</span>`;
+                const port = Translations.portName(raw);
+                if (port !== raw) return `<span class="hero-tag">#${port}</span>`;
+                return '';
+              }
+              return `<span class="hero-tag">${t}</span>`;
+            }).filter(Boolean).join('')}
           </div>
           <div class="price-big">${priceStr} <small>/1인</small></div>
           <div class="hero-ctas cta-two-center">
@@ -340,10 +354,9 @@
             html += `<div class="facility-slider" id="${sliderId}">`;
             html += `<div class="facility-slides">`;
             items.forEach(item => {
-              const tr = Translations.facilityKo?.[item.name];
-              const name = tr ? tr.name : item.name;
-              // desc: facilityKo 번역 우선 → 라이브 desc 폴백
-              const desc = tr?.desc || item.desc || '';
+              // item.name은 normalizeShipLive에서 이미 한글화됨
+              const name = item.name;
+              const desc = item.desc || '';
               html += `<div class="facility-slide">`;
               if (item.image) html += `<img src="${item.image}" alt="${name}" loading="lazy">`;
               html += `<div class="facility-slide-body"><div class="facility-slide-name">${name}</div>`;
@@ -373,7 +386,8 @@
               html += `<div class="facility-slides">`;
               cat.items.forEach(a => {
                 const aName = Translations.accommodationName(a.name);
-                const aDesc = a.desc ? `<div class="facility-slide-desc">${a.desc}</div>` : '';
+                const descText = a.desc || Translations.cabinDescKo(cat.id);
+                const aDesc = descText ? `<div class="facility-slide-desc">${descText}</div>` : '';
                 html += `<div class="facility-slide">`;
                 if (a.image) html += `<img src="${a.image}" alt="${aName}" loading="lazy">`;
                 html += `<div class="facility-slide-body"><div class="facility-slide-name">${aName}</div>${aDesc}</div>`;
@@ -410,7 +424,7 @@
           html += `
           <div class="day-card sea-day">
             <div class="day-card-header">
-              <span class="day-num">DAY ${day.day}</span>
+              <span class="day-num">${day.day}일차</span>
               <span class="day-port">🌊 종일 항해</span>
               <span class="day-time"></span>
             </div>
@@ -432,7 +446,7 @@
           html += `
           <div class="day-card">
             <div class="day-card-header">
-              <span class="day-num">DAY ${day.day}</span>
+              <span class="day-num">${day.day}일차</span>
               <span class="day-port">📍 ${portName}${countryName ? ', ' + countryName : ''}</span>
               <span class="day-time">${timeStr ? '⏰ ' + timeStr : ''}</span>
             </div>

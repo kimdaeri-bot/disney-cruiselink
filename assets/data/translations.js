@@ -427,7 +427,7 @@ const Translations = {
 
   // 국가명 한글 매핑
   countryKo: {
-    'Japan': '일본', 'South Korea': '한국', 'China': '중국',
+    'Japan': '일본', 'South Korea': '한국', 'Korea': '한국', 'China': '중국',
     'Singapore': '싱가포르', 'Vietnam': '베트남', 'Thailand': '태국',
     'Malaysia': '말레이시아', 'Philippines': '필리핀', 'Indonesia': '인도네시아',
     'India': '인도', 'Sri Lanka': '스리랑카', 'Myanmar': '미얀마',
@@ -803,6 +803,93 @@ const Translations = {
 
     // 시설 한글 번역 (MSC Bellissima 기준, 다른 선박에도 공유되는 시설 포함)
   facilityKo: {
+    // === MSC Bellissima 고유 시설 ===
+    'Lighthouse Restaurant': {name:'라이트하우스 레스토랑', desc:'6층 갑판에 위치한 정통 레스토랑.'},
+    'Posidonia Restaurant': {name:'포시도니아 레스토랑', desc:'5층 갑판의 메인 다이닝 레스토랑.'},
+    'Il Ciliegio Restaurant': {name:'일 칠리에조 레스토랑', desc:'6층 갑판에 위치한 이탈리안 레스토랑.'},
+    'Le Cerisier Restaurant': {name:'르 스리지에 레스토랑', desc:'우아한 분위기의 프렌치 레스토랑.'},
+    'Sea Pavillion Hot Pot': {name:'씨 파빌리온 핫팟', desc:'아시아 퓨전 요리와 정통 샤부샤부를 즐길 수 있는 레스토랑.'},
+    'Sea Pavillion Hot Pot*': {name:'씨 파빌리온 핫팟', desc:'아시아 퓨전 요리와 정통 샤부샤부를 즐길 수 있는 레스토랑.'},
+    'Jean-Philippe Chocolat & Café': {name:'장-필립 초콜릿 & 카페', desc:'세계적인 파티시에 장-필립 마리의 수제 초콜릿과 커피 전문점.'},
+    'Jean-Phillipe Crêpes & Gelato': {name:'장-필립 크레페 & 젤라토', desc:'정통 프렌치 크레페와 수제 젤라토를 제공하는 디저트 카페.'},
+    'Jean-Philippe Maury': {name:'장-필립 마리', desc:'세계적인 파티시에의 시그니처 디저트 전문점.'},
+    'Atmosphere Bar South': {name:'애트모스피어 바 사우스', desc:'수영장 옆 야외 바 & 그릴. 신선한 특선 요리를 제공합니다.'},
+    'Atmosphere Ice Cream Bar': {name:'애트모스피어 아이스크림 바', desc:'소프트아이스크림과 신선한 과일 디저트를 즐길 수 있는 야외 바.'},
+    'The One Pool Bar': {name:'더 원 풀 바', desc:'수영장 옆 리프레시 음료 & 칵테일 바.'},
+    'Hola! Tapas Bar': {name:'올라! 타파스 바', desc:'지중해풍 타파스와 스낵을 즐길 수 있는 바.'},
+    'Msc Yacht Club Restaurant': {name:'MSC 요트클럽 레스토랑', desc:'요트클럽 전용 프라이빗 레스토랑.'},
+    'Msc Yacht Club Top Sail Lounge': {name:'MSC 요트클럽 탑세일 라운지', desc:'요트클럽 전용 라운지.'},
+    // RCI 시설
+    'The Main Dining Room': {name:'메인 다이닝', desc:'클래식한 분위기의 메인 레스토랑.'},
+    'Windjammer Marketplace': {name:'윈드재머 마켓플레이스', desc:'오션뷰 뷔페 레스토랑.'},
+    'Central Park': {name:'센트럴 파크', desc:'선내 야외 공원. 실제 식물로 꾸며진 자연 친화적 공간.'},
+    'Boardwalk': {name:'보드워크', desc:'해변 분위기의 야외 산책로. 아이스크림과 핫도그 등 간식을 즐길 수 있습니다.'},
+    'The Promenade': {name:'더 프로미나드', desc:'쇼핑과 식사, 엔터테인먼트가 어우러진 실내 보행자 거리.'},
+    'AquaTheater': {name:'아쿠아시어터', desc:'세계 최초 선상 야외 수중 공연장.'},
+    'AquaTheater Pool': {name:'아쿠아시어터 풀', desc:'야외 수영장과 공연이 함께하는 복합 공간.'},
+    'Vitality Spa': {name:'바이탈리티 스파', desc:'전신 마사지, 페이셜, 사우나를 즐길 수 있는 스파.'},
+    'Vitality at Sea Spa': {name:'바이탈리티 스파', desc:'전신 마사지, 페이셜, 사우나를 즐길 수 있는 스파.'},
+    'Adventure Ocean': {name:'어드벤처 오션', desc:'3~17세 어린이 및 청소년을 위한 전용 프로그램.'},
+    'Royal Babies and Tots': {name:'로얄 베이비 & 토츠', desc:'6~36개월 영유아를 위한 놀이 프로그램.'},
+    'Rock Climbing Wall': {name:'암벽등반 벽', desc:'고도 15m의 선박 암벽등반 시설.'},
+    'FlowRider': {name:'플로우라이더', desc:'서핑 시뮬레이터. 실내 파도 서핑을 즐길 수 있습니다.'},
+    'Zip Line': {name:'집라인', desc:'선상 집라인. 9층 갑판을 가로지르는 스릴 어트랙션.'},
+    'Bumper Cars': {name:'범퍼카', desc:'실내 범퍼카 어트랙션.'},
+    'Casino Royale': {name:'카지노 로얄', desc:'블랙잭, 룰렛, 포커 등 다양한 게임.'},
+    'Main Pool': {name:'메인 풀', desc:'야외 메인 수영장.'},
+    'Solarium': {name:'솔라리움', desc:'성인 전용 실내 온수 수영장 및 선데크.'},
+    'Sports Court': {name:'스포츠 코트', desc:'농구, 배구 등 다목적 스포츠 코트.'},
+    'Ice Skating Rink': {name:'아이스링크', desc:'선상 아이스스케이팅 링크.'},
+    'Studio B': {name:'스튜디오 B', desc:'아이스쇼 전용 공연장 겸 아이스링크.'},
+    // Celebrity 시설
+    'The Retreat': {name:'더 리트리트', desc:'셀러브리티 최상위 럭셔리 전용 공간.'},
+    'Blu Restaurant': {name:'블루 레스토랑', desc:'아쿠아클래스 전용 건강 다이닝.'},
+    'Luminae': {name:'루미나에', desc:'더 리트리트 전용 파인 다이닝.'},
+    'Murano': {name:'무라노', desc:'유럽식 파인 다이닝 레스토랑.'},
+    'Tuscan Grille': {name:'투스칸 그릴', desc:'이탈리안 스테이크하우스.'},
+    'Qsine': {name:'큐진', desc:'글로벌 퓨전 다이닝.'},
+    'Le Petit Chef': {name:'르 프티 셰프', desc:'3D 애니메이션과 함께하는 특별한 다이닝 경험.'},
+    'Eden Restaurant': {name:'에덴 레스토랑', desc:'셀러브리티 엣지 클래스 전용 레스토랑.'},
+    'The Spa': {name:'더 스파', desc:'각종 마사지와 뷰티 트리트먼트.'},
+    'Persian Garden': {name:'페르시안 가든', desc:'온천 테라피, 스팀룸, 타일 침상이 있는 럭셔리 스파 시설.'},
+    // Carnival 시설
+    'Guy\'s Burger Joint': {name:'가이즈 버거 조인트', desc:'유명 셰프 가이 피에리의 시그니처 버거.'},
+    'BlueIguana Cantina': {name:'블루 이구아나 칸티나', desc:'멕시칸 타코 & 부리토 레스토랑.'},
+    'RedFrog Pub': {name:'레드 프로그 펍', desc:'카리브해 분위기의 야외 바.'},
+    'BlueIguana Tequila Bar': {name:'블루 이구아나 데킬라 바', desc:'100여 종의 데킬라를 즐길 수 있는 바.'},
+    'Piano Bar': {name:'피아노 바', desc:'라이브 피아노 음악과 함께하는 칵테일 바.'},
+    'Havana Bar': {name:'하바나 바', desc:'쿠바 분위기의 칵테일 바. 하바나 캐빈 전용.'},
+    'Serenity': {name:'세레니티', desc:'성인 전용 야외 선데크 & 휴식 구역.'},
+    'Camp Ocean': {name:'캠프 오션', desc:'2~11세 어린이 전용 키즈 클럽.'},
+    'Circle C': {name:'서클 C', desc:'12~14세 청소년 전용 프로그램.'},
+    'Club O2': {name:'클럽 O2', desc:'15~17세 십대 전용 클럽.'},
+    'Carnival IMAX Theatre': {name:'카니발 IMAX 시어터', desc:'선상 IMAX 영화관.'},
+    'WaterWorks': {name:'워터웍스', desc:'야외 워터파크 및 슬라이드.'},
+    // NCL 시설
+    'Specialty Dining': {name:'스페셜티 다이닝', desc:'노르웨이전의 프리미엄 전문 레스토랑.'},
+    'Cagney\'s Steakhouse': {name:'케그니스 스테이크하우스', desc:'미국식 프리미엄 스테이크하우스.'},
+    'Le Bistro': {name:'르 비스트로', desc:'프렌치 레스토랑.'},
+    'Moderno Churrascaria': {name:'모데르노 슈하스카리아', desc:'브라질식 로티세리 레스토랑.'},
+    'Ocean Blue': {name:'오션 블루', desc:'시푸드 전문 레스토랑.'},
+    'Teppanyaki': {name:'철판구이', desc:'일식 철판구이 레스토랑.'},
+    'The Haven Restaurant': {name:'더 헤이븐 레스토랑', desc:'더 헤이븐 전용 프라이빗 다이닝.'},
+    'The Haven Lounge': {name:'더 헤이븐 라운지', desc:'더 헤이븐 전용 고급 라운지.'},
+    'The Haven Pool': {name:'더 헤이븐 풀', desc:'더 헤이븐 전용 야외 수영장.'},
+    'Spice H2O': {name:'스파이스 H2O', desc:'성인 전용 야외 이벤트 공간.'},
+    'Splash Academy': {name:'스플래시 아카데미', desc:'3~12세 어린이를 위한 키즈 클럽.'},
+    'Entourage': {name:'앙투라지', desc:'13~17세 청소년을 위한 클럽.'},
+    'Guppies': {name:'거피스', desc:'6개월~2세 영유아를 위한 키즈 케어.'},
+    'The Brig': {name:'더 브릭', desc:'10대 전용 클럽.'},
+    // Princess 시설
+    'Crown Grill': {name:'크라운 그릴', desc:'프리미엄 스테이크 & 시푸드 레스토랑.'},
+    'Sabatini\'s Italian Trattoria': {name:'사바티니 이탈리안 트라토리아', desc:'정통 이탈리안 레스토랑.'},
+    'Salty Dog Grill': {name:'솔티 독 그릴', desc:'야외 버거 & 그릴.'},
+    'Harmony Restaurant': {name:'하모니 레스토랑', desc:'메인 다이닝 레스토랑.'},
+    'Sterling Steakhouse': {name:'스털링 스테이크하우스', desc:'프리미엄 스테이크하우스.'},
+    'Movies Under the Stars': {name:'무비스 언더 더 스타즈', desc:'야외 대형 스크린 영화 상영.'},
+    'The Enclave': {name:'더 인클레이브', desc:'럭셔리 온천 스파 시설.'},
+    'Princess Live!': {name:'프린세스 라이브!', desc:'라이브 게임쇼 전용 스튜디오.'},
+    'Camp Discovery Youth Center': {name:'캠프 디스커버리', desc:'3~17세 어린이/청소년 전용 프로그램.'},
     // Dining
     'HOLA! Tapas Bar': {name:'올라! 타파스 바', desc:'지중해 요리의 축제를 즐길 수 있는 타파스 바입니다.'},
     "Butcher's Cut": {name:'부처스 컷 스테이크하우스', desc:'엄선된 앵거스 비프를 제공하는 미국식 스테이크하우스.'},
@@ -872,6 +959,20 @@ const Translations = {
   },
 
   // 선박 한글 소개 (teaser)
+  // 선박 소개 한글 (직접 작성)
+  shipTeaserKoExtra: {
+    'MSC Bellissima': 'MSC 벨리시마는 최첨단 MSC for Me 기술과 화려한 실내 갤러리아, 럭셔리 요트클럽을 갖춘 MSC 플래그십 선박입니다. 지중해에서 아시아까지 다양한 항로를 운항하며 최고의 크루즈 경험을 제공합니다.',
+    'MSC World Europa': 'MSC 월드 유로파는 세계 최대 규모의 LNG 추진 크루즈선 중 하나로, 친환경 기술과 최신 엔터테인먼트 시설을 갖추고 있습니다.',
+    'MSC Grandiosa': 'MSC 그란디오사는 MSC 최신형 선박으로 크루즈 업계 최초로 Zara, Parfois 등 인기 브랜드 매장을 도입했습니다. 화려한 갤러리아와 야외 아쿠아 파크가 특징입니다.',
+    'MSC Virtuosa': "MSC 비르투오사는 MSC의 차세대 대형 선박으로, 선박 최초의 AI 로봇 바텐더 'Rob'을 비롯한 최첨단 기술과 럭셔리한 서비스를 제공합니다.",
+    'Symphony of the Seas': '심포니 오브 더 시즈는 취항 당시 세계 최대 크루즈선이었던 로얄 캐리비안의 오아시스 클래스 선박입니다. 센트럴 파크, 보드워크, 수중 아쿠아 시어터 등 혁신적 시설을 자랑합니다.',
+    'Wonder of the Seas': '원더 오브 더 시즈는 현재 세계 최대 규모의 크루즈선으로, 8개의 독특한 동네 구역과 최첨단 어트랙션을 갖추고 있습니다.',
+    'Icon of the Seas': "아이콘 오브 더 시즈는 로얄 캐리비안이 자랑하는 최신 플래그십 선박으로, 세계 최대 수상 공원 'Category 6'을 비롯해 20가지 이상의 독점 어트랙션을 탑재했습니다.",
+    'Harmony of the Seas': '하모니 오브 더 시즈는 오아시스 클래스 3번째 선박으로, 세계 최고 높이의 크루즈 워터슬라이드와 F1 시뮬레이터 등 혁신적인 시설을 자랑합니다.',
+    'Norwegian Escape': '노르웨이전 이스케이프는 노르웨이전 크루즈 라인의 플래그십 선박으로 뉴욕에서 카리브해 항로를 운항합니다. 락 클라이밍, 집라인 등 액티비티가 풍부합니다.',
+    'Norwegian Bliss': '노르웨이전 블리스는 알래스카 항로를 위해 특별 설계된 선박으로 파노라믹 오션 워크와 레이저 태그 시설이 특징입니다.',
+  },
+
   shipTeaserKo: {
     'MSC Bellissima': '바다 위의 아름다움 — MSC 벨리시마는 자매선 MSC 메라빌리아에 필적하는 놀라운 시설을 갖추고 있습니다. 혁신적인 MSC for Me 기술로 승객, 승무원, 그리고 선박이 하나로 연결됩니다.',
     'Norwegian Bliss': '노르웨이전 크루즈 라인 최대 규모의 선박 중 하나인 노르웨이전 블리스는 장엄한 자연을 위해 특별히 설계되었습니다. 바닥부터 천장까지 이어지는 전망 라운지에서 180도 파노라마 오션뷰를 즐기세요.',
@@ -887,6 +988,7 @@ const Translations = {
 
   // 선박 한글 소개 가져오기 (없으면 기본 템플릿)
   shipTeaser(shipTitle, shipTitleKo, operator, shipClass, capacity, launchYear) {
+    if (this.shipTeaserKoExtra?.[shipTitle]) return this.shipTeaserKoExtra[shipTitle];
     if (this.shipTeaserKo[shipTitle]) return this.shipTeaserKo[shipTitle];
     const name = shipTitleKo || shipTitle;
     if (capacity && launchYear) {
@@ -896,6 +998,76 @@ const Translations = {
   },
 
   // 유틸리티 함수
+  isKorean(text) {
+    return /[\uAC00-\uD7A3]/.test(text || '');
+  },
+  // 영문 설명이면 null 반환 (한글만 표시)
+  koOnly(text) {
+    if (!text) return null;
+    return this.isKorean(text) ? text : null;
+  },
+  // 시설명 스마트 번역 (exact match → pattern match)
+  facilityNameSmart(name) {
+    if (!name) return name;
+    const exact = this.facilityKo[name];
+    if (exact) return exact.name;
+    // 패턴 기반 번역
+    let n = name;
+    n = n.replace(/\bRestaurant\b/g, '레스토랑');
+    n = n.replace(/\bGrill\b/g, '그릴');
+    n = n.replace(/\bBar\b/g, '바');
+    n = n.replace(/\bLounge\b/g, '라운지');
+    n = n.replace(/\bCafe\b/gi, '카페');
+    n = n.replace(/\bBistro\b/g, '비스트로');
+    n = n.replace(/\bSteakhouse\b/g, '스테이크하우스');
+    n = n.replace(/\bBuffet\b/g, '뷔페');
+    n = n.replace(/\bPool\b/g, '풀');
+    n = n.replace(/\bSpa\b/g, '스파');
+    n = n.replace(/\bSalon\b/g, '살롱');
+    n = n.replace(/\bTheatre\b/gi, '시어터');
+    n = n.replace(/\bTheater\b/g, '시어터');
+    n = n.replace(/\bCasino\b/g, '카지노');
+    n = n.replace(/\bShop\b/g, '샵');
+    n = n.replace(/\bBoutique\b/g, '부티크');
+    n = n.replace(/\bGalleria\b/g, '갤러리아');
+    n = n.replace(/\bGallery\b/g, '갤러리');
+    n = n.replace(/\bLibrary\b/g, '도서관');
+    n = n.replace(/\bGym\b/g, '헬스장');
+    n = n.replace(/\bFitness\b/g, '피트니스');
+    n = n.replace(/\bCourt\b/g, '코트');
+    n = n.replace(/\bTrack\b/g, '트랙');
+    n = n.replace(/\bDeck\b/g, '덱');
+    n = n.replace(/\bBar &/g, '바 &');
+    n = n.replace(/& Bar\b/g, '& 바');
+    n = n.replace(/\bClub\b/g, '클럽');
+    n = n.replace(/\bStudio\b/g, '스튜디오');
+    n = n.replace(/\bAcademy\b/g, '아카데미');
+    n = n.replace(/\bCenter\b/g, '센터');
+    n = n.replace(/\bCentre\b/g, '센터');
+    n = n.replace(/\bPark\b/g, '파크');
+    n = n.replace(/\bBakery\b/g, '베이커리');
+    n = n.replace(/\bIce Cream\b/g, '아이스크림');
+    n = n.replace(/\bPizzeria\b/g, '피자리아');
+    n = n.replace(/\bSushi\b/g, '스시');
+    n = n.replace(/\bBrunch\b/g, '브런치');
+    n = n.replace(/\bBreakfast\b/g, '조식');
+    n = n.replace(/\bDinner\b/g, '디너');
+    n = n.replace(/\bLunch\b/g, '런치');
+    n = n.replace(/\bMain Dining Room\b/g, '메인 다이닝');
+    n = n.replace(/\bWaterpark\b/g, '워터파크');
+    n = n.replace(/\bSlide\b/g, '슬라이드');
+    return n;
+  },
+  // 객실 타입별 한글 설명
+  cabinDescKo(category) {
+    const descs = {
+      suite: '넓은 거실과 전용 발코니, 24시간 버틀러 서비스를 갖춘 최상위 객실입니다.',
+      balcony: '개인 발코니에서 바다 경치를 감상할 수 있는 인기 객실입니다.',
+      oceanview: '바다가 보이는 창문이 있는 밝고 쾌적한 객실입니다.',
+      inside: '경제적인 가격으로 크루즈의 모든 시설을 이용할 수 있는 내측 객실입니다.',
+    };
+    return descs[category] || '편안하고 세심하게 설계된 크루즈 객실입니다.';
+  },
   portName(name) {
     if (!name) return name;
     // 1. Exact match
