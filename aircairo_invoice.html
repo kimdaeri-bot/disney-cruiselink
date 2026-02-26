@@ -95,8 +95,8 @@ body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; backgrou
 .inv-table .req-row td.num-col { font-size: 16px; color: #fff; }
 .inv-pax-section { margin-bottom: 14px; }
 .inv-pax-title { font-size: 10px; font-weight: 700; color: #555; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 4px; }
-.inv-pax-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px 8px; font-size: 10.5px; color: #444; }
-.inv-pax-item { padding: 1px 0; }
+.inv-pax-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px 6px; font-size: 9.5px; color: #444; }
+.inv-pax-item { padding: 1px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .inv-account { border: 1px solid #ccc; border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
 .inv-account-header { background: #005baa; color: #fff; padding: 6px 12px; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
 .inv-account-body { padding: 10px 14px; }
@@ -907,10 +907,10 @@ function applyCScale(val) {
 function doPrintContract() {
   const doc = document.getElementById('contractDoc');
   doc.style.transform = '';
-  const A4_H = 1100;
+  const A4_H = 1123;
   const docH = doc.scrollHeight;
   if (docH > A4_H) {
-    const zoom = Math.max(0.55, A4_H / docH);
+    const zoom = Math.max(0.38, A4_H / docH);
     doc.style.zoom = zoom;
     setTimeout(() => { window.print(); doc.style.zoom = ''; if (cManualScale) applyCScale(cManualScale); }, 100);
   } else {
@@ -1157,10 +1157,11 @@ function applyScaleUI(scale) {
 function doPrint() {
   const doc = document.getElementById('invoiceDoc');
   doc.style.transform = '';
-  const A4_H = 1100;
+  const A4_H = 1123; // A4 실제 픽셀 높이 (794×1123)
   const docH = doc.scrollHeight;
   if (docH > A4_H) {
-    const zoom = Math.max(0.55, A4_H / docH);
+    // 최솟값 0.38로 낮춤 → 명단 100명도 1페이지 수용
+    const zoom = Math.max(0.38, A4_H / docH);
     doc.style.zoom = zoom;
     setTimeout(() => { window.print(); doc.style.zoom = ''; if (manualScale) applyScaleUI(manualScale); }, 100);
   } else {
