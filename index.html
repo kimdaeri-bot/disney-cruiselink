@@ -82,6 +82,15 @@
           </div>
         </div>
       </div>
+      <div class="filter-group" style="position:relative">
+        <label>선박명</label>
+        <div style="position:relative">
+          <input id="filterShip" type="text" placeholder="선박 검색..." autocomplete="off"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:0.88rem;font-family:inherit"
+            oninput="filterShipOptions(this.value)" onfocus="filterShipOptions(this.value)" onclick="event.stopPropagation()">
+          <div id="shipDropdown" onmousedown="event.preventDefault()" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:9999;background:#fff;border:1px solid var(--gray-300);border-radius:var(--radius);box-shadow:0 4px 16px rgba(0,0,0,.12);max-height:220px;overflow-y:auto"></div>
+        </div>
+      </div>
       <div class="filter-group" style="flex:1.5;min-width:180px;position:relative">
         <label>출발 기간</label>
         <button class="dr-display" id="drDisplay" onclick="toggleDR(event)" type="button">전체 기간</button>
@@ -104,15 +113,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="filter-group" style="position:relative">
-        <label>선박명</label>
-        <div style="position:relative">
-          <input id="filterShip" type="text" placeholder="선박 검색..." autocomplete="off"
-            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:0.88rem;font-family:inherit"
-            oninput="filterShipOptions(this.value)" onfocus="filterShipOptions(this.value)" onclick="event.stopPropagation()">
-          <div id="shipDropdown" style="display:none;position:absolute;top:calc(100%+2px);left:0;right:0;z-index:9999;background:#fff;border:1px solid var(--gray-300);border-radius:var(--radius);box-shadow:0 4px 16px rgba(0,0,0,.12);max-height:220px;overflow-y:auto"></div>
         </div>
       </div>
       <button class="btn btn-orange" onclick="doSearch()">🔍 검색</button>
