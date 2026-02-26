@@ -990,7 +990,8 @@
             : '문의';
           const title = c.name || c.title || `${nights}박 크루즈`;
           const ref = c.ref || c.id || '';
-          const destUrl = ref ? `cruise-view.html?ref=${encodeURIComponent(ref)}` : '#';
+          const shipSlug = c.shipSlug || '';
+          const destUrl = ref ? `cruise-view.html?ref=${encodeURIComponent(ref)}${shipSlug ? '&ship=' + encodeURIComponent(shipSlug) : ''}` : '#';
           return `
             <a href="${destUrl}" class="tab-card" onclick="event.preventDefault();if('${ref}'){window.location.href='${destUrl}';}">
               <div class="tab-card-img"><img src="${img}" alt="${title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80'"></div>

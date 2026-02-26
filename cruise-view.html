@@ -47,47 +47,44 @@
       const content = document.getElementById('content');
 
       try {
-        // ① holiday + shipLive 동시 요청 (로컬 10MB 파일 기다리지 않음)
-        const holiday = await API.getHoliday(ref);
+        // ① URL 파라미터에서 ship slug 미리 읽기 (index.html이 넘겨주면 병렬 가능)
+        const urlShip = new URLSearchParams(location.search).get('ship');
+
+        // holiday + shipLive 동시 시작 (urlShip 있으면 완전 병렬)
+        const holidayPromise = API.getHoliday(ref);
+        const shipLivePromise = urlShip ? API.getShipLive(urlShip) : null;
+
+        // ② holiday 완료 즉시 렌더링 (shipLive 기다리지 않음)
+        const holiday = await holidayPromise;
         if (!holiday) {
           content.innerHTML = '<div class="empty-state"><span class="emoji">⚠️</span><p>크루즈 정보를 찾을 수 없습니다</p></div>';
           return;
         }
 
-        const shipSlug = typeof holiday.ship === 'string'
+        const shipSlug = urlShip || (typeof holiday.ship === 'string'
           ? holiday.ship.split('/ships/')[1]?.replace('.json', '')
-          : null;
+          : null);
 
-        // holiday + shipLive 병렬 (이미 holiday는 완료됨, shipLive만 대기)
-        const shipLive = shipSlug ? await API.getShipLive(shipSlug) : null;
+        // ③ 즉시 렌더 (shipLive 없이 — 선박 시설 섹션은 빈 상태로 먼저 표시)
+        renderFromAPI(holiday, null, null);
+        renderItinerary(holiday);
+        renderPricing(holiday, null);
+        initAllSliders();
+        initDaySliders();
 
-        // ② 로컬 캐시 확인 (이미 캐시된 경우만 — 추가 다운로드 없음)
-        let localCruise = null, localShip = null, shipDetail = null;
-        if (API._allCruisesCache) {
-          localCruise = API._allCruisesCache.find(c => c.ref === ref) || null;
-        }
-        if (localCruise && API._localShips) {
-          localShip = API._localShips.find(s => s.slug === localCruise.shipSlug) || null;
-        }
-        if (localCruise) {
-          shipDetail = await API.getShipDetail(localCruise.shipSlug);
-        }
-
-        // ③ 렌더
-        if (localCruise && localShip) {
-          // 캐시된 로컬 데이터로 즉시 렌더 + 라이브 보완
-          renderPage(localCruise, localShip, shipDetail, null);
-          initAllSliders();
-          renderItinerary(holiday);
-          initDaySliders();
-          renderPricing(holiday, shipDetail);
-          if (shipLive) {
+        // ④ shipLive 백그라운드 완료 후 선박 섹션만 업데이트
+        const livePromise = shipLivePromise || (shipSlug ? API.getShipLive(shipSlug) : null);
+        if (livePromise) {
+          livePromise.then(shipLive => {
+            if (!shipLive) return;
+            const cruiseProxy = {
+              shipTitle: holiday.ship_title || '',
+              shipTitleKo: (typeof Translations !== 'undefined' ? Translations.shipName?.(holiday.ship_title || '') : '') || holiday.ship_title || '',
+              operator: holiday.operator_title || '',
+            };
             const liveDetail = normalizeShipLive(shipLive);
-            updateShipSection(localCruise, localShip, shipDetail, liveDetail);
-          }
-        } else {
-          // 라이브 API 전용 렌더 (전선사 동일)
-          renderFromAPI(holiday, shipDetail, shipLive);
+            updateShipSection(cruiseProxy, {}, null, liveDetail);
+          }).catch(() => {});
         }
       } catch (e) {
         console.error('API fetch failed:', e);
