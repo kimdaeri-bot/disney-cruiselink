@@ -81,14 +81,19 @@ img { max-width: 100%; height: auto; }
 }
 .filter-group { flex: 1; min-width: 130px; }
 .filter-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--gray-700); margin-bottom: 4px; text-transform: uppercase; }
-.filter-group select, .filter-group input {
-  width: 100%; padding: 10px 12px; border: 2px solid var(--gray-300);
+.filter-group select,
+#filterShip,
+.filter-group > div > input[type="text"] {
+  width: 100%; padding: 10px 32px 10px 12px; border: 1px solid var(--gray-300);
   border-radius: var(--radius); font-size: 0.9rem; font-family: inherit;
   background: var(--white); appearance: none; cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23616161'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 12px center;
+  box-sizing: border-box;
 }
-.filter-group select:focus { border-color: var(--navy); outline: none; }
+.filter-group select:focus, #filterShip:focus,
+.filter-group > div > input[type="text"]:focus { border-color: var(--navy); outline: none; }
+
 .filter-bar .btn { min-width: 120px; justify-content: center; height: 44px; }
 
 /* ===== SECTION ===== */
@@ -618,9 +623,9 @@ img { max-width: 100%; height: auto; }
   width:100%; padding:9px 12px; border:1px solid var(--gray-300); border-radius:var(--radius);
   background:var(--white); font-size:0.88rem; color:var(--text-primary); text-align:left;
   cursor:pointer; font-family:inherit;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpath d='M11 2H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM4 1V3M10 1V3M2 5h10' stroke='%23666' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:right 10px center;
-  padding-right:28px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center;
+  padding-right:32px;
 }
 .dr-display.has-range { color:var(--navy); font-weight:600; border-color:var(--navy); }
 .dr-popup {
