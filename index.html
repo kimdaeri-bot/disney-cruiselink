@@ -96,6 +96,13 @@
               <div class="dr-months" id="drMonths"></div>
               <button class="dr-nav" onclick="drNav(1)" type="button">&#8250;</button>
             </div>
+            <div class="dr-footer">
+              <span class="dr-hint" id="drHint">출발일을 선택하세요</span>
+              <div style="display:flex;gap:8px">
+                <button class="dr-btn-clear" onclick="clearDR()" type="button">초기화</button>
+                <button class="dr-btn-ok" onclick="closeDR()" type="button">확인</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -223,6 +230,10 @@
         .dr-day.dr-end.dr-has-range{background:linear-gradient(to left,transparent 50%,#dce4ff 50%)}
         .dr-day.dr-start.dr-end{background:transparent}
         .dr-day.dr-today .dr-di::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--orange);border-radius:50%}
+        .dr-footer{display:flex;justify-content:space-between;align-items:center;padding:10px 16px 14px;border-top:1px solid #f0f0f0;margin-top:4px}
+        .dr-hint{font-size:.8rem;color:#888}
+        .dr-btn-clear{background:none;border:1px solid var(--gray-300);border-radius:var(--radius);padding:6px 14px;cursor:pointer;font-size:.82rem;color:var(--gray-700);font-family:inherit}
+        .dr-btn-ok{background:var(--navy);border:none;border-radius:var(--radius);padding:6px 20px;cursor:pointer;font-size:.82rem;color:#fff;font-weight:600;font-family:inherit}
         @media(max-width:700px){.dr-popup{width:calc(100vw - 32px);left:0}.dr-months{flex-direction:column}}
       </style>
       <nav class="cruise-tabs-nav" id="cruiseTabsNav">
@@ -414,9 +425,15 @@
       popup.classList.add('open');
     }
     function closeDR() { document.getElementById('drPopup').classList.remove('open'); updateDRDisplay(); }
-    function clearDR() { drFrom=null; drTo=null; drSelecting=false; renderDR(); updateDRDisplay(); }
+    function clearDR() { _drSuppressClose=true; drFrom=null; drTo=null; drSelecting=false; renderDR(); updateDRDisplay(); }
 
     function updateDRDisplay() {
+      var hint = document.getElementById('drHint');
+      if (hint) {
+        if (!drFrom) hint.textContent = '출발일을 선택하세요';
+        else if (!drTo) hint.textContent = '도착일을 선택하세요';
+        else hint.textContent = fmtDR(drFrom) + ' ~ ' + fmtDR(drTo);
+      }
       var btn = document.getElementById('drDisplay');
       if (drFrom && drTo) {
         btn.textContent = fmtDR(drFrom) + ' ~ ' + fmtDR(drTo);
@@ -485,13 +502,16 @@
     }
 
     function drNav(dir) {
+      _drSuppressClose = true;
       drViewMonth += dir;
       if (drViewMonth < 0) { drViewMonth = 11; drViewYear--; }
       if (drViewMonth > 11) { drViewMonth = 0; drViewYear++; }
       renderDR();
     }
 
+    var _drSuppressClose = false;
     function pickDR(dtStr) {
+      _drSuppressClose = true; // renderDR()로 DOM 교체 후 document click이 팝업 닫는 것 방지
       var dt = new Date(dtStr); dt.setHours(0,0,0,0);
       if (!drFrom || (drFrom && drTo)) {
         drFrom = dt; drTo = null; drSelecting = true;
@@ -506,6 +526,7 @@
     }
 
     document.addEventListener('click', function(e) {
+      if (_drSuppressClose) { _drSuppressClose = false; return; }
       var popup = document.getElementById('drPopup');
       if (popup && popup.classList.contains('open') && !e.target.closest('#drPopup') && !e.target.closest('#drDisplay')) {
         popup.classList.remove('open');
