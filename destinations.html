@@ -91,9 +91,11 @@
     }
     .dest-card-cta:hover { background: var(--orange-hover); }
 
-    /* ── 대형 피처드 카드 (첫 번째) ── */
+    /* ── 피처드·와이드 카드 ── */
     .dest-big-card.featured { grid-column: span 2; }
     .dest-big-card.featured .dest-big-card-img { height: 340px; }
+    .dest-big-card.wide-card { grid-column: span 2; }
+    .dest-big-card.wide-card .dest-big-card-img { height: 280px; }
 
     /* ── 섹션 타이틀 ── */
     .section-label {
@@ -126,6 +128,7 @@
       .dest-grid { grid-template-columns: repeat(2, 1fr); }
       .dest-big-card.featured { grid-column: span 1; }
       .dest-big-card.featured .dest-big-card-img { height: 280px; }
+      .dest-big-card.wide-card { grid-column: span 2; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .season-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -134,6 +137,7 @@
       .dest-hero-content h1 { font-size: 2rem; }
       .dest-grid { grid-template-columns: 1fr; gap: 16px; }
       .dest-big-card-img { height: 240px !important; }
+      .dest-big-card.wide-card, .dest-big-card.featured { grid-column: span 1; }
       .why-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
       .season-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .dest-card-detail { max-height: none; opacity: 1; margin-top: 10px; }
@@ -368,6 +372,22 @@
         highlight: '오아후, 마우이, 빅아일랜드, 카우아이 — 하와이 섬들을 크루즈로 여유롭게 순회하는 최고의 방법.',
         region: 'pacific',
       },
+      {
+        id: 'other',
+        name: '세계 일주 · 특별 항로',
+        nameEn: 'World Cruise & Special Voyages',
+        tagline: '대서양 횡단, 남극 탐험, 버킷리스트 크루즈',
+        img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+        count: 1521,
+        season: '연중 (항로별 상이)',
+        bestFor: '탐험·버킷리스트',
+        ports: ['리스본', '뉴욕', '케이프타운', '우수아이아', '레이캬비크'],
+        highlight: '대서양을 가로지르는 트랜스애틀랜틱, 땅끝 남극 탐험, 수에즈 운하 통과까지. 평생 한 번은 경험해야 할 특별한 항로들을 만나보세요.',
+        region: 'americas',
+        wide: true,
+        badge: '🌍 버킷리스트',
+        badgeColor: '#8b5cf6',
+      },
     ];
 
     let currentRegion = 'all';
@@ -377,7 +397,7 @@
       const grid = document.getElementById('destGrid');
 
       grid.innerHTML = dests.map((d, i) => `
-        <a href="destination.html?dest=${d.id}" class="dest-big-card${d.featured && region === 'all' ? ' featured' : ''}" data-region="${d.region}">
+        <a href="destination.html?dest=${d.id}" class="dest-big-card${d.featured && region === 'all' ? ' featured' : ''}${d.wide && region === 'all' ? ' wide-card' : ''}" data-region="${d.region}">
           <div class="dest-big-card-img">
             <img src="${d.img}" alt="${d.name}" loading="${i < 3 ? 'eager' : 'lazy'}">
           </div>
