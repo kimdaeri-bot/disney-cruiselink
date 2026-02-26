@@ -136,11 +136,28 @@
       .dest-hero { height: 320px; }
       .dest-hero-content h1 { font-size: 2rem; }
       .dest-grid { grid-template-columns: 1fr; gap: 16px; }
-      .dest-big-card-img { height: 240px !important; }
       .dest-big-card.wide-card, .dest-big-card.featured { grid-column: span 1; }
       .why-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
       .season-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .dest-card-detail { max-height: none; opacity: 1; margin-top: 10px; }
+      /* 모바일: 이미지 위 / 텍스트 아래 분리 구조로 변경 */
+      .dest-big-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--gray-200); }
+      .dest-big-card:hover { transform: none; }
+      .dest-big-card-img { height: 190px !important; flex-shrink: 0; }
+      .dest-big-card-img img { transition: none; }
+      .dest-big-card:hover .dest-big-card-img img { transform: none; }
+      .dest-big-card-overlay {
+        position: static; background: none;
+        padding: 14px 16px 16px; color: var(--gray-900);
+      }
+      .dest-card-name { color: var(--navy); font-size: 1.1rem; }
+      .dest-card-tagline { color: var(--gray-600); margin-bottom: 10px; }
+      .dest-card-detail { max-height: none; opacity: 1; margin-top: 6px; }
+      .dest-card-detail p { color: var(--gray-700) !important; }
+      .dest-card-info span {
+        background: var(--gray-100) !important;
+        border-color: var(--gray-300) !important;
+        color: var(--gray-700) !important;
+      }
     }
   </style>
 </head>
