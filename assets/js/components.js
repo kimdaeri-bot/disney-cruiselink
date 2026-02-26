@@ -7,7 +7,7 @@ const Components = {
         <a href="index.html" class="logo"><img src="/cruiselink-v2/assets/images/logo.png" alt="크루즈링크" style="height:36px"></a>
         <nav class="nav" id="mainNav">
           <a href="index.html" class="${active === 'home' ? 'active' : ''}">홈</a>
-          <a href="destination.html?dest=mediterranean" class="${active === 'dest' ? 'active' : ''}">목적지</a>
+          <a href="destinations.html" class="${active === 'dest' ? 'active' : ''}">목적지</a>
           <a href="ships.html" class="${active === 'ships' ? 'active' : ''}">선박</a>
           <a href="https://pf.kakao.com/_xgYbJG" target="_blank" class="${active === 'contact' ? 'active' : ''}">문의</a>
         </nav>
@@ -39,6 +39,7 @@ const Components = {
           </div>
           <div class="footer-col">
             <h4>목적지</h4>
+            <p><a href="destinations.html">목적지 가이드</a></p>
             <p><a href="destination.html?dest=korea">한국/일본</a></p>
             <p><a href="destination.html?dest=mediterranean">지중해</a></p>
             <p><a href="destination.html?dest=alaska">알래스카</a></p>
