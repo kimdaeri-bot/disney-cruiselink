@@ -86,10 +86,16 @@
         <label>출발 기간</label>
         <button class="dr-display" id="drDisplay" onclick="toggleDR(event)" type="button">전체 기간</button>
         <div class="dr-popup" id="drPopup">
-          <div class="dr-months" id="drMonths"></div>
-          <div class="dr-footer">
-            <button class="dr-btn-clear" onclick="clearDR()" type="button">초기화</button>
-            <button class="dr-btn-ok" onclick="closeDR()" type="button">확인</button>
+          <div class="dr-tabs">
+            <button class="dr-tab active" id="drTabCal" onclick="setDRTab('cal')" type="button">캘린더</button>
+            <button class="dr-tab" id="drTabTbd" onclick="setDRTab('tbd')" type="button">날짜 미정</button>
+          </div>
+          <div id="drCalBody">
+            <div class="dr-nav-row">
+              <button class="dr-nav" onclick="drNav(-1)" type="button">&#8249;</button>
+              <div class="dr-months" id="drMonths"></div>
+              <button class="dr-nav" onclick="drNav(1)" type="button">&#8250;</button>
+            </div>
           </div>
         </div>
       </div>
@@ -190,31 +196,34 @@
         @media (max-width:1024px) { .tab-cruise-grid { grid-template-columns:repeat(3,1fr); } }
         @media (max-width:640px) { .tab-cruise-grid { grid-template-columns:repeat(2,1fr); } }
         /* ── Date Range Picker ── */
-        .dr-display{width:100%;padding:9px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);background:var(--white);font-size:.88rem;color:var(--text-primary);text-align:left;cursor:pointer;font-family:inherit}
+        .dr-display{width:100%;padding:9px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);background:var(--white);font-size:.88rem;color:var(--text-primary);text-align:left;cursor:pointer;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .dr-display.has-range{color:var(--navy);font-weight:600;border-color:var(--navy)}
-        .dr-popup{display:none;position:absolute;top:calc(100% + 4px);left:0;z-index:9999;background:#fff;border:1px solid var(--gray-300);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:560px;padding:16px}
+        .dr-popup{display:none;position:absolute;top:calc(100% + 4px);left:0;z-index:9999;background:#fff;border:1px solid #e0e0e0;border-radius:14px;box-shadow:0 8px 40px rgba(0,0,0,.18);width:580px;padding:0;overflow:hidden}
         .dr-popup.open{display:block}
-        .dr-months{display:flex;gap:24px}
-        .dr-month{flex:1;min-width:240px}
-        .dr-month-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-        .dr-month-title{font-size:.95rem;font-weight:700;color:var(--navy)}
-        .dr-nav{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--gray-600);padding:2px 8px;border-radius:4px}
-        .dr-nav:hover{background:var(--gray-100)}
-        .dr-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:.72rem;color:var(--gray-500);font-weight:600;margin-bottom:4px}
-        .dr-days{display:grid;grid-template-columns:repeat(7,1fr);gap:1px}
-        .dr-day{height:32px;display:flex;align-items:center;justify-content:center;font-size:.8rem;cursor:pointer;border-radius:50%;transition:background .1s;position:relative}
-        .dr-day:hover:not(.dr-empty):not(.dr-past){background:var(--gray-100)}
-        .dr-day.dr-past{color:var(--gray-400);cursor:default}
+        .dr-tabs{display:flex;border-bottom:1px solid #eee}
+        .dr-tab{flex:1;padding:14px;border:none;background:none;font-size:.93rem;font-weight:600;color:var(--gray-500);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px}
+        .dr-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+        .dr-nav-row{display:flex;align-items:flex-start;padding:16px 8px 12px}
+        .dr-months{display:flex;flex:1;gap:0}
+        .dr-month{flex:1;padding:0 8px}
+        .dr-month-header{text-align:center;font-size:.97rem;font-weight:700;color:#222;margin-bottom:12px}
+        .dr-nav{background:none;border:none;cursor:pointer;font-size:1.4rem;color:#555;padding:0 4px;line-height:1;align-self:center;flex-shrink:0}
+        .dr-nav:hover{color:var(--navy)}
+        .dr-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:.76rem;color:#888;font-weight:600;margin-bottom:6px;gap:0}
+        .dr-days{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+        .dr-day{height:36px;display:flex;align-items:center;justify-content:center;font-size:.83rem;cursor:pointer;position:relative;background:transparent}
+        .dr-day:hover:not(.dr-empty):not(.dr-past) .dr-di{background:#f0f0f0}
+        .dr-day.dr-past .dr-di{color:#ccc;cursor:default}
+        .dr-day.dr-past{cursor:default}
         .dr-day.dr-empty{cursor:default}
-        .dr-day.dr-start,.dr-day.dr-end{background:var(--navy)!important;color:#fff;font-weight:700;border-radius:50%;z-index:1}
-        .dr-day.dr-in-range{background:#dce4ff;border-radius:0;color:var(--navy)}
-        .dr-day.dr-start.dr-range-right{border-radius:50% 0 0 50%}
-        .dr-day.dr-end.dr-range-left{border-radius:0 50% 50% 0}
-        .dr-day.dr-today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--orange);border-radius:50%}
-        .dr-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--gray-200)}
-        .dr-btn-clear{background:none;border:1px solid var(--gray-300);border-radius:var(--radius);padding:6px 14px;cursor:pointer;font-size:.85rem;color:var(--gray-700)}
-        .dr-btn-ok{background:var(--navy);border:none;border-radius:var(--radius);padding:6px 20px;cursor:pointer;font-size:.85rem;color:#fff;font-weight:600}
-        @media(max-width:700px){.dr-popup{min-width:calc(100vw - 32px);left:0}.dr-months{flex-direction:column;gap:16px}}
+        .dr-di{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;position:relative;z-index:1;transition:background .1s}
+        .dr-day.dr-start .dr-di,.dr-day.dr-end .dr-di{background:var(--navy);color:#fff;font-weight:700}
+        .dr-day.dr-in-range{background:#dce4ff}
+        .dr-day.dr-start.dr-has-range{background:linear-gradient(to right,transparent 50%,#dce4ff 50%)}
+        .dr-day.dr-end.dr-has-range{background:linear-gradient(to left,transparent 50%,#dce4ff 50%)}
+        .dr-day.dr-start.dr-end{background:transparent}
+        .dr-day.dr-today .dr-di::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--orange);border-radius:50%}
+        @media(max-width:700px){.dr-popup{width:calc(100vw - 32px);left:0}.dr-months{flex-direction:column}}
       </style>
       <nav class="cruise-tabs-nav" id="cruiseTabsNav">
         <button class="cruise-tab-btn active" onclick="switchTab(this,'mediterranean')">지중해</button>
@@ -429,27 +438,30 @@
       for (var mi = 0; mi < 2; mi++) {
         var yr = drViewYear, mo = drViewMonth + mi;
         if (mo >= 12) { yr += Math.floor(mo/12); mo = mo % 12; }
-        html += renderDRMonth(yr, mo, mi);
+        html += renderDRMonth(yr, mo);
       }
       container.innerHTML = html;
     }
 
-    function renderDRMonth(yr, mo, idx) {
+    function setDRTab(tab) {
+      document.getElementById('drTabCal').classList.toggle('active', tab==='cal');
+      document.getElementById('drTabTbd').classList.toggle('active', tab==='tbd');
+      document.getElementById('drCalBody').style.display = tab==='cal' ? '' : 'none';
+      if (tab === 'tbd') { drFrom=null; drTo=null; updateDRDisplay(); }
+    }
+
+    function renderDRMonth(yr, mo) {
       var today = new Date(); today.setHours(0,0,0,0);
       var monthNames = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-      var firstDay = new Date(yr, mo, 1).getDay();
+      // Monday-first: Mon=0...Sun=6
+      var rawFirst = new Date(yr, mo, 1).getDay(); // 0=Sun,1=Mon,...6=Sat
+      var firstDay = rawFirst === 0 ? 6 : rawFirst - 1; // shift: Mon=0,...Sun=6
       var daysInMonth = new Date(yr, mo+1, 0).getDate();
       var html = '<div class="dr-month">';
-      html += '<div class="dr-month-header">';
-      if (idx === 0) html += '<button class="dr-nav" onclick="drNav(-1)" type="button">‹</button>';
-      else html += '<span></span>';
-      html += '<span class="dr-month-title">' + yr + '년 ' + monthNames[mo] + '</span>';
-      if (idx === 1) html += '<button class="dr-nav" onclick="drNav(1)" type="button">›</button>';
-      else html += '<span></span>';
-      html += '</div>';
-      html += '<div class="dr-weekdays"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>';
+      html += '<div class="dr-month-header">' + yr + '년 ' + monthNames[mo] + '</div>';
+      html += '<div class="dr-weekdays"><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span></div>';
       html += '<div class="dr-days">';
-      for (var i=0; i<firstDay; i++) html += '<div class="dr-day dr-empty"></div>';
+      for (var i=0; i<firstDay; i++) html += '<div class="dr-day dr-empty"><span class="dr-di"></span></div>';
       for (var d=1; d<=daysInMonth; d++) {
         var dt = new Date(yr, mo, d); dt.setHours(0,0,0,0);
         var cls = 'dr-day';
@@ -463,10 +475,10 @@
         if (isStart) cls += ' dr-start';
         if (isEnd) cls += ' dr-end';
         if (inRange) cls += ' dr-in-range';
-        if (isStart && drTo) cls += ' dr-range-right';
-        if (isEnd && drFrom) cls += ' dr-range-left';
+        if (isStart && drTo) cls += ' dr-has-range';
+        if (isEnd && drFrom) cls += ' dr-has-range';
         var onclick = isPast ? '' : ' onclick="pickDR(\'' + dtStr + '\')"';
-        html += '<div class="' + cls + '"' + onclick + '>' + d + '</div>';
+        html += '<div class="' + cls + '"' + onclick + '><span class="dr-di">' + d + '</span></div>';
       }
       html += '</div></div>';
       return html;
