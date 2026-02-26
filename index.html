@@ -979,7 +979,7 @@
           return;
         }
         const html = cruises.slice(0, 5).map((c, i) => {
-          const img = imgs[i % imgs.length];
+          const img = c.image || imgs[i % imgs.length];
           const nights = c.nights || c.duration || '?';
           const dateRaw = c.dateFrom || c.departure_date || '';
           const dateStr = dateRaw ? dateRaw.substring(0, 10) : '';
