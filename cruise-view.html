@@ -438,10 +438,29 @@
           const arrTime = loc.arrival_time || '';
           const depTime = loc.departure_time || '';
           const timeStr = arrTime && depTime ? `${arrTime} 입항 ~ ${depTime} 출항` : depTime ? `${depTime} 출항` : arrTime ? `${arrTime} 입항` : '';
-          const portImages = loc.widgety_data?.images || loc.operator_data?.images || [];
-          const mainImg = portImages[0]?.href;
+          // 기항지 이미지: widgety_data만 사용 (operator_data는 선박이미지일 수 있어 제외)
+          const portImages = (loc.widgety_data?.images || []).filter(i => i?.href);
           const descKo = Translations.portDesc(loc.name);
+          // 영문 API 설명 정제 후 fallback
+          const rawApiDesc = (loc.widgety_data?.description || '').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim().slice(0,200);
           const desc = descKo || `아름다운 기항지 ${portName}에서 특별한 시간을 보내세요.`;
+
+          // 이미지 슬라이더 (최대 3장)
+          const imgHtml = portImages.length > 0 ? (() => {
+            const imgs = portImages.slice(0,3);
+            if (imgs.length === 1) {
+              return `<div class="day-card-img-wrap"><img src="${imgs[0].href}" alt="${portName}" class="day-card-main-img" loading="lazy"></div>`;
+            }
+            const dayId = 'day-img-' + day.day;
+            return `<div class="day-img-slider" id="${dayId}">
+              <div class="day-img-slides" style="display:flex;overflow:hidden">
+                ${imgs.map(i=>`<img src="${i.href}" alt="${portName}" class="day-card-main-img" style="min-width:100%;object-fit:cover;height:220px" loading="lazy">`).join('')}
+              </div>
+              ${imgs.length>1?`<div style="position:relative;display:flex;justify-content:center;gap:6px;padding:6px 0;background:#f5f5f5">
+                ${imgs.map((_,k)=>`<button style="width:8px;height:8px;border-radius:50%;border:none;background:${k===0?'var(--navy)':'#ccc'};cursor:pointer;padding:0" onclick="slideDayImg('${dayId}',${k},${imgs.length})"></button>`).join('')}
+              </div>`:''}
+            </div>`;
+          })() : '';
 
           html += `
           <div class="day-card">
@@ -450,7 +469,7 @@
               <span class="day-port">📍 ${portName}${countryName ? ', ' + countryName : ''}</span>
               <span class="day-time">${timeStr ? '⏰ ' + timeStr : ''}</span>
             </div>
-            ${mainImg ? `<div class="day-card-img-wrap"><img src="${mainImg}" alt="${portName}" class="day-card-main-img" loading="lazy"></div>` : ''}
+            ${imgHtml}
             <div class="day-card-body">
               ${desc ? `<p class="port-desc">${desc}</p>` : ''}
             </div>
@@ -459,6 +478,17 @@
       }
       html += '</div>';
       container.innerHTML = html;
+    }
+
+    function slideDayImg(id, idx, total) {
+      const slider = document.getElementById(id);
+      if (!slider) return;
+      const slides = slider.querySelector('.day-img-slides');
+      if (slides) slides.scrollLeft = slides.offsetWidth * idx;
+      // 닷 업데이트
+      slider.querySelectorAll('button').forEach((b, i) => {
+        b.style.background = i === idx ? 'var(--navy)' : '#ccc';
+      });
     }
 
     function renderPricing(holiday, shipDetail) {
