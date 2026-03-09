@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" id="canonicalTag" href="https://www.cruiselink.co.kr/cruise-view.html">
+  <meta property="og:site_name" content="크루즈링크">
+  <meta property="og:type" content="product">
+  <meta id="ogTitle" property="og:title" content="크루즈링크 - 크루즈 상품 상세">
+  <meta id="ogDesc" property="og:description" content="크루즈링크에서 최적의 크루즈 여행을 찾아보세요.">
+  <meta id="ogImage" property="og:image" content="https://www.cruiselink.co.kr/assets/images/og-image.jpg">
+  <meta id="ogUrl" property="og:url" content="https://www.cruiselink.co.kr/cruise-view.html">
   <title>크루즈 상세 - 크루즈링크</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚢</text></svg>">
@@ -168,6 +175,13 @@
       const countries = (c.countriesKo || []).join(', ') || (c.countries || []).join(', ');
 
       document.title = `${c.title} - 크루즈링크`;
+      // Dynamic OG tags for SEO
+      const ref = new URLSearchParams(location.search).get('ref') || '';
+      document.getElementById('ogTitle')?.setAttribute('content', `${c.title} - 크루즈링크`);
+      document.getElementById('ogDesc')?.setAttribute('content', `${c.portRoute || ''} · ${c.nights || ''}박 · ${c.operator || ''} · $${c.priceInside || ''}~`);
+      document.getElementById('ogImage')?.setAttribute('content', c.image || '');
+      document.getElementById('ogUrl')?.setAttribute('content', `https://www.cruiselink.co.kr/cruise-view.html?ref=${ref}`);
+      document.getElementById('canonicalTag')?.setAttribute('href', `https://www.cruiselink.co.kr/cruise-view.html?ref=${ref}`);
 
       let html = '';
 
