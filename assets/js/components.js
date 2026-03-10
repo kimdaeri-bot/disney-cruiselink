@@ -205,4 +205,93 @@ const Components = {
       </div>
     </div>`;
   },
+
+  // 가이드 페이지 공유 바
+  shareBar() {
+    return `
+    <div id="guideShareBar" style="position:fixed;bottom:0;left:0;right:0;z-index:900;background:#fff;border-top:1px solid #e0e0e0;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 -2px 12px rgba(0,0,0,.08)">
+      <span style="font-size:13px;color:#555;font-weight:500;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis" id="gsb-title"></span>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="Components.doShare('kakao')" style="display:flex;align-items:center;gap:5px;background:#FEE500;color:#191919;border:none;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.909c0 2.804 1.635 5.268 4.1 6.8l-.82 3.02a.3.3 0 0 0 .44.34l3.54-2.33c.89.12 1.81.18 2.74.18 5.523 0 10-3.477 10-7.909S17.523 3 12 3z"/></svg>
+          카카오
+        </button>
+        <button onclick="Components.doShare('copy')" style="display:flex;align-items:center;gap:5px;background:#1a237e;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>
+          링크복사
+        </button>
+        <button onclick="Components.doShare('native')" style="display:flex;align-items:center;gap:5px;background:#ff6f00;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+          공유
+        </button>
+      </div>
+    </div>
+    <div style="height:58px"></div>
+    <div id="gsbToast" style="display:none;position:fixed;bottom:72px;left:50%;transform:translateX(-50%);background:#1a2540;color:#fff;padding:9px 22px;border-radius:20px;font-size:13px;font-weight:600;z-index:9999;white-space:nowrap"></div>
+    <script>
+    (function(){
+      // 제목 세팅
+      var el = document.querySelector('h1');
+      if(el) document.getElementById('gsb-title').textContent = el.innerText;
+
+      // Kakao SDK 로드 (미로드 시)
+      if(typeof Kakao === 'undefined'){
+        var s = document.createElement('script');
+        s.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js';
+        s.onload = function(){
+          if(!Kakao.isInitialized()) Kakao.init('52a3a4296f48da88499c83f3be0312ef');
+        };
+        document.head.appendChild(s);
+      } else if(!Kakao.isInitialized()){
+        Kakao.init('52a3a4296f48da88499c83f3be0312ef');
+      }
+    })();
+    </script>`;
+  },
+
+  doShare(type) {
+    const url = location.href;
+    const title = (document.querySelector('h1') || {innerText: document.title}).innerText;
+
+    if (type === 'native' && navigator.share) {
+      navigator.share({ title: '🚢 ' + title, url }).catch(() => {});
+      return;
+    }
+    if (type === 'kakao') {
+      try {
+        if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
+          Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+              title: title,
+              description: '크루즈링크에서 확인하세요',
+              imageUrl: 'https://www.cruiselink.co.kr/assets/images/og-default.jpg',
+              link: { mobileWebUrl: url, webUrl: url }
+            },
+            buttons: [{ title: '자세히 보기', link: { mobileWebUrl: url, webUrl: url } }]
+          });
+          return;
+        }
+      } catch(e) {}
+      window.open('https://pf.kakao.com/_xgYbJG', '_blank');
+      return;
+    }
+    // 링크복사 or native fallback
+    navigator.clipboard.writeText(url).then(() => {
+      Components._gsbToast('🔗 링크가 복사됐습니다!');
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = url; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy');
+      document.body.removeChild(ta);
+      Components._gsbToast('🔗 링크가 복사됐습니다!');
+    });
+  },
+
+  _gsbToast(msg) {
+    const t = document.getElementById('gsbToast');
+    if (!t) return;
+    t.textContent = msg; t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 2200);
+  },
 };
