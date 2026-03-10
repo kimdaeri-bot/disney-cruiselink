@@ -10,6 +10,7 @@ const Components = {
           <a href="${base}index.html" class="${active === 'home' ? 'active' : ''}">홈</a>
           <a href="${base}destinations.html" class="${active === 'dest' ? 'active' : ''}">목적지</a>
           <a href="${base}ships.html" class="${active === 'ships' ? 'active' : ''}">선사소개</a>
+          <a href="${base}promotions.html" class="${active === 'promo' ? 'active' : ''}">프로모션</a>
           <a href="${base}guide/" class="${active === 'guide' ? 'active' : ''}">크루즈 가이드</a>
           <a href="https://pf.kakao.com/_xgYbJG" target="_blank" class="${active === 'contact' ? 'active' : ''}">문의</a>
         </nav>
