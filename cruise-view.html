@@ -960,6 +960,7 @@
       <div class="mib-peek">
         <span class="mib-peek-icon">🚢</span>
         <span class="mib-peek-title" id="mibPeekTitle">이 크루즈 상품 문의하기</span>
+        <button class="mib-share-mini" onclick="mibShareUrl()">공유하기</button>
         <span class="mib-peek-arrow" id="mibArrow" onclick="toggleMIB()" style="padding:8px 12px;cursor:pointer;font-size:18px;">▲</span>
       </div>
     </div>
@@ -1009,6 +1010,21 @@
         transition: background .15s;
       }
       .mib-peek-arrow:active { background: rgba(0,0,0,.08); }
+
+      .mib-share-mini {
+        background: #e8f4ff;
+        color: #0077cc;
+        border: 1px solid #b3d9f5;
+        border-radius: 12px;
+        padding: 4px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .mib-share-mini:active { background: #cce5ff; }
 
       /* 핸들 상단 드래그 인디케이터 */
       .mib-handle::before {
@@ -1121,6 +1137,42 @@
     }
 
     // 제목 고정값 — 동적 업데이트 불필요
+
+    // ── MIB 공유하기 ──
+    function mibShareUrl() {
+      const url = location.href;
+      const titleEl = document.querySelector('.detail-hero h1');
+      const title = titleEl ? titleEl.innerText.replace('🚢 ','') : document.title;
+
+      // Web Share API 지원 시 (모바일 네이티브 공유)
+      if (navigator.share) {
+        navigator.share({ title: '🚢 ' + title, url }).catch(() => {});
+        return;
+      }
+      // fallback: URL 복사
+      navigator.clipboard.writeText(url).then(() => {
+        showMibToast('🔗 링크가 복사됐습니다!');
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = url; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta);
+        showMibToast('🔗 링크가 복사됐습니다!');
+      });
+    }
+
+    function showMibToast(msg) {
+      let t = document.getElementById('mibToast');
+      if (!t) {
+        t = document.createElement('div');
+        t.id = 'mibToast';
+        t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a2540;color:#fff;padding:10px 22px;border-radius:20px;font-size:14px;font-weight:600;z-index:9999;white-space:nowrap;display:none;';
+        document.body.appendChild(t);
+      }
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => t.style.display = 'none', 2200);
+    }
   </script>
 
   <!-- Lightbox -->
