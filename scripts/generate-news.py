@@ -273,7 +273,7 @@ ARTICLES = [
         "subtitle": "MSC 그룹 울트라 럭셔리 브랜드, 싱가포르·일본·홍콩 기항 노선 강화",
         "date": "2026-03-04",
         "category": "선사 소식",
-        "cover": "https://assets.widgety.co.uk/2024/09/25/13/40/26/e94c8bd1-9cff-48a0-9ad6-d4b5de07fd11/Explora I - Exterior - Photo Credit Explora Journeys.jpg",
+        "cover": "https://assets.widgety.co.uk/2024/09/25/13/40/26/e94c8bd1-9cff-48a0-9ad6-d4b5de07fd11/Explora%20I%20-%20Exterior%20-%20Photo%20Credit%20Explora%20Journeys.jpg",
         "tags": ["엑스플로라저니스", "럭셔리크루즈", "아시아크루즈", "MSC그룹"],
         "body": """
 <p>MSC 그룹의 울트라 럭셔리 크루즈 브랜드 <strong>엑스플로라 저니스(Explora Journeys)</strong>가 2026년 아시아 노선을 대폭 확대합니다. 기존 지중해·카리브해 중심에서 벗어나, 싱가포르·일본·홍콩을 포함한 아시아 태평양 노선에 Explora I과 Explora II를 배치할 예정입니다.</p>
