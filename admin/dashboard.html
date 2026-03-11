@@ -865,7 +865,7 @@
             <input type="number" id="fareInside" placeholder="0" min="0" step="1">
           </div>
           <div class="fare-input-group">
-            <label>아웃사이드 (USD/1인)</label>
+            <label>오션뷰 (USD/1인)</label>
             <input type="number" id="fareOutside" placeholder="0" min="0" step="1">
           </div>
           <div class="fare-input-group">
@@ -948,7 +948,7 @@
     let fareRows = '';
     const types = [
       { name: '인사이드', val: inside },
-      { name: '아웃사이드', val: outside },
+      { name: '오션뷰', val: outside },
       { name: '발코니', val: balcony },
       { name: '스위트', val: suite },
     ];
@@ -1032,7 +1032,7 @@ ${(() => {
   if (minFare.length === 0) return '';
   const totalRows = [
     { name: '인사이드', val: inside },
-    { name: '아웃사이드', val: outside },
+    { name: '오션뷰', val: outside },
     { name: '발코니', val: balcony },
     { name: '스위트', val: suite },
   ].filter(t => t.val > 0).map(t => {
