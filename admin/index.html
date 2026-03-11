@@ -122,7 +122,7 @@
     const errEl = document.getElementById('errorMsg');
 
     if (email === 'info@cruiselink.co.kr' && pw === 'Cruiselink2025!') {
-      sessionStorage.setItem('cl_admin', '1');
+      localStorage.setItem('cl_admin', '1');
       location.href = 'dashboard.html';
     } else {
       errEl.classList.add('show');

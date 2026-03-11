@@ -718,7 +718,7 @@
 
 <script>
   // ===== AUTH GUARD =====
-  if (!sessionStorage.getItem('cl_admin')) {
+  if (!localStorage.getItem('cl_admin')) {
     location.href = 'index.html';
   }
 
@@ -747,7 +747,7 @@
   }
 
   function doLogout() {
-    sessionStorage.removeItem('cl_admin');
+    localStorage.removeItem('cl_admin');
     location.href = 'index.html';
   }
 

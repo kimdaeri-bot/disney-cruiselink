@@ -138,7 +138,7 @@ const GH_TOKEN = ["ghp_vo8vnV0or7A4K", "hWh0sVgTcvVfDxCtw16GFb0"].join("");
 const GH_REPO = "kimdaeri-bot/cruiselink-v2";
 
 // 인증 확인
-if (!sessionStorage.getItem('cl_auth')) {
+if (!localStorage.getItem('cl_admin')) {
   location.href = 'index.html';
 }
 
