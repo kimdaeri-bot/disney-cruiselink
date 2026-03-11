@@ -90,6 +90,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const dateFrom = params.get('dateFrom') || '';
     const dateTo = params.get('dateTo') || '';
     const duration = params.get('duration') || '';
+    const nightsFilter = params.get('nights') || '';
     const ship = params.get('ship') || '';
 
     // Show search tags
@@ -103,6 +104,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (dateFrom || dateTo) tagsEl.innerHTML += `<span class="search-tag">📅 ${dateFrom||'~'} ~ ${dateTo||'~'}</span>`;
     if (ship) tagsEl.innerHTML += `<span class="search-tag">🛳️ ${ship}</span>`;
     if (duration) tagsEl.innerHTML += `<span class="search-tag">⏱️ ${durNames[duration]||duration}</span>`;
+    const nightsNames = {'1-4':'1~4박','5-8':'5~8박','9-':'9박 이상'};
+    if (nightsFilter) tagsEl.innerHTML += `<span class="search-tag">🌙 ${nightsNames[nightsFilter]||nightsFilter}</span>`;
 
     // Animated loading
     const bar = document.getElementById('progressBar');
@@ -165,6 +168,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           (c.shipTitle && c.shipTitle.toLowerCase().includes(sq)) ||
           (c.shipSlug && c.shipSlug.toLowerCase().includes(sq))
         );
+      }
+      // 박수 필터
+      if (nightsFilter) {
+        results = results.filter(c => {
+          const n = Number(c.nights || c.duration || 0);
+          if (nightsFilter === '1-4') return n >= 1 && n <= 4;
+          if (nightsFilter === '5-8') return n >= 5 && n <= 8;
+          if (nightsFilter === '9-') return n >= 9;
+          return true;
+        });
       }
       allResults = results;
       filteredResults = [...results];

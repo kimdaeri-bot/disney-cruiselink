@@ -213,6 +213,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div id="shipDropdown" onmousedown="event.preventDefault()" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:9999;background:#fff;border:1px solid var(--gray-300);border-radius:var(--radius);box-shadow:0 4px 16px rgba(0,0,0,.12);max-height:220px;overflow-y:auto"></div>
         </div>
       </div>
+      <div class="filter-group">
+        <label>크루즈 박수</label>
+        <select id="filterNights">
+          <option value="">전체</option>
+          <option value="1-4">1~4박</option>
+          <option value="5-8">5박~8박</option>
+          <option value="9-">8박 이상</option>
+        </select>
+      </div>
       <div class="filter-group" style="flex:1.5;min-width:180px;position:relative">
         <label>출발 기간</label>
         <button class="dr-display" id="drDisplay" onclick="toggleDR(event)" type="button">전체 기간</button>
@@ -958,6 +967,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const operators = getMultiValues(document.getElementById('msOperator'));
       const ports = getMultiValues(document.getElementById('msPort'));
       const ship = window._selectedShipSlug || document.getElementById('filterShip').value.trim();
+      const nights = document.getElementById('filterNights').value;
       const dateFrom = drFrom ? dateStr(drFrom) : '';
       const dateTo = drTo ? dateStr(drTo) : '';
       const params = new URLSearchParams();
@@ -965,6 +975,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (operators.length) params.set('operators', operators.join(','));
       if (ports.length) params.set('ports', ports.join(','));
       if (ship) params.set('ship', ship);
+      if (nights) params.set('nights', nights);
       if (dateFrom) params.set('dateFrom', dateFrom);
       if (dateTo) params.set('dateTo', dateTo);
       location.href = `search.html?${params.toString()}`;
