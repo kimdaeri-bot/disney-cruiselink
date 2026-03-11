@@ -31,7 +31,7 @@
     "cruiseline": "Explora Journeys",
     "ship": "엑스플로라 II",
     "dateFrom": "2026-06-01",
-    "ports": "",
+    "ports": "피레우스 → Páros → 로도스 → At Sea → 코르푸 → Hvar Island → Rijeka → Fusina",
     "price": "문의",
     "ref": "EXPLORAEP20260601PIRFSA",
     "name": "Jeong June",
@@ -42,7 +42,7 @@
     "message": "test",
     "id": "1773212989451",
     "timestamp": "2026-03-11T07:09:49.451Z",
-    "status": "신규",
+    "status": "상담완료",
     "fareHistory": [
       {
         "date": "2026. 3. 11.",
