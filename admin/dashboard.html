@@ -1019,10 +1019,28 @@ tr:nth-child(even) td { background: #f5f7ff; }
   <tr><td>일정</td><td>${esc(inq.ports||'-')}</td></tr>
 </table>
 <table>
-  <tr><th>객실 타입</th><th>1인 기준 (USD)</th><th>${pax}인 합계 (USD)</th></tr>
-  ${fareRows}
+  <tr><th>객실 타입 / 요금</th><th>1인 기준 (USD)</th><th>${pax}인 합계 (USD)</th></tr>
+  ${fareRows.length ? fareRows : `<tr><td colspan="3" style="color:#999;text-align:center">입력된 요금 없음</td></tr>`}
+</table>
+<table>
+  <tr><th colspan="3">세금 / 항만세</th></tr>
   <tr><td>세금/항만세 (1인)</td><td>${tax.toLocaleString()} USD</td><td>${(tax * pax).toLocaleString()} USD</td></tr>
 </table>
+${(() => {
+  // 최종합계: 선택된 객실 중 최저가 기준 (또는 첫 번째) + 세금
+  const minFare = [inside, outside, balcony, suite].filter(v => v > 0).sort((a,b)=>a-b);
+  if (minFare.length === 0) return '';
+  const totalRows = [
+    { name: '인사이드', val: inside },
+    { name: '아웃사이드', val: outside },
+    { name: '발코니', val: balcony },
+    { name: '스위트', val: suite },
+  ].filter(t => t.val > 0).map(t => {
+    const total = (t.val + tax) * pax;
+    return `<tr class="total-row"><td>최종 합계 (${t.name}, ${pax}인)</td><td colspan="2" style="text-align:right;font-size:15px;color:#1a237e">$ ${total.toLocaleString()} USD</td></tr>`;
+  }).join('');
+  return `<table><tr><th colspan="3">최종 금액</th></tr>${totalRows}</table>`;
+})()}
 ${airfareRow}
 <p style="font-size:12px;color:#666;margin-top:16px">※ 상기 요금은 1인 기준이며, 실제 예약 시 요금이 변동될 수 있습니다.<br>※ 항공료는 별도이며 실제 발권 시 확정됩니다.</p>
 ${remarksHtml}
