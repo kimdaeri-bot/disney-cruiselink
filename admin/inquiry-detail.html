@@ -175,7 +175,11 @@ async function loadData() {
     // ports 없으면 자동 조회
     if (!inq.ports && inq.ref) {
       try {
-        for (const src of ['https://www.cruiselink.co.kr/assets/data/featured.json','https://www.cruiselink.co.kr/assets/data/cruises-mini.json']) {
+        for (const src of [
+          'https://www.cruiselink.co.kr/assets/data/featured.json',
+          'https://www.cruiselink.co.kr/assets/data/cruises-mini.json',
+          'https://www.cruiselink.co.kr/assets/data/cruises.json'
+        ]) {
           const r = await fetch(src);
           const list = await r.json();
           const found = list.find(c => c.ref === inq.ref);
