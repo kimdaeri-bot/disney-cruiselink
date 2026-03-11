@@ -613,7 +613,10 @@
   <div class="panel active" id="panelInquiry">
     <div class="inquiry-toolbar">
       <h2 class="panel-title" style="margin-bottom:0">📋 문의 목록</h2>
-      <button class="btn-refresh" onclick="loadInquiries()">🔄 새로고침</button>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input type="text" id="inquirySearch" placeholder="🔍 이름 · 이메일 · 연락처 검색" oninput="filterInquiries()" style="padding:7px 12px;border:1px solid #c5cae9;border-radius:6px;font-size:13px;width:240px;outline:none;">
+        <button class="btn-refresh" onclick="loadInquiries()">🔄 새로고침</button>
+      </div>
     </div>
     <div class="inquiry-table-wrap">
       <table class="inquiry-table">
@@ -621,6 +624,7 @@
           <tr>
             <th>접수일</th>
             <th>고객명</th>
+            <th>이메일</th>
             <th>연락처</th>
             <th>상품명</th>
             <th>출발일</th>
@@ -629,7 +633,7 @@
           </tr>
         </thead>
         <tbody id="inquiryTableBody">
-          <tr><td colspan="7" style="text-align:center;padding:40px;color:#aaa">로딩 중...</td></tr>
+          <tr><td colspan="8" style="text-align:center;padding:40px;color:#aaa">로딩 중...</td></tr>
         </tbody>
       </table>
     </div>
@@ -797,14 +801,14 @@
       currentInquiries = data;
       renderInquiries(data);
     } catch (e) {
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:32px;color:#e53935">오류: ${e.message}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:#e53935">오류: ${e.message}</td></tr>`;
     }
   }
 
   function renderInquiries(data) {
     const tbody = document.getElementById('inquiryTableBody');
     if (!data || data.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:#aaa">문의 내역이 없습니다</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:#aaa">문의 내역이 없습니다</td></tr>';
       return;
     }
     const sorted = [...data].sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
@@ -814,13 +818,25 @@
       return `<tr onclick="window.open('inquiry-detail.html?id=${inq.id}&auth=1','_blank')" style="cursor:pointer;">
         <td>${date}</td>
         <td>${esc(inq.name || '-')}</td>
+        <td style="font-size:12px;">${esc(inq.email || '-')}</td>
         <td>${esc(inq.phone || '-')}</td>
-        <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${esc(inq.product || '-')}</td>
+        <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis">${esc(inq.product || '-')}</td>
         <td>${esc(inq.dateFrom || '-')}</td>
         <td>${esc(inq.pax || '-')}명</td>
         <td><span class="badge ${badgeClass}">${esc(inq.status || '신규')}</span></td>
       </tr>`;
     }).join('');
+  }
+
+  function filterInquiries() {
+    const q = (document.getElementById('inquirySearch').value || '').toLowerCase().trim();
+    if (!q) { renderInquiries(currentInquiries); return; }
+    const filtered = currentInquiries.filter(inq =>
+      (inq.name||'').toLowerCase().includes(q) ||
+      (inq.email||'').toLowerCase().includes(q) ||
+      (inq.phone||'').toLowerCase().includes(q)
+    );
+    renderInquiries(filtered);
   }
 
   function esc(str) {
