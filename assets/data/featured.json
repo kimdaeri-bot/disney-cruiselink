@@ -24,6 +24,24 @@
     ]
   },
   {
+    "ref": "NCLBLS-20260425-07-SEA-SEA",
+    "shipSlug": "norwegian-bliss",
+    "shipTitle": "Norwegian Bliss",
+    "operator": "Norwegian Cruise Line",
+    "operatorShort": "NCL",
+    "dateFrom": "2026-04-25",
+    "dateTo": "2026-05-02",
+    "nights": 7,
+    "destination": "alaska",
+    "title": "알래스카 빙하 7박 크루즈",
+    "portRoute": "시애틀 → 싯카 → 엔디콧암(빙하) → 아이시 스트레이트 포인트",
+    "priceInside": 603,
+    "priceBalcony": 899,
+    "currency": "USD",
+    "image": "https://assets.widgety.co.uk/2025/12/04/09/00/56/b6d5a91f-0e8c-4bd8-a738-f468297baeb2/NCL%20Norwegian%20Bliss%20Exterior.jpg",
+    "hashtags": ["#알래스카크루즈", "#NCL크루즈", "#빙하크루즈", "#시애틀", "#봄크루즈"]
+  },
+  {
     "ref": "MSCBE20260510TYOTYO",
     "shipSlug": "msc-bellissima",
     "shipTitle": "MSC Bellissima",
@@ -48,6 +66,24 @@
       "#도쿄",
       "#부산"
     ]
+  },
+  {
+    "ref": "MSCER20260502KELKEL",
+    "shipSlug": "msc-euribia",
+    "shipTitle": "MSC Euribia",
+    "operator": "MSC Cruises",
+    "operatorShort": "MSC",
+    "dateFrom": "2026-05-08",
+    "dateTo": "2026-05-15",
+    "nights": 7,
+    "destination": "northern-europe",
+    "title": "독일·덴마크·노르웨이 7박 크루즈",
+    "portRoute": "킬 → 코펜하겐 → Hellesylt → Ålesund → Flåm",
+    "priceInside": 940,
+    "priceBalcony": 1399,
+    "currency": "USD",
+    "image": "https://assets.widgety.co.uk/2025/10/01/09/09/24/54ec9abe-1505-43e4-b761-b0251d1dc2ac/MSC%20Cruises%20MSC%20EURIBIA%20Exterior%20%C2%A9MSC%20Rights%201.jpg",
+    "hashtags": ["#북유럽크루즈", "#MSC크루즈", "#MSCEuribia", "#코펜하겐", "#피요르드"]
   },
   {
     "ref": "MSCMU20260601CVVCVV",
