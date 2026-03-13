@@ -113,5 +113,23 @@
     "id": "1773354062165",
     "timestamp": "2026-03-12T22:21:02.165Z",
     "status": "신규"
+  },
+  {
+    "product": "지중해 9박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 스플렌디다",
+    "dateFrom": "2027-05-06",
+    "ports": "",
+    "price": "문의",
+    "ref": "MSCSP20270506ISTIST",
+    "name": "Keejoung Song",
+    "email": "keejoung@gmail.com",
+    "phone": "3177724586",
+    "pax": "2",
+    "cabin": "오션뷰",
+    "message": "Keejoung Song,seonhee Song",
+    "id": "1773361124905",
+    "timestamp": "2026-03-13T00:18:44.905Z",
+    "status": "신규"
   }
 ]
