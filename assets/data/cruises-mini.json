@@ -21,7 +21,11 @@
       "#MSC무지카",
       "#마르세유",
       "#Valencia"
-    ]
+    ],
+    "startsAt": {
+      "name": "Genoa",
+      "nameKo": "제노바"
+    }
   },
   {
     "ref": "MSCOR20260509VLCVLC",
@@ -2062,7 +2066,11 @@
       "#Vancouver, British Columbia",
       "#Cruising Inside Passage, U.S.A"
     ],
-    "portImage": "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=600&q=80"
+    "portImage": "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=600&q=80",
+    "startsAt": {
+      "name": "Quebec City",
+      "nameKo": "퀘벡시티"
+    }
   },
   {
     "ref": "RCISC04I850-180526",
@@ -2087,7 +2095,11 @@
       "#SpectrumoftheSeas",
       "#Baoshan Pt",
       "#인천"
-    ]
+    ],
+    "startsAt": {
+      "name": "Shanghai",
+      "nameKo": "상하이"
+    }
   },
   {
     "ref": "RCIEN07W689-090526",
@@ -2114,7 +2126,11 @@
       "#EnchantmentoftheSeas",
       "#Tampa, Florida",
       "#Costa Maya"
-    ]
+    ],
+    "startsAt": {
+      "name": "Miami",
+      "nameKo": "마이애미"
+    }
   },
   {
     "ref": "CELEBML12I175-070626",
@@ -2139,7 +2155,11 @@
       "#CelebrityMillennium",
       "#도쿄",
       "#오사카"
-    ]
+    ],
+    "startsAt": {
+      "name": "Osaka",
+      "nameKo": "오사카"
+    }
   },
   {
     "ref": "RCIJW4BH423-110526",
@@ -2164,7 +2184,11 @@
       "#JeweloftheSeas",
       "#Fort Lauderdale, Florida",
       "#나소"
-    ]
+    ],
+    "startsAt": {
+      "name": "Miami",
+      "nameKo": "마이애미"
+    }
   },
   {
     "ref": "MSCDI20260511KUSKUS",
@@ -2190,7 +2214,11 @@
       "#MSCDivina",
       "#쿠사다시",
       "#Marmaris"
-    ]
+    ],
+    "startsAt": {
+      "name": "Kusadasi",
+      "nameKo": "쿠사다시"
+    }
   },
   {
     "ref": "OCEANIAINS260516",
@@ -2218,7 +2246,11 @@
       "#OceaniaInsignia",
       "#리스본",
       "#Porto"
-    ]
+    ],
+    "startsAt": {
+      "name": "Copenhagen",
+      "nameKo": "코펜하겐"
+    }
   },
   {
     "ref": "MSCPO20260907SEASEA",
@@ -3462,7 +3494,11 @@
       "#이탈리아크루즈",
       "#미코노스",
       "#그리스크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Naples",
+      "nameKo": "나폴리"
+    }
   },
   {
     "ref": "MSCSP20261101BCNBCN",
@@ -3486,7 +3522,11 @@
       "#스페인크루즈",
       "#바르셀로나",
       "#몰타크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Barcelona",
+      "nameKo": "바르셀로나"
+    }
   },
   {
     "ref": "MSCSX20261201GOAGOA",
@@ -3510,7 +3550,11 @@
       "#연말크루즈",
       "#로마",
       "#바르셀로나"
-    ]
+    ],
+    "startsAt": {
+      "name": "Genoa",
+      "nameKo": "제노바"
+    }
   },
   {
     "ref": "MSCSX20270102VLCVLC",
@@ -3534,7 +3578,11 @@
       "#신년크루즈",
       "#발렌시아",
       "#피렌체"
-    ]
+    ],
+    "startsAt": {
+      "name": "Valencia",
+      "nameKo": "Valencia"
+    }
   },
   {
     "ref": "MSCER20270201GOAGOA",
@@ -3558,7 +3606,11 @@
       "#나폴리",
       "#시칠리아",
       "#바르셀로나"
-    ]
+    ],
+    "startsAt": {
+      "name": "Genoa",
+      "nameKo": "제노바"
+    }
   },
   {
     "ref": "MSCOR20260402CVVCVV",
@@ -3582,7 +3634,11 @@
       "#봄크루즈",
       "#로마",
       "#바르셀로나"
-    ]
+    ],
+    "startsAt": {
+      "name": "Civitavecchia",
+      "nameKo": "치비타베키아"
+    }
   },
   {
     "ref": "NCLBLS-20260502-07-SEA-SEA",
@@ -3606,7 +3662,11 @@
       "#NCL크루즈",
       "#미국크루즈",
       "#시애틀"
-    ]
+    ],
+    "startsAt": {
+      "name": "Seattle",
+      "nameKo": "시애틀"
+    }
   },
   {
     "ref": "CELEBSM07A393-080526",
@@ -3630,7 +3690,11 @@
       "#Celebrity크루즈",
       "#미국크루즈",
       "#시애틀"
-    ]
+    ],
+    "startsAt": {
+      "name": "Vancouver",
+      "nameKo": "밴쿠버"
+    }
   },
   {
     "ref": "RCIVY07A428-030726",
@@ -3654,7 +3718,11 @@
       "#RCI크루즈",
       "#미국크루즈",
       "#시애틀"
-    ]
+    ],
+    "startsAt": {
+      "name": "Seattle",
+      "nameKo": "시애틀"
+    }
   },
   {
     "ref": "NCLBLS-20260801-07-SEA-SEA",
@@ -3678,7 +3746,11 @@
       "#NCL크루즈",
       "#미국크루즈",
       "#시애틀"
-    ]
+    ],
+    "startsAt": {
+      "name": "Seattle",
+      "nameKo": "시애틀"
+    }
   },
   {
     "ref": "CELEBSM07A394-040926",
@@ -3702,7 +3774,11 @@
       "#Celebrity크루즈",
       "#미국크루즈",
       "#시애틀"
-    ]
+    ],
+    "startsAt": {
+      "name": "Seward",
+      "nameKo": "수워드"
+    }
   },
   {
     "ref": "CARNIVALMD050920267",
@@ -3726,7 +3802,11 @@
       "#Carnival크루즈",
       "#열대크루즈",
       "#아일랜드크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Port Canaveral",
+      "nameKo": "올랜도"
+    }
   },
   {
     "ref": "MSCAM20261003MIAMIA",
@@ -3750,7 +3830,11 @@
       "#MSC크루즈",
       "#열대크루즈",
       "#아일랜드크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Miami",
+      "nameKo": "마이애미"
+    }
   },
   {
     "ref": "RCIAL07E516-011126",
@@ -3774,7 +3858,11 @@
       "#RCI크루즈",
       "#열대크루즈",
       "#아일랜드크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Miami",
+      "nameKo": "마이애미"
+    }
   },
   {
     "ref": "NCLESC-20261204-07-PCV-PCV",
@@ -3798,7 +3886,11 @@
       "#NCL크루즈",
       "#열대크루즈",
       "#아일랜드크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Port Canaveral",
+      "nameKo": "포트 카나베랄"
+    }
   },
   {
     "ref": "CELEBCS07D447-020127",
@@ -3822,7 +3914,11 @@
       "#Celebrity크루즈",
       "#열대크루즈",
       "#아일랜드크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "San Juan",
+      "nameKo": "산후안(PR)"
+    }
   },
   {
     "ref": "MSCVI20260228FDFFDF",
@@ -3846,7 +3942,11 @@
       "#MSC크루즈",
       "#열대크루즈",
       "#아일랜드크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Martinique",
+      "nameKo": "마르티니크"
+    }
   },
   {
     "ref": "RCILB07U251-031026",
@@ -3870,7 +3970,11 @@
       "#RCI크루즈",
       "#영국크루즈",
       "#서유럽크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Southampton",
+      "nameKo": "사우샘프턴"
+    }
   },
   {
     "ref": "MSCPR20261101HAMHAM",
@@ -3894,7 +3998,11 @@
       "#MSC크루즈",
       "#영국크루즈",
       "#서유럽크루즈"
-    ]
+    ],
+    "startsAt": {
+      "name": "Hamburg",
+      "nameKo": "함부르크"
+    }
   },
   {
     "ref": "MSCER20260228DXBDXB",
@@ -3918,6 +4026,10 @@
       "#MSC크루즈",
       "#아부다비",
       "#카타르"
-    ]
+    ],
+    "startsAt": {
+      "name": "Dubai",
+      "nameKo": "두바이"
+    }
   }
 ]
