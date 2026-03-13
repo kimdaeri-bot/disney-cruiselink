@@ -267,6 +267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       })();
       const port = c.startsAt?.nameKo || (T ? T.portName(c.startsAt?.name||'') : '') || c.startsAt?.name || '';
       const arrPort = c.endsAt?.nameKo || (T ? T.portName(c.endsAt?.name||'') : '') || c.endsAt?.name || '';
+      const routeStr = c.portRoute ? (T ? T.portRoute(c.portRoute) : c.portRoute) : '';
       const today = new Date().toISOString().slice(0,10);
       const daysLeft = c.dateFrom ? Math.round((new Date(c.dateFrom) - new Date(today)) / 86400000) : 999;
       let badge = '', badgeColor = '';
@@ -289,8 +290,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="czn-title">🚢 ${c.title||''}</div>
           <div class="czn-meta">
             ${port?`<div>📍 ${port}${arrPort&&arrPort!==port?' → '+arrPort:''}</div>`:''}
-            ${dateStr?`<div>✈️ 출발 ${dateStr}${dateToStr?' ~ '+dateToStr+' 도착':''}</div>`:''}
+            ${dateStr?`<div>🗓️ ${dateStr}${dateToStr?' ~ '+dateToStr:''}</div>`:''}
             ${nights?`<div>🌙 ${nights}박 ${Number(nights)+1}일</div>`:''}
+            ${routeStr?`<div style="font-size:11px;color:#777;line-height:1.6;margin-top:4px;">🗺️ ${routeStr}</div>`:''}
           </div>
           <div class="czn-footer">
             <div class="czn-price-wrap">
