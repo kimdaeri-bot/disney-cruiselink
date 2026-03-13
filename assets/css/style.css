@@ -173,46 +173,50 @@ img { max-width: 100%; height: auto; }
 /* Featured cruise slider */
 .featured-slider-wrap {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  overflow: hidden; /* peek 클립핑 */
 }
 .featured-slider {
-  overflow: hidden;
-  flex: 1;
+  overflow: visible; /* 다음 카드 peek 허용 */
+  width: 100%;
 }
 .featured-track {
   display: flex;
   gap: 24px;
   transition: transform 0.4s ease;
 }
+/* 3장 + 오른쪽 ~40px peek */
 .featured-track .cruise-card,
 .featured-track .czn-card {
-  flex: 0 0 calc((100% - 48px) / 3);
+  flex: 0 0 calc((100% - 112px) / 3);
   min-width: 0;
 }
 @media (max-width: 768px) {
   .featured-track .cruise-card,
   .featured-track .czn-card {
-    flex: 0 0 calc(100% - 8px);
+    flex: 0 0 calc(100% - 48px);
   }
 }
 .featured-arrow {
-  flex-shrink: 0;
-  width: 44px; height: 44px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
   border-radius: 50%;
-  border: 2px solid var(--navy);
-  background: var(--white);
+  border: none;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
   color: var(--navy);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.2s;
   user-select: none;
-  z-index: 2;
+  z-index: 5;
 }
-.featured-arrow:hover { background: var(--navy); color: var(--white); }
+.featured-arrow:hover { background: var(--navy); color: var(--white); box-shadow: 0 4px 16px rgba(0,0,0,0.22); }
+.featured-arrow-left { left: 8px; }
+.featured-arrow-right { right: 8px; }
 
 .cruise-card {
   border: 2px solid #cfd8dc; border-radius: var(--radius); overflow: hidden;
