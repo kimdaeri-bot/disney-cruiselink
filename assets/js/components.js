@@ -16,8 +16,7 @@ const Components = {
         </nav>
         <div class="header-right">
           <button class="wish-header-btn" onclick="openWishlistPanel()" title="찜한 상품">
-            <span class="wish-header-icon">♡</span>
-            <span class="wish-header-label">찜목록</span>
+            <span class="wish-header-icon" id="wishHeaderIcon">♡</span>
             <span class="wish-header-count" id="wishHeaderCount" style="display:none">0</span>
           </button>
           <a href="tel:02-3788-9119" class="header-phone">
