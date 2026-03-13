@@ -87,25 +87,58 @@ const Components = {
     return `<div class="loading"><div class="loading-spinner"></div><p>크루즈 정보를 불러오는 중...</p></div>`;
   },
 
-  // Local JSON cruise card (for index/destination/ships pages)
+  // Local JSON cruise card (for index/destination/ships pages) — czn-card 디자인
   localCruiseCard(c) {
     const fromPrice = c.priceBalcony || c.priceOutside || c.priceInside;
-    const region = c.regions?.[0] || '';
+    const opName = (Translations.operatorName(c.operator) || c.operator || '').toUpperCase();
+    const shipKo = c.shipTitleKo || Translations.shipName(c.shipTitle) || c.shipTitle || '';
+    const destName = c.destination || '';
+    const port = c.startsAt?.nameKo || Translations.portName(c.startsAt?.name||'') || c.startsAt?.name || '';
+    const arrPort = c.endsAt?.nameKo || Translations.portName(c.endsAt?.name||'') || c.endsAt?.name || '';
+    const routeStr = c.portRouteKo || (c.portRoute ? Translations.portRoute(c.portRoute) : '');
+    const dateStr = c.dateFrom ? c.dateFrom.substring(0,10).replace(/-/g,'. ') : '';
+    const nights = c.nights || c.duration || '';
+    const dateToStr = (() => {
+      if (c.dateTo) return c.dateTo.substring(0,10).replace(/-/g,'. ');
+      if (c.dateFrom && nights) {
+        const d = new Date(c.dateFrom); d.setDate(d.getDate() + Number(nights));
+        return d.toISOString().substring(0,10).replace(/-/g,'. ');
+      }
+      return '';
+    })();
+    const today = new Date().toISOString().slice(0,10);
+    const daysLeft = c.dateFrom ? Math.round((new Date(c.dateFrom)-new Date(today))/86400000) : 999;
+    let badge='', badgeColor='';
+    if (c.operator==='Explora'||c.operator==='Regent'||(fromPrice&&fromPrice>=3000)){badge='럭셔리';badgeColor='#C9A84C';}
+    else if (daysLeft<=30){badge='출발 임박';badgeColor='#d32f2f';}
+    else if (daysLeft<=60){badge='얼리버드';badgeColor='#2e7d32';}
+    else if (fromPrice&&fromPrice<500){badge='특가';badgeColor='#c62828';}
+    else {badge='인기';badgeColor='#1565C0';}
+    const priceStr = fromPrice ? '$'+parseFloat(fromPrice).toLocaleString('en-US',{maximumFractionDigits:0}) : '문의';
     return `
-    <div class="cruise-card" onclick="location.href='cruise-view.html?ref=${c.ref}'">
-      <div class="cruise-card-img">
-        <img src="${c.image}" alt="${c.shipTitle}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23e0e0e0%22 width=%22400%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 fill=%22%239e9e9e%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2220%22>🚢</text></svg>'">
-        ${region ? `<span class="cruise-card-tag">${Translations.regionName(region)}</span>` : ''}
+    <div class="czn-card" onclick="location.href='cruise-view.html?ref=${c.ref}'" style="cursor:pointer">
+      <div class="czn-card-img-wrap">
+        <img src="${c.image}" alt="${c.title||''}" loading="lazy" onerror="this.parentElement.style.background='#cfe8fc'">
+        <span class="czn-badge" style="background:${badgeColor}">${badge}</span>
+        <button class="czn-wish" onclick="event.stopPropagation();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
       </div>
-      <div class="cruise-card-body">
-        <div class="cruise-card-operator">${Translations.operatorName(c.operator)} · ${c.shipTitleKo || Translations.shipName(c.shipTitle)}</div>
-        <div class="cruise-card-title">${c.title}</div>
-        <div class="cruise-card-route">${c.portRouteKo || c.portRoute}</div>
-        <div class="cruise-card-meta">
-          <span class="cruise-card-date">📅 ${API.formatDate(c.dateFrom)} · ${c.nights}박</span>
-          <span class="cruise-card-price">${API.formatPrice(fromPrice, c.currency)}</span>
+      <div class="czn-body">
+        <div class="czn-operator">${opName}${destName?' · '+destName:''}</div>
+        <div class="czn-title">🚢 ${c.title||shipKo}</div>
+        <div class="czn-meta">
+          ${port?`<div>📍 ${port}${arrPort&&arrPort!==port?' → '+arrPort:''}</div>`:''}
+          ${dateStr?`<div>🗓️ ${dateStr}${dateToStr?' ~ '+dateToStr:''}</div>`:''}
+          ${nights?`<div>🌙 ${nights}박 ${Number(nights)+1}일</div>`:''}
+          ${routeStr?`<div style="font-size:11px;color:#777;line-height:1.6;margin-top:4px;">🗺️ ${routeStr}</div>`:''}
         </div>
-        <a href="cruise-view.html?ref=${c.ref}" class="cruise-card-btn">자세히 보기</a>
+        <div class="czn-footer">
+          <div class="czn-price-wrap">
+            <span class="czn-from">부터</span>
+            <span class="czn-price">${priceStr}</span>
+            <span class="czn-unit">/ 1인</span>
+          </div>
+          <a href="cruise-view.html?ref=${c.ref}" class="czn-btn" onclick="event.stopPropagation()">예약하기</a>
+        </div>
       </div>
     </div>`;
   },
