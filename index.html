@@ -903,6 +903,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
         track.innerHTML = cruises.map(c => Components.localCruiseCard(c)).join('');
         updateFeaturedArrows();
+        if (isMobile()) {
+          renderDots('featuredDots', cruises.length, 0);
+          initScrollDots('featuredSlider', 'featuredTrack', 'featuredDots');
+        }
       } catch (e) {
         console.error(e);
         track.innerHTML = '<div class="empty-state"><span class="emoji">⚠️</span><p>데이터를 불러올 수 없습니다</p></div>';
@@ -932,7 +936,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const el = document.getElementById(containerId);
       if (!el || !isMobile()) { if(el) el.innerHTML=''; return; }
       el.innerHTML = Array.from({length: total}, (_,i) =>
-        `<span class="featured-dot${i===current?' active':''}"></span>`).join('');
+        `<span class="featured-dot${i===current?' active':''}" onclick="scrollToSlide('${containerId}',${i})"></span>`).join('');
+    }
+    function scrollToSlide(dotsId, idx) {
+      const sliderId = dotsId === 'featuredDots' ? 'featuredSlider' : 'featuredSlider2';
+      const trackId  = dotsId === 'featuredDots' ? 'featuredTrack'  : 'featuredTrack2';
+      const slider = document.getElementById(sliderId);
+      const track  = document.getElementById(trackId);
+      if (!slider || !track) return;
+      const card = track.querySelector('.cruise-card, .czn-card');
+      if (!card) return;
+      const unit = card.offsetWidth + 12;
+      slider.scrollTo({ left: idx * unit, behavior: 'smooth' });
+    }
+    function initScrollDots(sliderId, trackId, dotsId) {
+      const slider = document.getElementById(sliderId);
+      if (!slider) return;
+      let ticking = false;
+      slider.addEventListener('scroll', () => {
+        if (!isMobile() || ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const track = document.getElementById(trackId);
+          if (!track) { ticking=false; return; }
+          const cards = track.querySelectorAll('.cruise-card, .czn-card');
+          if (!cards.length) { ticking=false; return; }
+          const unit = cards[0].offsetWidth + 12;
+          const idx = Math.round(slider.scrollLeft / unit);
+          renderDots(dotsId, cards.length, idx);
+          ticking = false;
+        });
+      });
     }
     function slideFeatured(dir) {
       featuredPos = Math.max(0, Math.min(getFeaturedMax(), featuredPos + dir));
@@ -993,6 +1027,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
         track.innerHTML = cruises.map(c => Components.localCruiseCard(c)).join('');
         slideFeatured2(0);
+        if (isMobile()) {
+          renderDots('featuredDots2', cruises.length, 0);
+          initScrollDots('featuredSlider2', 'featuredTrack2', 'featuredDots2');
+        }
       } catch (e) {
         console.error(e);
         track.innerHTML = '<div class="empty-state"><span class="emoji">⚠️</span><p>데이터를 불러올 수 없습니다</p></div>';
