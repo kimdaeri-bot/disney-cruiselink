@@ -648,42 +648,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="text" name="_honey" style="display:none">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
             <div class="form-group" style="margin-bottom:8px">
-              <label style="font-size:0.8rem;margin-bottom:3px">이름 <span class="req">*</span></label>
-              <input type="text" id="f_name" name="customer_name" required placeholder="홍길동" style="padding:8px 10px;font-size:0.9rem">
+              <label style="font-size:0.8rem;margin-bottom:3px">お名前 <span class="req">*</span></label>
+              <input type="text" id="f_name" name="customer_name" required placeholder="山田 太郎" style="padding:8px 10px;font-size:0.9rem">
             </div>
             <div class="form-group" style="margin-bottom:8px">
-              <label style="font-size:0.8rem;margin-bottom:3px">연락처 <span class="req">*</span></label>
-              <input type="tel" id="f_phone" name="customer_phone" required placeholder="010-1234-5678" style="padding:8px 10px;font-size:0.9rem">
+              <label style="font-size:0.8rem;margin-bottom:3px">お電話番号 <span class="req">*</span></label>
+              <input type="tel" id="f_phone" name="customer_phone" required placeholder="080-1234-5678" style="padding:8px 10px;font-size:0.9rem">
             </div>
           </div>
           <div class="form-group" style="margin-bottom:8px">
-            <label style="font-size:0.8rem;margin-bottom:3px">이메일 <span class="req">*</span></label>
+            <label style="font-size:0.8rem;margin-bottom:3px">メールアドレス <span class="req">*</span></label>
             <input type="email" id="f_email" name="customer_email" required placeholder="example@email.com" style="padding:8px 10px;font-size:0.9rem">
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
             <div class="form-group" style="margin-bottom:8px">
-              <label style="font-size:0.8rem;margin-bottom:3px">인원 <span class="req">*</span></label>
+              <label style="font-size:0.8rem;margin-bottom:3px">人数 <span class="req">*</span></label>
               <select id="f_pax" name="pax" required style="padding:8px 10px;font-size:0.9rem">
-                <option value="">선택</option>
-                <option value="1">1명</option><option value="2">2명</option><option value="3">3명</option>
-                <option value="4">4명</option><option value="5">5명</option><option value="6~10">6~10명</option>
-                <option value="11+">11명 이상</option>
+                <option value="">選択</option>
+                <option value="1">1名</option><option value="2">2名</option><option value="3">3名</option>
+                <option value="4">4名</option><option value="5">5名</option><option value="6~10">6〜10名</option>
+                <option value="11+">11名以上</option>
               </select>
             </div>
             <div class="form-group" style="margin-bottom:8px">
-              <label style="font-size:0.8rem;margin-bottom:3px">객실 타입 <span class="req">*</span></label>
+              <label style="font-size:0.8rem;margin-bottom:3px">客室タイプ <span class="req">*</span></label>
               <select id="f_cabin" name="cabin_type" required style="padding:8px 10px;font-size:0.9rem">
-                <option value="">선택</option>
-                <option value="내측">내측</option>
-                <option value="오션뷰">오션뷰</option>
-                <option value="발코니">발코니</option>
-                <option value="스위트">스위트</option>
+                <option value="">選択</option>
+                <option value="내측">インサイド</option>
+                <option value="오션뷰">オーシャンビュー</option>
+                <option value="발코니">バルコニー</option>
+                <option value="스위트">スイート</option>
               </select>
             </div>
           </div>
           <div class="form-group" style="margin-bottom:8px">
-            <label style="font-size:0.8rem;margin-bottom:3px">요청사항</label>
-            <textarea id="f_message" name="message" rows="2" placeholder="기타 요청사항" style="padding:8px 10px;font-size:0.9rem"></textarea>
+            <label style="font-size:0.8rem;margin-bottom:3px">ご要望</label>
+            <textarea id="f_message" name="message" rows="2" placeholder="その他のご要望" style="padding:8px 10px;font-size:0.9rem"></textarea>
           </div>
           <div class="privacy-section" style="margin-top:8px;padding-top:8px">
             <div class="privacy-check" style="margin-bottom:4px">
@@ -704,31 +704,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
 <script>
-// CruiseLink JP - Full Card & Link Patch v2
+// CruiseLink JP search - Patch v3
 (function patchForJP() {
   var KO_JP = {
-    '출발임박': '出発間近',
-    '출발 임박': '出発間近',
-    '럭셔리': 'ラグジュアリー',
-    '얼리버드': '早期予約',
-    '특가': '特別プラン',
-    '인기': '人気',
-    '/ 1인': '/ お一人様',
-    '자세히 보기': '詳細を見る',
-    '세금·비용 별도': '税金・港湾税別途',
-    '세금·제반 비용 별도': '税金・港湾税別途',
-    '세금 · 제반 비용 별도': '税金・港湾税別途',
-    '최저가 (1인 기준)': '最安料金（お一人様）',
-    '최저가': '最安料金',
-    '부터': '',
-    '찜하기': 'お気に入り',
-    '찜 목록': 'お気に入り',
-    '찜한 상품이 없습니다.': 'お気に入りはありません。',
-    '아직 찜한 크루즈가 없어요': 'まだお気に入りがありません',
-    '크루즈를 검색해보세요': 'クルーズを検索する',
-    '문의': 'お問い合わせ',
-    '상세보기': '詳細',
-    '문의하기': 'お問い合わせ',
+    '홈': 'ホーム', '목적지': '目的地', '선사소개': 'クルーズライン', '프로모션': 'プロモーション', '크루즈 가이드': 'クルーズガイド', '문의': 'お問い合わせ',
+    '찜한 상품': 'お気に入り商品', '찜하기': 'お気に入り', '찜 목록': 'お気に入り', '찜한 상품이 없습니다.': 'お気に入りはありません。', '아직 찜한 크루즈가 없어요': 'まだお気に入りがありません', '크루즈를 검색해보세요': 'クルーズを検索する',
+    '크루즈링크는?': 'クルーズリンクについて', '회사소개': '会社概要', '뉴스레터 구독': 'ニュースレター', '개인정보 처리방침': 'プライバシーポリシー', '이용약관': '利用規約', '연락처 정보': 'お問い合わせ', '카카오톡 상담': 'KakaoTalkで相談', '가이드 홈': 'ガイドトップ', '선사 소개': 'クルーズライン紹介', '선박 소개': '客船紹介', '기항지 가이드': '寄港地ガイド', '크루즈 뉴스': 'クルーズニュース', '크루즈 실전 팁': 'クルーズのヒント', '목적지 가이드': '目的地ガイド',
+    '한국/일본': '韓国・日本', '지중해': '地中海', '알래스카': 'アラスカ', '카리브해': 'カリブ海', '북유럽': '北欧', '아시아/중동': 'アジア・中東',
+    '서울특별시 강서구 마곡서로 152, 두산 더 랜드타워 5층': 'ソウル特別市江西区 (韓国)',
+    '아남항공 주식회사(크루즈링크) | 대표: 김영성 | 사업자 등록번호: 104-81-84918': 'ANAM AIR CO., LTD. (CruiseLink)',
+    '크루즈링크': 'クルーズリンク',
+    '크루즈 여행, 지금 상담하세요': 'クルーズ旅行のご相談はこちら', '전문 상담원이 최적의 크루즈를 찾아드립니다': '専門スタッフが最適なクルーズをご提案します', '온라인 문의': 'オンラインお問い合わせ',
+    '출발임박': '出発間近', '출발 임박': '出発間近', '럭셔리': 'ラグジュアリー', '얼리버드': '早期予約', '특가': '特別プラン', '인기': '人気',
+    '/ 1인': '/ お一人様', '자세히 보기': '詳細を見る',
+    '세금·비용 별도': '税金・港湾税別途', '세금·제반 비용 별도': '税金・港湾税別途', '세금 · 제반 비용 별도': '税金・港湾税別途',
+    '최저가 (1인 기준)': '最安料金（お一人様）', '최저가': '最安料金', '부터': '',
+    '상세보기': '詳細', '문의하기': 'お問い合わせ',
   };
   function patchHTML(html) {
     for (var k in KO_JP) html = html.split(k).join(KO_JP[k]);
@@ -783,6 +774,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         a.href = a.href.replace('/cruise-view.html', '/jp/cruise-view.html');
       }
     });
+    setTimeout(function() {
+      var nav = document.getElementById('mainNav'); if (nav) nav.innerHTML = patchHTML(nav.innerHTML);
+      var wp = document.getElementById('wishlistPanel'); if (wp) { var h = wp.querySelector('div'); if (h) h.innerHTML = patchHTML(h.innerHTML); }
+      var ft = document.querySelector('.footer'); if (ft) ft.innerHTML = patchHTML(ft.innerHTML);
+      var cta = document.querySelector('.cta-section'); if (cta) cta.innerHTML = patchHTML(cta.innerHTML);
+    }, 400);
+    setTimeout(function() {
+      var nav = document.getElementById('mainNav'); if (nav) nav.innerHTML = patchHTML(nav.innerHTML);
+      var ft = document.querySelector('.footer'); if (ft) ft.innerHTML = patchHTML(ft.innerHTML);
+    }, 1500);
   });
 })();
 </script>
