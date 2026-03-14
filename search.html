@@ -31,7 +31,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 /* ── 새 카드 디자인 ── */
 #resultList { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 @media(max-width:900px){#resultList{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){#resultList{grid-template-columns:1fr;}}
+@media(max-width:560px){
+  #resultList { grid-template-columns: 1fr; gap: 12px; }
+  .czn-card-img-wrap { height: 160px; }
+}
 .czn-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e8eaed;transition:box-shadow .2s,transform .2s;cursor:pointer;display:flex;flex-direction:column;}
 .czn-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.13);transform:translateY(-3px);}
 .czn-card-img-wrap{position:relative;height:200px;overflow:hidden;background:#e0e0e0;}
