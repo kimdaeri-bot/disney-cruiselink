@@ -10,8 +10,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" id="canonicalTag" href="https://www.cruiselink.co.kr/cruise-view.html">
-  <meta property="og:site_name" content="크루즈링크">
+  <base href="https://www.cruiselink.co.kr/">
+  <link rel="canonical" id="canonicalTag" href="https://www.cruiselink.co.kr/en/cruise-view.html">
+  <meta property="og:site_name" content="CruiseLink">
   <meta property="og:type" content="product">
   <meta id="ogTitle" property="og:title" content="CruiseLink - Cruise Product Details">
   <meta id="ogDesc" property="og:description" content="Find the perfect cruise with CruiseLink.">
@@ -1553,7 +1554,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (Math.abs(dx) > 50) lbNav(dx < 0 ? 1 : -1);
     });
   </script>
-
-
+<script>
+// EN patch
+(function(){
+  var M={'로딩 중...':'Loading...','크루즈 정보를 불러오는 중...':'Loading cruise info...','완료!':'Done!','일정 데이터를 불러오는 중...':'Loading itinerary...','💰 객실 & 요금':'💰 Cabins & Pricing','1인 기준 요금 (2인 1실, 세금/항만료 별도)':'Per person (double occ., excl. taxes & port fees)','🚪 내측 캐빈':'🚪 Inside Cabin','🪟 오션뷰 캐빈':'🪟 Ocean View Cabin','🌅 발코니 캐빈':'🌅 Balcony Cabin','👑 스위트 캐빈':'👑 Suite','🗓️ 상세 일정':'🗓️ Itinerary','소개':'About','취항연도':'Launch Year','총톤수':'Gross Tonnage','최대정원':'Capacity','승무원':'Crew','전장':'Length','전폭':'Beam','데크':'Decks','🍽️ 다이닝':'🍽️ Dining','🎭 엔터테인먼트':'🎭 Entertainment','💆 스파·피트니스':'💆 Spa & Fitness','👶 키즈':'👶 Kids','📐 덱플랜':'📐 Deck Plans','✅ 포함 사항':'✅ Included','❌ 불포함 사항':'❌ Not Included','객실 숙박':'Cabin accommodation','메인 레스토랑 & 뷔페 식사 (조식·중식·석식)':'Main restaurant & buffet (B/L/D)','선상 엔터테인먼트 (쇼, 공연, 수영장)':'Onboard entertainment (shows, pool)','피트니스 센터':'Fitness center','키즈 & 틴즈 클럽 프로그램':'Kids & Teens club','객실 룸서비스 (기본)':'In-room service (basic)','기항지 셔틀버스 (일부)':'Port shuttle (select ports)','항공편':'Flights','스페셜티 레스토랑':'Specialty restaurants','주류 및 음료 패키지':'Beverages & drinks package','기항지 관광 (Shore Excursion)':'Shore excursions','스파 & 뷰티 트리트먼트':'Spa & beauty treatments','Wi-Fi 인터넷 패키지':'Wi-Fi internet','여행자 보험':'Travel insurance','이 크루즈가 마음에 드셨나요?':'Interested in this cruise?','전문 상담원이 최적의 객실과 가격을 안내해드립니다.':'Our cruise specialists will find the best option for you.','💬 카카오톡 상담':'💬 KakaoTalk Chat','📋 온라인 문의':'📋 Online Inquiry','찜하기':'Save','♡ 찜하기':'♡ Save','🚢 크루즈 문의하기':'🚢 Cruise Inquiry','이름':'Name','연락처':'Phone','이메일':'Email','인원':'Guests','객실 타입':'Cabin Type','요청사항':'Requests','선택':'Select','1명':'1 person','2명':'2 persons','3명':'3 persons','4명':'4 persons','5명':'5 persons','6~10명':'6-10 persons','11명 이상':'11+ persons','인사이드':'Inside','오션뷰':'Ocean View','발코니':'Balcony','스위트':'Suite','개인정보 수집·이용에 동의합니다. (필수)':'I agree to the privacy policy. (Required)','약관 보기':'View Terms','문의 전송하기':'Submit Inquiry','✅ 문의가 접수되었습니다.':'✅ Inquiry received.','입력하신 이메일로 견적서를 회신드리겠습니다.':'We will reply to your email with a quote.','/ 1인':'/ person','/1인':'/ person','종일 항해':'Full Day at Sea','기항지':'Port of Call','출항':'Departure','입항':'Arrival'};
+  function patch(el){if(!el||!el.innerHTML)return;var h=el.innerHTML;for(var k in M)h=h.split(k).join(M[k]);h=h.replace(/(\d+)박\s*(\d+)일/g,'$1 nights / $2 days');h=h.replace(/(\d+)박/g,'$1 nights');h=h.replace(/(\d+)일차/g,'Day $1');el.innerHTML=h;}
+  var obs=new MutationObserver(function(muts){muts.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)patch(n);});});});
+  document.addEventListener('DOMContentLoaded',function(){obs.observe(document.body,{childList:true,subtree:true});setTimeout(function(){patch(document.body);},3000);});
+})();
+</script>
 </body>
 </html>
