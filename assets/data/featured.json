@@ -23,7 +23,9 @@
       "#바르셀로나"
     ],
     "badge": "출발임박",
-    "badgeColor": "#d32f2f"
+    "badgeColor": "#d32f2f",
+    "titleEn": "Italy·Spain Spring 7-Night Cruise",
+    "titleJp": "イタリア・スペイン春7泊クルーズ"
   },
   {
     "ref": "NCLBLS-20260425-07-SEA-SEA",
@@ -49,7 +51,9 @@
       "#봄크루즈"
     ],
     "badge": "출발임박",
-    "badgeColor": "#d32f2f"
+    "badgeColor": "#d32f2f",
+    "titleEn": "Alaska Glacier 7-Night Cruise",
+    "titleJp": "アラスカ氷河7泊クルーズ"
   },
   {
     "ref": "MSCBE20260510TYOTYO",
@@ -77,7 +81,9 @@
       "#부산"
     ],
     "badge": "출발임박",
-    "badgeColor": "#d32f2f"
+    "badgeColor": "#d32f2f",
+    "titleEn": "Japan·Korea 7-Night Cruise",
+    "titleJp": "日本・韓国7泊クルーズ"
   },
   {
     "ref": "MSCER20260502KELKEL",
@@ -103,7 +109,9 @@
       "#피요르드"
     ],
     "badge": "출발임박",
-    "badgeColor": "#d32f2f"
+    "badgeColor": "#d32f2f",
+    "titleEn": "Germany·Denmark·Norway 7-Night Cruise",
+    "titleJp": "ドイツ・デンマーク・ノルウェー7泊クルーズ"
   },
   {
     "ref": "NCLPRI20260628HAMHAM",
@@ -137,7 +145,9 @@
       "#함부르크"
     ],
     "badge": "출발임박",
-    "badgeColor": "#d32f2f"
+    "badgeColor": "#d32f2f",
+    "titleEn": "Norway Fjords 7-Night Cruise",
+    "titleJp": "ノルウェーフィヨルド7泊クルーズ"
   },
   {
     "ref": "MSCGR20261106BUABUA",
@@ -171,7 +181,9 @@
       "#남미여행"
     ],
     "badge": "출발임박",
-    "badgeColor": "#d32f2f"
+    "badgeColor": "#d32f2f",
+    "titleEn": "South America Atlantic 14-Night Cruise",
+    "titleJp": "南米大西洋14泊クルーズ"
   },
   {
     "ref": "MSCMU20260601CVVCVV",
@@ -197,6 +209,8 @@
       "#이비자"
     ],
     "badge": "출발임박",
-    "badgeColor": "#d32f2f"
+    "badgeColor": "#d32f2f",
+    "titleEn": "Mediterranean Summer 7-Night Cruise",
+    "titleJp": "地中海サマー7泊クルーズ"
   }
 ]
