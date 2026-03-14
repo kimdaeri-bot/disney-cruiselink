@@ -1463,20 +1463,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     html = html.replace(/location\.href='cruise-view\.html\?/g, "location.href='jp/cruise-view.html?");
     return html;
   }
-  function withTitleJp(c) {
+  var JP_PORT_MAP = {'Miami':'マイアミ','Barcelona':'バルセロナ','Southampton':'サウサンプトン','Civitavecchia':'チビタベッキア','Rome (Civitavecchia)':'チビタベッキア(ローマ)','Piraeus':'ピレウス','Athens (Piraeus)':'ピレウス(アテネ)','Marseille':'マルセイユ','Fort Lauderdale':'フォート・ローダーデール','Port Canaveral':'ポート・カナベラル','Seattle':'シアトル','Vancouver':'バンクーバー','Galveston':'ガルベストン','Hamburg':'ハンブルク','Buenos Aires':'ブエノスアイレス','Singapore':'シンガポール','Dubai':'ドバイ','Abu Dhabi':'アブダビ','Lisbon':'リスボン','Valletta':'バレッタ','Naples':'ナポリ','Genoa':'ジェノア','Venice':'ヴェネツィア','Istanbul':'イスタンブール','Copenhagen':'コペンハーゲン','Amsterdam':'アムステルダム','Oslo':'オスロ','Stockholm':'ストックホルム','Osaka':'大阪','Tokyo':'東京','Yokohama':'横浜','Nagasaki':'長崎','Okinawa':'沖縄','Busan':'釜山','Incheon':'仁川','Keelung':'基隆','Hong Kong':'香港','Shanghai':'上海','Sydney':'シドニー','Honolulu':'ホノルル','San Juan':'サンフアン','Nassau':'ナッソー','Cozumel':'コスメル','Santorini':'サントリーニ','Rhodes':'ロードス','Mykonos':'ミコノス','Dubrovnik':'ドゥブロヴニク','Kotor':'コトル','Livorno':'リヴォルノ','Palma de Mallorca':'パルマ・デ・マヨルカ','Cannes':'カンヌ','Monte Carlo':'モンテカルロ','Reykjavik':'レイキャビク'};
+  var OP_JP_MAP = {'MSC크루즈':'MSCクルーズ','노르웨이전 크루즈 라인':'ノルウェージャン・クルーズ・ライン','로얄 캐리비안 인터내셔널':'ロイヤル・カリビアン','셀레브리티 크루즈':'セレブリティ・クルーズ','카니발 크루즈 라인':'カーニバル・クルーズ','오세아니아 크루즈':'オセアニア・クルーズ','리젠트 세븐 시즈':'リージェント・セブンシーズ','익스플로라 저니':'エクスプローラ・ジャーニーズ','프린세스 크루즈':'プリンセス・クルーズ','MSC':'MSCクルーズ','Norwegian':'ノルウェージャン','Royal Caribbean':'ロイヤル・カリビアン','Celebrity':'セレブリティ','Carnival':'カーニバル','Oceania':'オセアニア','Regent':'リージェント','Explora':'エクスプローラ','Princess':'プリンセス'};
+  function withJpFields(c) {
     var cc = Object.assign({}, c);
     if (cc.titleJp) cc.title = cc.titleJp;
+    // Force JP port names
+    if (cc.startsAt) cc.startsAt = Object.assign({}, cc.startsAt, { nameKo: JP_PORT_MAP[cc.startsAt.name] || cc.startsAt.nameKo || cc.startsAt.name });
+    if (cc.endsAt) cc.endsAt = Object.assign({}, cc.endsAt, { nameKo: JP_PORT_MAP[cc.endsAt.name] || cc.endsAt.nameKo || cc.endsAt.name });
+    // JP route
+    if (cc.portRoute) cc.portRouteKo = cc.portRoute.split(/\s*[-→·,]\s*/).map(function(p){return JP_PORT_MAP[p.trim()]||p.trim();}).join(' → ');
     return cc;
   }
   if (typeof Components !== 'undefined') {
     var _local = Components.localCruiseCard;
-    if (_local) Components.localCruiseCard = function(c) { return patchHTML(_local.call(Components, withTitleJp(c))); };
+    if (_local) Components.localCruiseCard = function(c) { return patchHTML(_local.call(Components, withJpFields(c))); };
     var _item = Components.localCruiseItem;
-    if (_item) Components.localCruiseItem = function(c) { return patchHTML(_item.call(Components, withTitleJp(c))); };
+    if (_item) Components.localCruiseItem = function(c) { return patchHTML(_item.call(Components, withJpFields(c))); };
   }
   if (typeof renderCruiseCard === 'function') {
     var _rc = renderCruiseCard;
-    window.renderCruiseCard = function(c) { return patchHTML(_rc(withTitleJp(c))); };
+    window.renderCruiseCard = function(c) { return patchHTML(_rc(withJpFields(c))); };
   }
   if (typeof switchTab === 'function') {
     var _st = switchTab;
