@@ -563,7 +563,6 @@ img { max-width: 100%; height: auto; }
   .featured-track {
     gap: 0;
     transition: none;
-    transform: none !important;
   }
   .featured-track .cruise-card,
   .featured-track .czn-card {
