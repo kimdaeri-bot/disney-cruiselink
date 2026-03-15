@@ -211,5 +211,23 @@
     "id": "1773476050320",
     "timestamp": "2026-03-14T08:14:10.320Z",
     "status": "신규"
+  },
+  {
+    "product": "일본·한국 4박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 벨리시마",
+    "dateFrom": "2027-06-10",
+    "ports": "",
+    "price": "문의",
+    "ref": "MSCBE20270610TYOINC",
+    "name": "유원지",
+    "email": "yuclick@naver.com",
+    "phone": "01091955251",
+    "pax": "4",
+    "cabin": "발코니",
+    "message": "성인3명 (65세이상2명)+ 14세 아동1명 \nmsc 2회차 탑승",
+    "id": "1773540380933",
+    "timestamp": "2026-03-15T02:06:20.933Z",
+    "status": "신규"
   }
 ]
