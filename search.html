@@ -412,13 +412,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           if (!checkedDuration.some(d=>(d==='1-4'&&n>=1&&n<=4)||(d==='5-8'&&n>=5&&n<=8)||(d==='9-12'&&n>=9&&n<=12)||(d==='13-'&&n>=13))) return false;
         }
         if (checkedDest.length && !checkedDest.includes(c.destination)) return false;
-        const dp = c.startsAt?.nameKo||(T?T.portName(c.startsAt?.name||''):'')||c.startsAt?.name||'';
-        if (checkedDepart.length && !checkedDepart.some(p=>dp.includes(p))) return false;
+        const dpName = c.startsAt?.name || '';
+        if (checkedDepart.length && !checkedDepart.includes(dpName)) return false;
         if (checkedOp.length && !checkedOp.includes(c.operator)) return false;
         const ship = c.shipTitleKo||(T?T.shipName(c.shipTitle||''):'')||c.shipTitle||'';
         if (checkedShip.length && !checkedShip.some(s=>ship.includes(s))) return false;
-        const ap = c.endsAt?.nameKo||(T?T.portName(c.endsAt?.name||''):'')||c.endsAt?.name||'';
-        if (checkedArrive.length && !checkedArrive.some(p=>ap.includes(p))) return false;
+        const apName = c.endsAt?.name || '';
+        if (checkedArrive.length && !checkedArrive.includes(apName)) return false;
         return true;
       });
       currentPage = 1;
@@ -452,15 +452,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         `<label><input type="checkbox" value="${d}" onchange="applySideFilters()"> ${DEST_KO[d]||d}</label>`
       ).join('');
 
-      // 출발항구 (한글)
+      // 출발항구 (value=영문name, 표시=한글)
       const mkPortKo = (getPort, elId) => {
-        const ports = [...new Set(results.map(c=>{
-          const ko = getPort(c); return ko || '';
-        }).filter(Boolean))].sort();
+        const portMap = {};
+        results.forEach(c => {
+          const port = getPort(c);
+          if (port?.name) {
+            const ko = port.nameKo || koPort(port.name) || port.name;
+            portMap[port.name] = ko;
+          }
+        });
         const el = document.getElementById(elId);
-        if (el) el.innerHTML = ports.map(p=>`<label><input type="checkbox" value="${p}" onchange="applySideFilters()"> ${p}</label>`).join('');
+        if (el) el.innerHTML = Object.entries(portMap)
+          .sort((a,b) => a[1].localeCompare(b[1], 'ko'))
+          .map(([name, ko]) => `<label><input type="checkbox" value="${name}" onchange="applySideFilters()"> ${ko}</label>`)
+          .join('');
       };
-      mkPortKo(c => c.startsAt?.nameKo || koPort(c.startsAt?.name) || c.startsAt?.name || '', 'sfDepartPortList');
+      mkPortKo(c => c.startsAt, 'sfDepartPortList');
 
       // 선사 (한글)
       const ops = [...new Set(results.map(c=>c.operator).filter(Boolean))].sort();
@@ -478,8 +486,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         `<label><input type="checkbox" value="${s}" onchange="applySideFilters()"> ${s}</label>`
       ).join('');
 
-      // 도착항구 (한글)
-      mkPortKo(c => c.endsAt?.nameKo || koPort(c.endsAt?.name) || c.endsAt?.name || '', 'sfArrivePortList');
+      // 도착항구 (value=영문name, 표시=한글)
+      mkPortKo(c => c.endsAt, 'sfArrivePortList');
 
       // 가격 슬라이더 범위 조정
       const prices = results.map(c=>c.priceInside||c.priceOutside||c.priceBalcony||0).filter(Boolean);

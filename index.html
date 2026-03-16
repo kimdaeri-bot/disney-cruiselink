@@ -228,10 +228,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button class="dr-tab" id="drTabTbd" onclick="setDRTab('tbd')" type="button">날짜 미정</button>
           </div>
           <div id="drCalBody">
-            <div class="dr-nav-row">
-              <button class="dr-nav" onclick="drNav(-1)" type="button">&#8249;</button>
+            <div class="dr-nav-row" id="drNavRow">
+              <button class="dr-nav" id="drNavPrev" onclick="drNav(-1)" type="button">&#8249;</button>
               <div class="dr-months" id="drMonths"></div>
-              <button class="dr-nav" onclick="drNav(1)" type="button">&#8250;</button>
+              <button class="dr-nav" id="drNavNext" onclick="drNav(1)" type="button">&#8250;</button>
+              <div class="dr-ym-picker" id="drYMPicker"></div>
             </div>
             <div class="dr-footer">
               <span class="dr-hint" id="drHint">출발일을 선택하세요</span>
@@ -368,12 +369,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         .dr-tabs{display:flex;border-bottom:1px solid #eee}
         .dr-tab{flex:1;padding:14px;border:none;background:none;font-size:.93rem;font-weight:600;color:var(--gray-500);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px}
         .dr-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
-        .dr-nav-row{display:flex;align-items:flex-start;padding:16px 8px 12px}
-        .dr-months{display:flex;flex:1;gap:0}
+        .dr-nav-row{position:relative;padding:16px 52px 12px}
+        .dr-months{display:flex;gap:0}
         .dr-month{flex:1;padding:0 8px}
-        .dr-month-header{text-align:center;font-size:.97rem;font-weight:700;color:#222;margin-bottom:12px}
-        .dr-nav{background:none;border:none;cursor:pointer;font-size:1.4rem;color:#555;padding:0 4px;line-height:1;align-self:center;flex-shrink:0}
-        .dr-nav:hover{color:var(--navy)}
+        .dr-month-header{text-align:center;margin-bottom:12px}
+        .dr-ym-btn{font-size:.97rem;font-weight:700;color:#222;cursor:pointer;padding:3px 10px;border-radius:8px;border:1px solid #e0e0e0;background:#f8f9fa;display:inline-flex;align-items:center;gap:4px;transition:background .15s}
+        .dr-ym-btn:hover{background:#e8eaf6;color:var(--navy)}
+        .dr-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid #ddd;cursor:pointer;font-size:1.7rem;color:#333;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1);z-index:5;transition:all .15s;flex-shrink:0;padding:0}
+        .dr-nav:hover{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 4px 14px rgba(26,35,126,.2)}
+        #drNavPrev{left:6px}
+        #drNavNext{right:6px}
+        /* 연월 선택 팝업 */
+        .dr-ym-picker{display:none;position:absolute;z-index:100;background:#fff;border:1px solid #e0e0e0;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.15);padding:16px;min-width:240px;top:60px}
+        .dr-ym-picker.open{display:block}
+        .dr-ym-section{margin-bottom:12px}
+        .dr-ym-section-title{font-size:.75rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+        .dr-ym-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+        .dr-ym-item{padding:7px 4px;text-align:center;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;color:#333;background:#f5f5f5;transition:all .15s}
+        .dr-ym-item:hover{background:#e8eaf6;color:var(--navy)}
+        .dr-ym-item.active{background:var(--navy);color:#fff}
+        .dr-yr-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+        .dr-yr-label{font-size:1rem;font-weight:700;color:#222}
+        .dr-yr-btn{background:none;border:1px solid #ddd;border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center}
+        .dr-yr-btn:hover{background:#e8eaf6}
         .dr-weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:.76rem;color:#888;font-weight:600;margin-bottom:6px;gap:0}
         .dr-days{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
         .dr-day{height:36px;display:flex;align-items:center;justify-content:center;font-size:.83rem;cursor:pointer;position:relative;background:transparent}
@@ -395,10 +413,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         @media(max-width:700px){.dr-popup{width:calc(100vw - 32px);left:0}.dr-months{flex-direction:column}}
       </style>
       <nav class="cruise-tabs-nav" id="cruiseTabsNav">
+        <button class="cruise-tab-btn" onclick="switchTab(this,'incheon')">한국</button>
         <button class="cruise-tab-btn active" onclick="switchTab(this,'mediterranean')">지중해</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'alaska')">알래스카</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'caribbean')">카리브해</button>
-        <button class="cruise-tab-btn" onclick="switchTab(this,'korea')">한국·일본</button>
+        <button class="cruise-tab-btn" onclick="switchTab(this,'korea')">일본·아시아</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'northern-europe')">북유럽</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'asia')">아시아·중동</button>
       </nav>
@@ -514,6 +533,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (selectedOps.length > 0) {
         pool = pool.filter(s => selectedOps.some(op => _shipMatchesOperator(s, op)));
       }
+      // MSC 선택 시 벨리시마 맨 앞으로
+      const isMscOnly = selectedOps.length > 0 && selectedOps.every(op => op === 'MSC');
+      if (isMscOnly) {
+        const vidx = pool.findIndex(s => s.title && s.title.toLowerCase().includes('bellissima'));
+        if (vidx > 0) { const [v] = pool.splice(vidx, 1); pool.unshift(v); }
+      }
       return pool;
     }
 
@@ -602,8 +627,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     function toggleOption(e, optEl) {
       e.stopPropagation();
+      const msEl = optEl.closest('.multi-select');
+      // 단일 선택: 다른 옵션 모두 해제
+      msEl.querySelectorAll('.ms-option').forEach(o => { if (o !== optEl) o.classList.remove('selected'); });
       optEl.classList.toggle('selected');
-      updateMultiDisplay(optEl.closest('.multi-select'));
+      updateMultiDisplay(msEl);
+      // 즉시 닫힘 + 선사 확인 처리
+      onOperatorConfirm();
     }
     function updateMultiDisplay(msEl) {
       const selected = [...msEl.querySelectorAll('.ms-option.selected')];
@@ -652,22 +682,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function togglePortPreset(e, btn) {
       e.stopPropagation();
+      // 단일 선택: 다른 프리셋·옵션 모두 해제
+      document.querySelectorAll('.port-preset').forEach(b => { if (b !== btn) b.classList.remove('selected'); });
+      document.querySelectorAll('#msPortOptions .ms-option').forEach(o => o.classList.remove('selected'));
       btn.classList.toggle('selected');
-      // msPortOptions에 같은 값 있으면 동기화
-      document.querySelectorAll(`#msPortOptions .ms-option[data-value="${btn.dataset.value}"]`).forEach(o => {
-        o.classList.toggle('selected', btn.classList.contains('selected'));
-      });
       updatePortDisplay();
+      // 즉시 닫힘
+      closeMulti('msPort');
     }
 
     function togglePortOpt(e, el) {
       e.stopPropagation();
+      // 단일 선택: 다른 프리셋·옵션 모두 해제
+      document.querySelectorAll('.port-preset').forEach(b => b.classList.remove('selected'));
+      document.querySelectorAll('#msPortOptions .ms-option').forEach(o => { if (o !== el) o.classList.remove('selected'); });
       el.classList.toggle('selected');
-      // 프리셋에 같은 값 있으면 동기화
       document.querySelectorAll(`.port-preset[data-value="${el.dataset.value}"]`).forEach(b => {
         b.classList.toggle('selected', el.classList.contains('selected'));
       });
       updatePortDisplay();
+      // 즉시 닫힘
+      closeMulti('msPort');
     }
 
     function filterPortOptions(query) {
@@ -757,6 +792,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         html += renderDRMonth(yr, mo);
       }
       container.innerHTML = html;
+      // 스와이프 바인딩 (DOM 교체 후 재등록)
+      var el = document.getElementById('drMonths');
+      if (el) el._swipeBound = false;
+      _bindDRSwipe();
     }
 
     function setDRTab(tab) {
@@ -774,7 +813,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var firstDay = rawFirst === 0 ? 6 : rawFirst - 1; // shift: Mon=0,...Sun=6
       var daysInMonth = new Date(yr, mo+1, 0).getDate();
       var html = '<div class="dr-month">';
-      html += '<div class="dr-month-header">' + yr + '년 ' + monthNames[mo] + '</div>';
+      html += '<div class="dr-month-header"><button class="dr-ym-btn" type="button" onclick="_drSuppressClose=true;openDRYMPicker(' + yr + ',' + mo + ',event)">' + yr + '년 ' + monthNames[mo] + ' ▾</button></div>';
       html += '<div class="dr-weekdays"><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span></div>';
       html += '<div class="dr-days">';
       for (var i=0; i<firstDay; i++) html += '<div class="dr-day dr-empty"><span class="dr-di"></span></div>';
@@ -806,6 +845,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (drViewMonth < 0) { drViewMonth = 11; drViewYear--; }
       if (drViewMonth > 11) { drViewMonth = 0; drViewYear++; }
       renderDR();
+      // 스와이프 리바인드
+      _bindDRSwipe();
+    }
+
+    // 연월 선택 피커
+    var _ymPickerYear = null;
+    function openDRYMPicker(yr, mo, e) {
+      e && e.stopPropagation();
+      _ymPickerYear = yr;
+      _renderYMPicker(yr, mo);
+      var p = document.getElementById('drYMPicker');
+      p.classList.toggle('open');
+    }
+    function _renderYMPicker(yr, mo) {
+      var months = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+      var curYr = _ymPickerYear || yr;
+      var html = '<div class="dr-yr-row">';
+      html += '<button class="dr-yr-btn" type="button" onclick="_drSuppressClose=true;_ymPickerYear--;_renderYMPicker(_ymPickerYear,' + mo + ')">&#8249;</button>';
+      html += '<span class="dr-yr-label">' + curYr + '년</span>';
+      html += '<button class="dr-yr-btn" type="button" onclick="_drSuppressClose=true;_ymPickerYear++;_renderYMPicker(_ymPickerYear,' + mo + ')">&#8250;</button>';
+      html += '</div>';
+      html += '<div class="dr-ym-section-title">월 선택</div>';
+      html += '<div class="dr-ym-grid">';
+      for (var m = 0; m < 12; m++) {
+        var isActive = (curYr === drViewYear && m === drViewMonth) ? ' active' : '';
+        html += '<div class="dr-ym-item' + isActive + '" onclick="_drSuppressClose=true;selectDRYM(' + curYr + ',' + m + ')">' + months[m] + '</div>';
+      }
+      html += '</div>';
+      document.getElementById('drYMPicker').innerHTML = html;
+    }
+    function selectDRYM(yr, mo) {
+      drViewYear = yr; drViewMonth = mo;
+      document.getElementById('drYMPicker').classList.remove('open');
+      renderDR();
+      _bindDRSwipe();
+    }
+
+    // 모바일 스와이프
+    function _bindDRSwipe() {
+      var el = document.getElementById('drMonths');
+      if (!el || el._swipeBound) return;
+      el._swipeBound = true;
+      var _tx = 0, _moved = false;
+      el.addEventListener('touchstart', function(e) { _tx = e.touches[0].clientX; _moved = false; }, {passive:true});
+      el.addEventListener('touchmove', function(e) { if (Math.abs(e.touches[0].clientX - _tx) > 10) _moved = true; }, {passive:true});
+      el.addEventListener('touchend', function(e) {
+        if (!_moved) return;
+        var dx = e.changedTouches[0].clientX - _tx;
+        if (Math.abs(dx) > 40) drNav(dx < 0 ? 1 : -1);
+      });
     }
 
     var _drSuppressClose = false;
@@ -1182,6 +1271,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         'https://images.unsplash.com/photo-1530053969600-caed2596d242?w=600&q=80',
         'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600&q=80',
       ],
+      incheon: [
+        'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80',
+        'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80',
+        'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&q=80',
+        'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600&q=80',
+        'https://images.unsplash.com/photo-1548365328-8c6db3220e4c?w=600&q=80',
+      ],
       korea: [
         'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80',
         'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80',
@@ -1246,9 +1342,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
       document.getElementById('tabCruiseGrid').innerHTML = '<div class="tabs-loading">불러오는 중...</div>';
       try {
-        const cruisesRaw = await API.getMiniCruises(dest, 10);
+        let cruisesRaw;
+        if (dest === 'incheon') {
+          // 인천 출발 상품
+          const departIncheon = await API.filterCruises({ ports: ['인천'] }) || [];
+          // 인천 도착 상품 (korea 목적지 중 endsAt=Incheon)
+          const koreaAll = await API.filterCruises({ dest: 'korea' }) || [];
+          const arriveIncheon = koreaAll.filter(c => {
+            const enEn = (c.endsAt?.name || '').toLowerCase();
+            const enKo = c.endsAt?.nameKo || '';
+            return enEn === 'incheon' || enKo.includes('인천');
+          });
+          // 합치고 중복 제거
+          const refSet = new Set(departIncheon.map(c => c.ref));
+          cruisesRaw = [...departIncheon, ...arriveIncheon.filter(c => !refSet.has(c.ref))].slice(0, 20);
+        } else {
+          cruisesRaw = await API.getMiniCruises(dest, 10);
+        }
         // 출발일 빠른 순 정렬
-        const cruises = (cruisesRaw || []).sort((a, b) => (a.dateFrom || '') < (b.dateFrom || '') ? -1 : 1);
+        let cruises = (cruisesRaw || []).sort((a, b) => (a.dateFrom || '') < (b.dateFrom || '') ? -1 : 1);
+        // 인천 탭: 고정 순서 배치
+        if (dest === 'incheon') {
+          // 1순위: 한국·대만 3박 (인천 출발)
+          const pin1Idx = cruises.findIndex(c =>
+            (c.title || '').includes('대만') && Number(c.nights) <= 4
+          );
+          if (pin1Idx > 0) { const [p] = cruises.splice(pin1Idx, 1); cruises.unshift(p); }
+          // 2순위: 일본·한국 4박 (도쿄→인천)
+          const pin2Idx = cruises.findIndex(c =>
+            (c.title || '').includes('일본') && (c.title || '').includes('한국') && Number(c.nights) === 4
+          );
+          if (pin2Idx > 1) { const [p] = cruises.splice(pin2Idx, 1); cruises.splice(1, 0, p); }
+        }
         const imgs = TAB_DEST_IMAGES[dest] || TAB_DEST_IMAGES['mediterranean'];
         if (!cruises || cruises.length === 0) {
           document.getElementById('tabCruiseGrid').innerHTML = '<div class="tabs-loading">해당 목적지 크루즈가 없습니다</div>';
