@@ -361,7 +361,7 @@
     "cruiseline": "Regent Seven Seas Cruises",
     "ship": "세븐 시즈 보이저",
     "dateFrom": "2026-03-23",
-    "ports": "",
+    "ports": "리스본 → Portimão → Casablanca → Agadir → Sailing the Atlantic Ocean → Las Palmas de Gran Canaria → Santa Cruz de Tenerife → Funchal, Madeira → Cádiz → Málaga",
     "price": "문의",
     "ref": "REGENTVOY260323",
     "name": "김한나",
@@ -372,7 +372,7 @@
     "message": "kim hanna",
     "id": "1773633321979",
     "timestamp": "2026-03-16T03:55:21.979Z",
-    "status": "신규"
+    "status": "상담완료"
   },
   {
     "product": "한국·대만 3박 크루즈",
