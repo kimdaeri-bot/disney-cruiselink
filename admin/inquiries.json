@@ -419,6 +419,20 @@
         "air": 0,
         "etc": 0,
         "remarks": "* Premium Suite Aurea (SL1) 선실 기준"
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 3,
+        "types": [
+          {
+            "name": "스위트",
+            "val": 559
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
       }
     ]
   }
