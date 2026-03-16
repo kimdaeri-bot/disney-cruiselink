@@ -353,16 +353,16 @@ function printPreview() {
 async function saveFareHistory() {
   const f = getFareValues();
   const types = [
-    { name: f.insideLabel, val: f.inside },
-    { name: f.outsideLabel, val: f.outside },
-    { name: f.balconyLabel, val: f.balcony },
-    { name: f.suiteLabel, val: f.suite },
-  ].filter(t => t.val > 0);
+    { name: f.insideLabel, val: f.inside, raw: f.insideRaw },
+    { name: f.outsideLabel, val: f.outside, raw: f.outsideRaw },
+    { name: f.balconyLabel, val: f.balcony, raw: f.balconyRaw },
+    { name: f.suiteLabel, val: f.suite, raw: f.suiteRaw },
+  ].filter(t => t.raw && t.raw !== '' && t.raw !== '0');
   if (types.length === 0) { showToast('요금을 먼저 입력해주세요'); return; }
 
   const entry = {
     date: new Date().toLocaleDateString('ko-KR'),
-    pax: f.pax, types, tax: f.tax, air: f.air, etc: f.etc, remarks: f.remarks
+    pax: f.pax, types, air: f.air, etc: f.etc, remarks: f.remarks
   };
   if (!inq.fareHistory) inq.fareHistory = [];
   inq.fareHistory.push(entry);
