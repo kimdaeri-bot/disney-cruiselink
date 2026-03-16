@@ -221,19 +221,30 @@ async function saveToGitHub(data) {
   });
 }
 
+function getRawFare(id) {
+  const v = document.getElementById(id)?.value?.trim() || '';
+  return v;
+}
 function getFareValues() {
+  const insideRaw = getRawFare('fareInside');
+  const outsideRaw = getRawFare('fareOutside');
+  const balconyRaw = getRawFare('fareBalcony');
+  const suiteRaw = getRawFare('fareSuite');
   return {
     pax: parseInt(document.getElementById('farePax')?.value) || parseInt(inq.pax) || 1,
     rooms: parseInt(document.getElementById('fareRooms')?.value) || 1,
-    inside: parseFloat(document.getElementById('fareInside')?.value) || 0,
+    inside: parseFloat(insideRaw) || 0,
+    insideRaw,
     insideLabel: document.getElementById('fareInsideLabel')?.value || '인사이드',
-    outside: parseFloat(document.getElementById('fareOutside')?.value) || 0,
+    outside: parseFloat(outsideRaw) || 0,
+    outsideRaw,
     outsideLabel: document.getElementById('fareOutsideLabel')?.value || '오션뷰',
-    balcony: parseFloat(document.getElementById('fareBalcony')?.value) || 0,
+    balcony: parseFloat(balconyRaw) || 0,
+    balconyRaw,
     balconyLabel: document.getElementById('fareBalconyLabel')?.value || '발코니',
-    suite: parseFloat(document.getElementById('fareSuite')?.value) || 0,
+    suite: parseFloat(suiteRaw) || 0,
+    suiteRaw,
     suiteLabel: document.getElementById('fareSuiteLabel')?.value || '스위트',
-    tax: parseFloat(document.getElementById('fareTax')?.value) || 0,
     air: parseFloat(document.getElementById('fareAir')?.value) || 0,
     etc: parseFloat(document.getElementById('fareEtc')?.value) || 0,
     remarks: document.getElementById('fareRemarks')?.value || '',
@@ -244,18 +255,27 @@ function updatePreview() {
   const f = getFareValues();
   const today = new Date().toLocaleDateString('ko-KR');
   const types = [
-    { name: f.insideLabel, val: f.inside },
-    { name: f.outsideLabel, val: f.outside },
-    { name: f.balconyLabel, val: f.balcony },
-    { name: f.suiteLabel, val: f.suite },
-  ].filter(t => t.val > 0);
+    { name: f.insideLabel, val: f.inside, raw: f.insideRaw },
+    { name: f.outsideLabel, val: f.outside, raw: f.outsideRaw },
+    { name: f.balconyLabel, val: f.balcony, raw: f.balconyRaw },
+    { name: f.suiteLabel, val: f.suite, raw: f.suiteRaw },
+  ].filter(t => t.raw && t.raw !== '' && t.raw !== '0');
+
+  function fareDisplay(t) {
+    if (isNaN(parseFloat(t.raw))) return esc(t.raw);
+    return t.val.toLocaleString() + ' USD';
+  }
+  function fareTotalDisplay(t) {
+    if (isNaN(parseFloat(t.raw))) return esc(t.raw);
+    return (t.val * f.pax).toLocaleString() + ' USD';
+  }
 
   const fareRows = types.map(t =>
-    `<tr><td>${esc(t.name)}</td><td>${t.val.toLocaleString()} USD</td><td>${(t.val * f.pax).toLocaleString()} USD</td></tr>`
+    `<tr><td>${esc(t.name)}</td><td>${fareDisplay(t)}</td><td>${fareTotalDisplay(t)}</td></tr>`
   ).join('');
 
-  const totalRows = types.map(t => {
-    const total = (t.val + f.tax) * f.pax;
+  const totalRows = types.filter(t => !isNaN(parseFloat(t.raw))).map(t => {
+    const total = t.val * f.pax;
     return `<tr class="total-row"><td>최종 합계 (${esc(t.name)}, ${f.pax}인)</td><td colspan="2" style="text-align:right;color:#1a237e;">$ ${total.toLocaleString()} USD</td></tr>`;
   }).join('');
 
@@ -266,7 +286,7 @@ function updatePreview() {
       <tr><td>합계 (${f.pax}인)</td><td>${(f.air*f.pax).toLocaleString()} KRW</td></tr>
     </table>` : '';
 
-  const remarksHtml = f.remarks ? `<div style="background:#f5f7ff;border-left:3px solid #1a237e;padding:10px 14px;font-size:12px;margin:10px 0;">${esc(f.remarks)}</div>` : '';
+  const remarksHtml = f.remarks ? `<div style="background:#f5f7ff;border-left:3px solid #1a237e;padding:10px 14px;font-size:12px;margin:10px 0;">${esc(f.remarks).replace(/\n/g,'<br>')}</div>` : '';
 
   document.getElementById('previewWrap').innerHTML = `
     <div class="preview-header">
@@ -279,23 +299,19 @@ function updatePreview() {
       <tr><td>고객명</td><td>${esc(inq.name||'-')}</td></tr>
       <tr><td>연락처</td><td>${esc(inq.phone||'-')}</td></tr>
       <tr><td>인원</td><td>${f.pax}명</td></tr>
-      <tr><td>객실 수</td><td>${f.rooms}실</td></tr>
+      <tr><td>선실 수</td><td>${f.rooms}실</td></tr>
     </table>
     <table style="table-layout:fixed;"><colgroup><col style="width:30%"><col style="width:70%"></colgroup>
       <tr><th colspan="2">크루즈 상품 정보</th></tr>
       <tr><td>상품명</td><td>${esc(inq.product||'-')}</td></tr>
       <tr><td>선사/선박</td><td>${esc(inq.cruiseline||'-')} / ${esc(inq.ship||'-')}</td></tr>
-      <tr><td>출발일</td><td>${esc(inq.dateFrom||'-')}</td></tr>
-      <tr><td>일정</td><td>${esc(inq.ports||'-')}</td></tr>
+      <tr><td>승선일</td><td>${esc(inq.dateFrom||'-')}</td></tr>
+      <tr><td>일정</td><td>${esc(inq.ports||'-')}${inq.ref ? ` <a href="https://www.cruiselink.co.kr/cruise-view.html?ref=${encodeURIComponent(inq.ref)}" target="_blank" style="color:#1a237e;font-weight:600;margin-left:8px;">🔗 링크보기</a>` : ''}</td></tr>
     </table>
     ${types.length > 0 ? `
     <table style="table-layout:fixed;"><colgroup><col style="width:40%"><col style="width:30%"><col style="width:30%"></colgroup>
-      <tr><th>객실 타입 / 요금</th><th>1인 기준 (USD)</th><th>${f.pax}인 합계 (USD)</th></tr>
+      <tr><th>선실 타입 / 요금</th><th>1인 기준 (USD)</th><th>${f.pax}인 합계 (USD)</th></tr>
       ${fareRows}
-    </table>
-    <table style="table-layout:fixed;"><colgroup><col style="width:40%"><col style="width:30%"><col style="width:30%"></colgroup>
-      <tr><th colspan="3">세금 / 항만세</th></tr>
-      <tr><td>세금/항만세 (1인)</td><td>${f.tax.toLocaleString()} USD</td><td>${(f.tax*f.pax).toLocaleString()} USD</td></tr>
     </table>
     ${totalRows ? `<table style="table-layout:fixed;"><colgroup><col style="width:40%"><col style="width:30%"><col style="width:30%"></colgroup><tr><th colspan="3">최종 금액</th></tr>${totalRows}</table>` : ''}
     ` : '<p style="color:#aaa;text-align:center;padding:20px;">요금을 입력하면 표가 나타납니다</p>'}
@@ -308,7 +324,6 @@ function updatePreview() {
     <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
       <button onclick="printPreview()" style="background:#1a237e;color:#fff;border:none;padding:10px 20px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600;">🖨️ 인쇄 / PDF 저장</button>
       <button onclick="saveFareHistory()" style="background:#2e7d32;color:#fff;border:none;padding:10px 20px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600;">💾 견적 저장하기</button>
-      <span style="color:#e53935;font-size:12px;font-weight:600;line-height:1.5;">*견적안내 후 견적 저장하기 필수.<br>견적저장하기를 완료하면 견적 히스토리에 내용이 저장됩니다.</span>
     </div>
   `;
 }
@@ -395,7 +410,7 @@ function renderFareHistory() {
         <span class="arr" style="color:#1a237e;font-size:11px;">▶</span>
       </div>
       <div id="${id}" class="history-body" style="display:none;">
-        <table><tr style="background:#1a237e;color:white;"><th>객실 타입</th><th>1인 기준</th><th>${h.pax}인 합계</th></tr>${rows}${taxRow}</table>
+        <table><tr style="background:#1a237e;color:white;"><th>선실 타입</th><th>1인 기준</th><th>${h.pax}인 합계</th></tr>${rows}${taxRow}</table>
         ${h.remarks ? `<p style="font-size:12px;color:#555;margin-top:8px">비고: ${esc(h.remarks)}</p>` : ''}
       </div>
     </div>`;
@@ -416,7 +431,7 @@ function renderLeft() {
         <div class="info-field"><label>이메일</label><span>${esc(inq.email||'-')}</span></div>
         <div class="info-field"><label>연락처</label><span>${esc(inq.phone||'-')}</span></div>
         <div class="info-field"><label>인원</label><span>${esc(inq.pax||'-')}명</span></div>
-        <div class="info-field"><label>희망 객실</label><span>${esc(inq.cabin||'-')}</span></div>
+        <div class="info-field"><label>희망 선실</label><span>${esc(inq.cabin||'-')}</span></div>
         <div class="info-field full"><label>요청사항</label><span>${esc(inq.message||'-')}</span></div>
       </div>
     </div>
@@ -428,8 +443,8 @@ function renderLeft() {
         <div class="info-field full"><label>상품명</label><span>${esc(inq.product||'-')}</span></div>
         <div class="info-field"><label>선사</label><span>${esc(inq.cruiseline||'-')}</span></div>
         <div class="info-field"><label>선박</label><span>${esc(inq.ship||'-')}</span></div>
-        <div class="info-field"><label>출발일</label><span>${esc(inq.dateFrom||'-')}</span></div>
-        <div class="info-field"><label>일정</label><span>${esc(inq.ports||'-')}</span></div>
+        <div class="info-field"><label>승선일</label><span>${esc(inq.dateFrom||'-')}</span></div>
+        <div class="info-field"><label>일정</label><span>${esc(inq.ports||'-')}${inq.ref ? ` <a href="https://www.cruiselink.co.kr/cruise-view.html?ref=${encodeURIComponent(inq.ref)}" target="_blank" style="color:#1a237e;font-weight:600;margin-left:8px;">🔗 링크보기</a>` : ''}</span></div>
         <div class="info-field"><label>참고가격</label><span>${esc(inq.price||'-')}</span></div>
         <div class="info-field"><label>Ref</label><span>${esc(inq.ref||'-')}</span></div>
         ${inq.ref ? `<div class="info-field"><label>상품 링크</label><span><a href="https://www.cruiselink.co.kr/cruise-view.html?ref=${encodeURIComponent(inq.ref)}" target="_blank" style="color:#1a237e;font-weight:600;">🔗 링크보기</a></span></div>` : ''}
@@ -455,28 +470,24 @@ function renderLeft() {
           <input type="number" id="farePax" value="${inq.pax||1}" min="1" step="1" oninput="updatePreview()">
         </div>
         <div class="fare-group">
-          <label>객실 수 (실)</label>
+          <label>선실 수 (실)</label>
           <input type="number" id="fareRooms" value="1" min="1" step="1" oninput="updatePreview()">
         </div>
         <div class="fare-group">
-          <label><input type="text" class="fare-label-input" id="fareInsideLabel" value="인사이드" oninput="updatePreview()" title="객실명 수정 가능"> (USD/1인)</label>
-          <input type="number" id="fareInside" placeholder="0" min="0" step="1" oninput="updatePreview()">
+          <label><input type="text" class="fare-label-input" id="fareInsideLabel" value="인사이드" oninput="updatePreview()" title="선실명 수정 가능"> (USD/1인)</label>
+          <input type="text" id="fareInside" placeholder="0 또는 마감" oninput="updatePreview()">
         </div>
         <div class="fare-group">
-          <label><input type="text" class="fare-label-input" id="fareOutsideLabel" value="오션뷰" oninput="updatePreview()" title="객실명 수정 가능"> (USD/1인)</label>
-          <input type="number" id="fareOutside" placeholder="0" min="0" step="1" oninput="updatePreview()">
+          <label><input type="text" class="fare-label-input" id="fareOutsideLabel" value="오션뷰" oninput="updatePreview()" title="선실명 수정 가능"> (USD/1인)</label>
+          <input type="text" id="fareOutside" placeholder="0 또는 마감" oninput="updatePreview()">
         </div>
         <div class="fare-group">
-          <label><input type="text" class="fare-label-input" id="fareBalconyLabel" value="발코니" oninput="updatePreview()" title="객실명 수정 가능"> (USD/1인)</label>
-          <input type="number" id="fareBalcony" placeholder="0" min="0" step="1" oninput="updatePreview()">
+          <label><input type="text" class="fare-label-input" id="fareBalconyLabel" value="발코니" oninput="updatePreview()" title="선실명 수정 가능"> (USD/1인)</label>
+          <input type="text" id="fareBalcony" placeholder="0 또는 마감" oninput="updatePreview()">
         </div>
         <div class="fare-group">
-          <label><input type="text" class="fare-label-input" id="fareSuiteLabel" value="스위트" oninput="updatePreview()" title="객실명 수정 가능"> (USD/1인)</label>
-          <input type="number" id="fareSuite" placeholder="0" min="0" step="1" oninput="updatePreview()">
-        </div>
-        <div class="fare-group">
-          <label>세금/항만세 (USD/1인)</label>
-          <input type="number" id="fareTax" placeholder="0" min="0" step="1" oninput="updatePreview()">
+          <label><input type="text" class="fare-label-input" id="fareSuiteLabel" value="스위트" oninput="updatePreview()" title="선실명 수정 가능"> (USD/1인)</label>
+          <input type="text" id="fareSuite" placeholder="0 또는 마감" oninput="updatePreview()">
         </div>
         <div class="fare-group">
           <label>한국 출발 항공료 (KRW/1인)</label>
