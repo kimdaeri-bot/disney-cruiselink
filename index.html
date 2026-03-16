@@ -1352,18 +1352,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       try {
         let cruisesRaw;
         if (dest === 'incheon') {
-          // 인천 출발 상품
-          const departIncheon = await API.filterCruises({ ports: ['인천'] }) || [];
-          // 인천 도착 상품 (korea 목적지 중 endsAt=Incheon)
-          const koreaAll = await API.filterCruises({ dest: 'korea' }) || [];
-          const arriveIncheon = koreaAll.filter(c => {
-            const enEn = (c.endsAt?.name || '').toLowerCase();
-            const enKo = c.endsAt?.nameKo || '';
-            return enEn === 'incheon' || enKo.includes('인천');
-          });
-          // 합치고 중복 제거
-          const refSet = new Set(departIncheon.map(c => c.ref));
-          cruisesRaw = [...departIncheon, ...arriveIncheon.filter(c => !refSet.has(c.ref))].slice(0, 20);
+          // 인천 출발 상품만
+          cruisesRaw = (await API.filterCruises({ ports: ['인천'] }) || []).slice(0, 20);
         } else {
           cruisesRaw = await API.getMiniCruises(dest, 10);
         }
@@ -1376,11 +1366,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             (c.title || '').includes('대만') && Number(c.nights) <= 4
           );
           if (pin1Idx > 0) { const [p] = cruises.splice(pin1Idx, 1); cruises.unshift(p); }
-          // 2순위: 일본·한국 4박 (도쿄→인천)
-          const pin2Idx = cruises.findIndex(c =>
-            (c.title || '').includes('일본') && (c.title || '').includes('한국') && Number(c.nights) === 4
-          );
-          if (pin2Idx > 1) { const [p] = cruises.splice(pin2Idx, 1); cruises.splice(1, 0, p); }
         }
         const imgs = TAB_DEST_IMAGES[dest] || TAB_DEST_IMAGES['mediterranean'];
         if (!cruises || cruises.length === 0) {
