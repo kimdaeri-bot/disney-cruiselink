@@ -756,11 +756,9 @@ function renderInvoice() {
     <!-- 환율 -->
     ${rate ? `
     <div class="inv-exchange">
-      <strong>적용 환율 ${rate.toLocaleString('en-US', {minimumFractionDigits:2})}원/USD</strong>
-      &nbsp;·&nbsp; 인보이스 발행일 하나은행 1회차 현금 매도율 기준 &nbsp;·&nbsp;
-      총액 원화: <strong>${fmtKRW(grandTotal, rate)}</strong>
-      <br>
-      <span style="font-size:11px;color:#555">* 신용카드 결제 시, 환율이 적용된 원화로 결제 가능합니다. 결제하실 카드 앞/뒷면 사진을 이메일 또는 010-3495-9119로 발송해 주시면 됩니다.</span>
+      <div><strong>적용 환율 ${rate.toLocaleString('en-US', {minimumFractionDigits:2})}원/USD</strong> &nbsp;·&nbsp; 인보이스 발행일 하나은행 1회차 현금 매도율 기준</div>
+      <div>총액 원화: <strong>${fmtKRW(grandTotal, rate)}</strong></div>
+      <div style="font-size:11px;color:#555;margin-top:4px">* 신용카드 결제 시, 환율이 적용된 원화로 결제 가능합니다.<br>결제하실 카드 앞/뒷면 사진을 이메일 또는 010-3495-9119로 발송해 주시면 됩니다.</div>
     </div>` : ''}
 
     <!-- 결제 기한 -->
