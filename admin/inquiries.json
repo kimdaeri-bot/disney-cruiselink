@@ -856,7 +856,7 @@
     "cruiseline": "MSC Cruises",
     "ship": "MSC 벨리시마",
     "dateFrom": "2027-06-10",
-    "ports": "",
+    "ports": "도쿄 → 가고시마 → 인천",
     "price": "문의",
     "ref": "MSCBE20270610TYOINC",
     "name": "김미선",
@@ -867,7 +867,7 @@
     "message": "Kimmisun",
     "id": "1773642175321",
     "timestamp": "2026-03-16T06:22:55.321Z",
-    "status": "신규"
+    "status": "요금안내 완료"
   },
   {
     "product": "일본·한국 4박 크루즈",
