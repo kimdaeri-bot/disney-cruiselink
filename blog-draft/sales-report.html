@@ -742,7 +742,47 @@ function copyShareLink(){
   navigator.clipboard.writeText(url).then(()=>alert('✅ 공유 링크 복사됨!\n\n'+url)).catch(()=>{prompt('아래 링크를 복사하세요:',url);});
 }
 
+// 마지막 저장 리포트에서 26 Fare/Comm 디폴트 로드
+function loadPrev26Data(){
+  const list=getReports();
+  if(!list.length)return;
+  // 가장 최근 저장된 리포트
+  const last=list[list.length-1];
+  try{
+    const data=JSON.parse(localStorage.getItem(`cl_report_${last.id}`)||'{}');
+    if(!data.yrData)return;
+    let filled=false;
+    for(let m=1;m<=12;m++){
+      const d=data.yrData[m]||{};
+      ['y26f','y26c'].forEach(k=>{
+        const e=document.getElementById(`${k}${m}`);
+        if(e&&d[k]!==undefined&&Number(d[k])!==0){e.value=d[k];filled=true;}
+      });
+    }
+    if(filled){
+      // 클라우드와도 동기화 시도
+      fetch('https://enttix-omega.vercel.app/api/cl-reports')
+        .then(r=>r.json()).then(cloudList=>{
+          if(!Array.isArray(cloudList)||!cloudList.length)return;
+          const newest=cloudList[0]; // 최신순 정렬됨
+          if(!newest.data||!newest.data.yrData)return;
+          for(let m=1;m<=12;m++){
+            const d=newest.data.yrData[m]||{};
+            ['y26f','y26c'].forEach(k=>{
+              const e=document.getElementById(`${k}${m}`);
+              if(e&&d[k]!==undefined&&Number(d[k])!==0)e.value=d[k];
+            });
+          }
+          render();
+        }).catch(()=>{});
+      render();
+    }
+  }catch(e){console.warn('이전 26 데이터 로드 실패:',e);}
+}
+
 init();
+// URL 파라미터 없을 때만 이전 26 데이터 디폴트 로드
+if(!location.search)loadPrev26Data();
 loadFromUrlParam();
 </script>
 </body>
