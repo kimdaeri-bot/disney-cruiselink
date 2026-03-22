@@ -5,12 +5,12 @@ const Components = {
     return `
     <header class="header">
       <div class="container">
-        <a href="${base}index.html" class="logo"><img src="${base}assets/images/logo.png" alt="크루즈링크" style="height:36px"></a>
+        <a href="${base}" class="logo"><img src="${base}assets/images/logo.png" alt="크루즈링크" style="height:36px"></a>
         <nav class="nav" id="mainNav">
-          <a href="${base}index.html" class="${active === 'home' ? 'active' : ''}">홈</a>
-          <a href="${base}destinations.html" class="${active === 'dest' ? 'active' : ''}">목적지</a>
-          <a href="${base}ships.html" class="${active === 'ships' ? 'active' : ''}">선사소개</a>
-          <a href="${base}promotions.html" class="${active === 'promo' ? 'active' : ''}">프로모션</a>
+          <a href="${base}" class="${active === 'home' ? 'active' : ''}">홈</a>
+          <a href="${base}destinations/" class="${active === 'dest' ? 'active' : ''}">목적지</a>
+          <a href="${base}ships/" class="${active === 'ships' ? 'active' : ''}">선사소개</a>
+          <a href="${base}promotions/" class="${active === 'promo' ? 'active' : ''}">프로모션</a>
           <a href="${base}guide/" class="${active === 'guide' ? 'active' : ''}">크루즈 가이드</a>
           <a href="https://pf.kakao.com/_xgYbJG" target="_blank" class="${active === 'contact' ? 'active' : ''}">문의</a>
         </nav>
@@ -51,10 +51,10 @@ const Components = {
         <div class="footer-content">
           <div class="footer-col">
             <h4>크루즈링크는?</h4>
-            <p><a href="${base}about.html">회사소개</a></p>
-            <p><a href="${base}newsletter.html">📬 뉴스레터 구독</a></p>
-            <p><a href="${base}privacy.html">개인정보 처리방침</a></p>
-            <p><a href="${base}terms.html">이용약관</a></p>
+            <p><a href="${base}about/">회사소개</a></p>
+            <p><a href="${base}newsletter/">📬 뉴스레터 구독</a></p>
+            <p><a href="${base}privacy/">개인정보 처리방침</a></p>
+            <p><a href="${base}terms/">이용약관</a></p>
           </div>
           <div class="footer-col">
             <h4>연락처 정보</h4>
@@ -73,11 +73,11 @@ const Components = {
           </div>
           <div class="footer-col">
             <h4>목적지</h4>
-            <p><a href="${base}destinations.html">목적지 가이드</a></p>
-            <p><a href="${base}destination.html?dest=korea">한국/일본</a></p>
-            <p><a href="${base}destination.html?dest=mediterranean">지중해</a></p>
-            <p><a href="${base}destination.html?dest=alaska">알래스카</a></p>
-            <p><a href="${base}destination.html?dest=caribbean">카리브해</a></p>
+            <p><a href="${base}destinations/">목적지 가이드</a></p>
+            <p><a href="${base}destination/?dest=korea">한국/일본</a></p>
+            <p><a href="${base}destination/?dest=mediterranean">지중해</a></p>
+            <p><a href="${base}destination/?dest=alaska">알래스카</a></p>
+            <p><a href="${base}destination/?dest=caribbean">카리브해</a></p>
           </div>
         </div>
         <div class="footer-bottom" style="font-size:0.8rem;line-height:1.6;color:var(--gray-500)">
@@ -138,7 +138,7 @@ const Components = {
     else {badge='인기';badgeColor='#1565C0';}
     const priceStr = fromPrice ? '$'+parseFloat(fromPrice).toLocaleString('en-US',{maximumFractionDigits:0}) : '문의';
     return `
-    <div class="czn-card" onclick="location.href='cruise-view.html?ref=${c.ref}'" style="cursor:pointer">
+    <div class="czn-card" onclick="location.href='cruise-view/?ref=${c.ref}'" style="cursor:pointer">
       <div class="czn-card-img-wrap">
         <img src="${c.image}" alt="${c.title||''}" loading="lazy" onerror="this.parentElement.style.background='#cfe8fc'">
         <span class="czn-badge" style="background:${badgeColor}">${badge}</span>
@@ -158,7 +158,7 @@ const Components = {
             <span class="czn-price" style="color:#E65100">${priceStr} ~</span>
             <span class="czn-unit">/ 1인</span>
           </div>
-          <a href="cruise-view.html?ref=${c.ref}" class="czn-btn" onclick="event.stopPropagation()">자세히 보기</a>
+          <a href="cruise-view/?ref=${c.ref}" class="czn-btn" onclick="event.stopPropagation()">자세히 보기</a>
         </div>
       </div>
     </div>`;
@@ -195,7 +195,7 @@ const Components = {
             <div class="cruise-item-price">${API.formatPrice(fromPrice, c.currency)} <small style="font-weight:400;font-size:0.8rem;color:#888">/1인</small></div>
           </div>
           <div class="cruise-item-actions">
-            <a href="cruise-view.html?ref=${c.ref}" class="btn btn-navy btn-sm">상세보기</a>
+            <a href="cruise-view/?ref=${c.ref}" class="btn btn-navy btn-sm">상세보기</a>
             <button class="btn btn-orange btn-sm" onclick="openInquiryWith('${(c.title||'').replace(/'/g,"\\'")}','${(c.operator||'').replace(/'/g,"\\'")}','${(c.shipTitleKo || Translations.shipName(c.shipTitle)||'').replace(/'/g,"\\'")}','${c.dateFrom||''}','${c.nights||''}','${String(fromPrice||'')}','${c.ref||''}','${c.currency||''}')">문의하기</button>
           </div>
         </div>
@@ -211,7 +211,7 @@ const Components = {
     const region = holiday.regions?.[0] || '';
     const img = shipInfo?.coverImage || holiday.images?.[0]?.href || '';
     return `
-    <div class="cruise-card" onclick="location.href='cruise-view.html?ref=${holiday.date_ref}'">
+    <div class="cruise-card" onclick="location.href='cruise-view/?ref=${holiday.date_ref}'">
       <div class="cruise-card-img">
         <img src="${img}" alt="${holiday.ship_title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23e0e0e0%22 width=%22400%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 fill=%22%239e9e9e%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2220%22>🚢</text></svg>'">
         ${region ? `<span class="cruise-card-tag">${Translations.regionName(region)}</span>` : ''}
@@ -224,7 +224,7 @@ const Components = {
           <span class="cruise-card-date">📅 ${API.formatDate(holiday.date_from)} · ${holiday.cruise_nights || holiday.duration_days || ''}박</span>
           <span class="cruise-card-price">${API.formatPrice(fromPrice)} <small style="font-weight:normal;font-size:.8em;opacity:.8">/1인</small></span>
         </div>
-        <a href="cruise-view.html?ref=${holiday.date_ref}" class="cruise-card-btn">자세히 보기</a>
+        <a href="cruise-view/?ref=${holiday.date_ref}" class="cruise-card-btn">자세히 보기</a>
       </div>
     </div>`;
   },
@@ -253,7 +253,7 @@ const Components = {
             <div class="cruise-item-price">${API.formatPrice(fromPrice)} <small style="font-weight:400;font-size:0.8rem;color:#888">/1인</small></div>
           </div>
           <div class="cruise-item-actions">
-            <a href="cruise-view.html?ref=${holiday.date_ref}" class="btn btn-navy btn-sm">상세보기</a>
+            <a href="cruise-view/?ref=${holiday.date_ref}" class="btn btn-navy btn-sm">상세보기</a>
             <button class="btn btn-orange btn-sm" onclick="openInquiryWith('${(Translations.portName(holiday.starts_at?.name||'')+' 출발 '+(holiday.cruise_nights||holiday.duration_days||'')+'박 크루즈').replace(/'/g,"\\'")}','${(holiday.operator_title||'').replace(/'/g,"\\'")}','${(holiday.ship_title||'').replace(/'/g,"\\'")}','${holiday.date_from||''}','${holiday.cruise_nights||holiday.duration_days||''}','${String(fromPrice||'')}','${holiday.date_ref||''}','')">문의하기</button>
           </div>
         </div>
@@ -435,12 +435,12 @@ async function _renderWishlistContent() {
       const priceStr = price ? '$' + parseFloat(price).toLocaleString('en-US',{maximumFractionDigits:0}) : '문의';
       const port = c.startsAt?.nameKo || (typeof Translations!=='undefined'?Translations.portName(c.startsAt?.name||''):'')||'';
       return `<div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start;">
-        <a href="cruise-view.html?ref=${c.ref}" style="flex-shrink:0;">
+        <a href="cruise-view/?ref=${c.ref}" style="flex-shrink:0;">
           <img src="${c.image||''}" style="width:90px;height:68px;object-fit:cover;border-radius:8px;" onerror="this.style.background='#e0e0e0'">
         </a>
         <div style="flex:1;min-width:0;">
           <div style="font-size:11px;color:#1565C0;font-weight:700;margin-bottom:3px;">${(typeof Translations!=='undefined'?Translations.operatorName(c.operator):c.operator)||''}</div>
-          <a href="cruise-view.html?ref=${c.ref}" style="font-size:14px;font-weight:800;color:#0a1628;text-decoration:none;display:block;line-height:1.3;margin-bottom:6px;">${c.title||''}</a>
+          <a href="cruise-view/?ref=${c.ref}" style="font-size:14px;font-weight:800;color:#0a1628;text-decoration:none;display:block;line-height:1.3;margin-bottom:6px;">${c.title||''}</a>
           <div style="font-size:12px;color:#666;">${port?'📍 '+port+' 출발 · ':''} ${c.nights||''}박</div>
           <div style="font-size:18px;font-weight:900;color:#E65100;margin-top:4px;">${priceStr} <span style="font-size:11px;color:#999;font-weight:400">/ 1인</span></div>
         </div>

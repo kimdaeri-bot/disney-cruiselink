@@ -132,7 +132,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="sidebar-card">
       <h3>🚢 예약 문의</h3>
-      <a class="cta-btn" href="../../../search.html?ship=allure-of-the-seas">상품 보기</a>
+      <a class="cta-btn" href="../../../search/?ship=allure-of-the-seas">상품 보기</a>
       <a class="cta-btn navy" href="../../../#inquiry">무료 상담 신청</a>
     </div>
     <div class="sidebar-card">
@@ -154,7 +154,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const list = all.filter(c=>c.shipSlug==='allure-of-the-seas'&&c.dateFrom>=today).slice(0,4);
       const el = document.getElementById('related-list');
       if(!list.length){el.innerHTML='<p style="font-size:.83rem;color:var(--gray-500)">현재 출발 예정 상품이 없습니다</p>';return;}
-      el.innerHTML=list.map(c=>`<a style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-200);text-decoration:none;color:inherit" href="../../../cruise-view.html?ref=${c.ref}&ship=${c.shipSlug}"><img src="${c.image}" style="width:68px;height:50px;object-fit:cover;border-radius:4px;flex-shrink:0" onerror="this.src='https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=120&q=60'"><div><div style="font-size:.83rem;font-weight:700;color:var(--navy)">${c.title}</div><div style="font-size:.76rem;color:var(--gray-500)">${c.dateFrom} · ${c.nights}박</div><div style="font-size:.86rem;font-weight:700;color:var(--orange)">$${c.priceInside||c.priceOutside||'?'}~</div></div></a>`).join('');
+      el.innerHTML=list.map(c=>`<a style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-200);text-decoration:none;color:inherit" href="../../../cruise-view/?ref=${c.ref}&ship=${c.shipSlug}"><img src="${c.image}" style="width:68px;height:50px;object-fit:cover;border-radius:4px;flex-shrink:0" onerror="this.src='https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=120&q=60'"><div><div style="font-size:.83rem;font-weight:700;color:var(--navy)">${c.title}</div><div style="font-size:.76rem;color:var(--gray-500)">${c.dateFrom} · ${c.nights}박</div><div style="font-size:.86rem;font-weight:700;color:var(--orange)">$${c.priceInside||c.priceOutside||'?'}~</div></div></a>`).join('');
     }catch(e){}
   })();
 </script>

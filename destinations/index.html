@@ -427,7 +427,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const grid = document.getElementById('destGrid');
 
       grid.innerHTML = dests.map((d, i) => `
-        <a href="destination.html?dest=${d.id}" class="dest-big-card${d.featured && region === 'all' ? ' featured' : ''}${d.wide && region === 'all' ? ' wide-card' : ''}" data-region="${d.region}">
+        <a href="destination/?dest=${d.id}" class="dest-big-card${d.featured && region === 'all' ? ' featured' : ''}${d.wide && region === 'all' ? ' wide-card' : ''}" data-region="${d.region}">
           <div class="dest-big-card-img">
             <img src="${d.img}" alt="${d.name}" loading="${i < 3 ? 'eager' : 'lazy'}">
           </div>

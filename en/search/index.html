@@ -303,7 +303,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const img = c.image || '';
       const ref = c.ref || '';
       const titleStr = c.titleEn || c.title || '';
-      return `<div class="czn-card" onclick="location.href='en/cruise-view.html?ref=${ref}'">
+      return `<div class="czn-card" onclick="location.href='en/cruise-view/?ref=${ref}'">
         <div class="czn-card-img-wrap">
           <img src="${img}" alt="${titleStr}" loading="lazy" onerror="this.parentElement.style.background='#cfe8fc'">
           <span class="czn-badge" style="background:${badgeColor}">${badge}</span>
@@ -323,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="czn-price" style="color:#E65100">${priceStr} ~</span>
               <span class="czn-unit">/ person</span>
             </div>
-            <a href="en/cruise-view.html?ref=${ref}" class="czn-btn" onclick="event.stopPropagation()">View Details</a>
+            <a href="en/cruise-view/?ref=${ref}" class="czn-btn" onclick="event.stopPropagation()">View Details</a>
           </div>
         </div>
       </div>`;
@@ -729,8 +729,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     html = html.replace(/(\d+)박\s*(\d+)일/g, '$1 nights / $2 days');
     html = html.replace(/(\d+)박 출발/g, '$1 nights · Dep.');
     html = html.replace(/(\d+)박/g, '$1 nights');
-    html = html.replace(/href="cruise-view\.html\?/g, 'href="en/cruise-view.html?');
-    html = html.replace(/location\.href='cruise-view\.html\?/g, "location.href='en/cruise-view.html?");
+    html = html.replace(/href="cruise-view\/\?/g, 'href="en/cruise-view.html?');
+    html = html.replace(/location\.href='cruise-view\/\?/g, "location.href='en/cruise-view/?");
     return html;
   }
   function withTitleEn(c) {

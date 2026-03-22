@@ -338,7 +338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const priceStr = fromPrice ? '$' + parseFloat(fromPrice).toLocaleString('en-US', {maximumFractionDigits:0}) : '문의';
       const img = c.image || '';
       const ref = c.ref || '';
-      return `<div class="czn-card" onclick="location.href='cruise-view.html?ref=${ref}'">
+      return `<div class="czn-card" onclick="location.href='cruise-view/?ref=${ref}'">
         <div class="czn-card-img-wrap">
           <img src="${img}" alt="${c.title||''}" loading="lazy" onerror="this.parentElement.style.background='#cfe8fc'">
           <span class="czn-badge" style="background:${badgeColor}">${badge}</span>
@@ -358,7 +358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="czn-price" style="color:#E65100">${priceStr} ~</span>
               <span class="czn-unit">/ 1인</span>
             </div>
-            <a href="cruise-view.html?ref=${ref}" class="czn-btn" onclick="event.stopPropagation()">자세히 보기</a>
+            <a href="cruise-view/?ref=${ref}" class="czn-btn" onclick="event.stopPropagation()">자세히 보기</a>
           </div>
         </div>
       </div>`;
