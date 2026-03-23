@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>인스타 초안 | RCI Enchantment of the Seas 카리브해 7박 (2026.08.29)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #333; }
+    .admin-bar { position: sticky; top: 0; z-index: 999; background: #1a1a2e; color: #fff; padding: 10px 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; }
+    .admin-bar strong { color: #ffd700; }
+    .copy-all-btn { margin-left: auto; background: #E1306C; color: #fff; border: none; padding: 7px 18px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 700; }
+    .copy-all-btn:hover { background: #c1255a; }
+    .wrapper { max-width: 860px; margin: 30px auto; padding: 0 16px 60px; }
+    .block { background: #fff; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.07); position: relative; }
+    .block-label { font-size: 11px; font-weight: 800; color: #E1306C; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+    .block:hover .copy-btn { opacity: 1; }
+    .copy-btn { position: absolute; top: 14px; right: 16px; opacity: 0; transition: opacity .2s; background: #E1306C; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; }
+    .slides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 8px; }
+    .slide { background: linear-gradient(145deg, #0d2137, #006994); color: #fff; border-radius: 10px; aspect-ratio: 1/1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; position: relative; cursor: pointer; transition: transform .15s; }
+    .slide:hover { transform: scale(1.02); }
+    .slide:hover .slide-copy { opacity: 1; }
+    .slide-copy { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.2); border: none; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; opacity: 0; transition: opacity .2s; }
+    .slide-num { font-size: 11px; font-weight: 800; opacity: .5; margin-bottom: 10px; letter-spacing: 1px; }
+    .slide-title { font-size: 17px; font-weight: 900; line-height: 1.4; margin-bottom: 8px; }
+    .slide-sub { font-size: 12px; opacity: .8; line-height: 1.6; }
+    .slide-price { font-size: 22px; font-weight: 900; color: #FFD700; margin: 8px 0 4px; }
+    .caption-box { background: #fff8f0; border-left: 4px solid #E1306C; padding: 16px 20px; border-radius: 0 8px 8px 0; font-size: 15px; line-height: 2; white-space: pre-wrap; font-family: inherit; }
+    .hashtags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .ht { background: #f0f2ff; color: #3d5af1; font-size: 13px; padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: background .15s; }
+    .ht:hover { background: #3d5af1; color: #fff; }
+    .story { background: linear-gradient(160deg, #006994, #00b4d8, #90e0ef); color: #fff; border-radius: 10px; aspect-ratio: 9/16; max-width: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px 14px; cursor: pointer; position: relative; }
+    .story:hover .slide-copy { opacity: 1; }
+    .story-title { font-size: 15px; font-weight: 900; line-height: 1.4; margin-bottom: 8px; }
+    .story-sub { font-size: 11px; opacity: .9; line-height: 1.6; }
+    .stories-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
+    #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #E1306C; color: #fff; padding: 10px 24px; border-radius: 20px; font-size: 14px; display: none; z-index: 9999; }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4PPLZNG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="admin-bar">
+  <strong>📸 인스타그램 초안</strong>
+  <span>noindex — 외부 비공개</span>
+  <span>|</span>
+  <span>RCI Enchantment of the Seas 카리브해 7박 · 2026.08.29</span>
+  <button class="copy-all-btn" onclick="copyAll()">📋 전체 캡션 복사</button>
+</div>
+
+<div class="wrapper" id="insta-content">
+
+  <!-- 캐러셀 슬라이드 -->
+  <div class="block">
+    <div class="block-label">📱 피드 캐러셀 — 슬라이드 텍스트 (6장)</div>
+    <p style="font-size:13px;color:#888;margin-bottom:16px">각 슬라이드 클릭 → 텍스트 복사. 미리캔버스·캔바에 붙여넣기하세요.</p>
+    <div class="slides-grid">
+
+      <div class="slide" onclick="copySlide(this)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 01</div>
+        <div class="slide-title">🌴 멕시코·벨리즈·온두라스<br>카리브해 7박 크루즈!</div>
+        <div class="slide-sub">로얄캐리비안<br>Enchantment of the Seas<br>2026년 8월 29일 출발</div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#1b5e20,#2e7d32)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 02</div>
+        <div class="slide-title">🗺️ 7박 8일 카리브해 루트</div>
+        <div class="slide-sub">
+          📍 탬파(플로리다) 출항<br>
+          🇲🇽 코스타마야 기항<br>
+          🇧🇿 벨리즈 시티 기항<br>
+          🇭🇳 로아탄 섬 기항<br>
+          🇲🇽 코수멜 기항
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#004d40,#00695c)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 03</div>
+        <div class="slide-title">🤿 카리브해 스노클링 성지</div>
+        <div class="slide-sub">
+          코수멜 — 세계 3대 다이빙 🐠<br>
+          로아탄 — 에메랄드빛 산호초 🐡<br>
+          벨리즈 — 유네스코 배리어 리프 🌊<br>
+          스노클링만으로 충분해요!
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#880e4f,#ad1457)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 04</div>
+        <div class="slide-title">🏛️ 마야 유적 투어도 함께!</div>
+        <div class="slide-sub">
+          코스타마야 — 마야 문명 🏛️<br>
+          벨리즈 — 알툰하 마야 신전<br>
+          케이브 튜빙 (동굴 보트!) 🦇<br>
+          정글 & 야생동물 투어 🦜
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#b71c1c,#c62828)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 05</div>
+        <div class="slide-title">💰 요금 안내</div>
+        <div class="slide-sub">인사이드</div>
+        <div class="slide-price">$380~</div>
+        <div class="slide-sub">오션뷰 $483~ / 발코니⭐ $738~<br><small style="opacity:.7">1인 기준 · 항공 별도</small></div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#e65100,#f57c00)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 06</div>
+        <div class="slide-title">📞 지금 바로 상담하세요!</div>
+        <div class="slide-sub">
+          크루즈링크<br>
+          9개 글로벌 선사 공식 판매사<br><br>
+          💬 카카오톡 @크루즈링크<br>
+          🌐 www.cruiselink.co.kr
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 피드 캡션 -->
+  <div class="block">
+    <div class="block-label">✍️ 피드 캡션 (메인 포스팅용)</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="caption-box" id="caption-feed">인스타그램 포스팅 — RCI Enchantment of the Seas 카리브해 7박
+
+🌴 멕시코·벨리즈·온두라스 카리브해 4개 기항지?!
+로얄캐리비안 타고 에메랄드빛 카리브해 완전정복 🌊
+
+📅 2026.08.29 ~ 09.05 (7박 8일)
+💰 1인 $380~ (인사이드 기준)
+—
+📍 DAY BY DAY 일정
+
+🇺🇸 DAY 1 | 탬파(플로리다) 승선
+멕시코만을 배경으로 카리브해 크루즈 시작! 🚢
+암벽등반 월 · 풀사이드 칵테일 🍸
+
+🌊 DAY 2 | 해상일
+로얄캐리비안 시그니처 암벽등반 월 도전! 🧗
+선내 스파 & 카리브해 선셋 칵테일 🌅
+
+🇲🇽 DAY 3 | 코스타마야 기항
+마야 유적 투어 🏛️ + 에메랄드빛 카리브해 스노클링 🤿
+한적한 마야의 땅 코스타마야
+
+🇧🇿 DAY 4 | 벨리즈 시티 기항
+유네스코 배리어 리프 스노클링 🌊
+알툰하 마야 신전 + 정글 지프 투어 🦜
+케이브 튜빙 — 마야 동굴 보트 체험!
+
+🇭🇳 DAY 5 | 로아탄 섬 기항 ⭐
+세계 탑10 카리브해 해변 웨스트 베이 비치 🏖️
+에메랄드빛 산호초 스노클링 무료 가능!
+돌고래 수영 체험 🐬
+
+🇲🇽 DAY 6 | 코수멜 기항
+세계 3대 다이빙 성지 팔란카르 리프 🐠
+파란 바다 위 코수멜 선셋 🌅
+면세 쇼핑 & 정통 타코 🌮
+
+🌊 DAY 7 | 해상일
+페어웰 갈라 쇼 🎭 + 마지막 갑판 선셋
+아쉬운 마지막 카리브해의 밤 🌃
+
+🇺🇸 DAY 8 | 탬파 하선
+7박의 카리브해 추억을 안고 귀국 ✈️
+—
+✨ Enchantment of the Seas 하이라이트
+🧗 로얄캐리비안 시그니처 암벽등반 월
+🎭 매일 밤 라이브 공연 & 쇼
+🏊 갑판 수영장 & 워터슬라이드
+🍽️ 메인 다이닝룸 + 윈드재머 뷔페
+🎰 카지노 & 15개 이상 바
+—
+🏷️ 객실별 요금
+🚪 인사이드 $380~ | 🪟 오션뷰 $483~
+🌅 발코니 $738~ ⭐추천 | 👑 스위트 $817~
+
+👉 지금 바로 문의하세요!
+📞 02-3788-9119
+💬 카카오톡: @크루즈링크
+🌐 cruiselink.co.kr
+.
+.
+.
+#카리브해크루즈 #로얄캐리비안 #EnchantmentoftheSeas #코수멜다이빙 #벨리즈크루즈 #로아탄해변 #코스타마야 #탬파크루즈 #크루즈여행 #크루즈링크 #2026카리브해크루즈 #카리브해스노클링 #마야유적 #정글투어 #여행스타그램 #해외여행 #크루즈추천 #8월여행 #RCIcruise #cruiselife</div>
+  </div>
+
+  <!-- 릴스 자막 -->
+  <div class="block">
+    <div class="block-label">🎬 릴스 / 숏폼 자막 (15초)</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="caption-box">⏱ 0~3초: "코수멜 다이빙, 벨리즈 정글, 로아탄 해변?"
+⏱ 3~6초: "카리브해 4개 기항지를 한 크루즈로!"
+⏱ 6~9초: "로얄캐리비안 7박 8일"
+⏱ 9~12초: "2026년 8월 출발 $380~"
+⏱ 12~15초: "크루즈링크에서 지금 바로 상담 → 링크 클릭!"</div>
+  </div>
+
+  <!-- 스토리 슬라이드 -->
+  <div class="block">
+    <div class="block-label">📲 스토리 슬라이드 (3장)</div>
+    <div class="stories-row">
+      <div class="story" onclick="copySlide(this)">
+        <button class="slide-copy">복사</button>
+        <div class="story-title">🌴 카리브해 7박<br>크루즈 출발!</div>
+        <div class="story-sub">로얄캐리비안<br>2026. 8. 29<br>탬파 출항<br><br>멕시코·벨리즈<br>온두라스 기항<br>코수멜 다이빙!</div>
+      </div>
+      <div class="story" onclick="copySlide(this)" style="background:linear-gradient(160deg,#006994,#0097a7,#4dd0e1)">
+        <button class="slide-copy">복사</button>
+        <div class="story-title">💰 요금 공개</div>
+        <div class="story-sub">인사이드<br><strong style="font-size:20px">$380~</strong><br>오션뷰 $483~<br>발코니 $738~⭐<br>스위트 $817~<br><br>크루즈링크 상담</div>
+      </div>
+      <div class="story" onclick="copySlide(this)" style="background:linear-gradient(160deg,#004d40,#00796b,#26a69a)">
+        <button class="slide-copy">복사</button>
+        <div class="story-title">📞 지금 예약!</div>
+        <div class="story-sub">크루즈링크<br>9개 글로벌 선사<br>공식 판매사<br><br>📞 02-3788-9119<br>💬 @크루즈링크<br>🌐 cruiselink.co.kr</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 해시태그 -->
+  <div class="block">
+    <div class="block-label">🏷️ 해시태그 세트</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="hashtags">
+      <span class="ht" onclick="copyText(this)">#카리브해크루즈</span>
+      <span class="ht" onclick="copyText(this)">#로얄캐리비안</span>
+      <span class="ht" onclick="copyText(this)">#EnchantmentoftheSeas</span>
+      <span class="ht" onclick="copyText(this)">#코수멜다이빙</span>
+      <span class="ht" onclick="copyText(this)">#벨리즈크루즈</span>
+      <span class="ht" onclick="copyText(this)">#로아탄해변</span>
+      <span class="ht" onclick="copyText(this)">#코스타마야</span>
+      <span class="ht" onclick="copyText(this)">#탬파크루즈</span>
+      <span class="ht" onclick="copyText(this)">#카리브해스노클링</span>
+      <span class="ht" onclick="copyText(this)">#마야유적</span>
+      <span class="ht" onclick="copyText(this)">#크루즈여행</span>
+      <span class="ht" onclick="copyText(this)">#크루즈링크</span>
+      <span class="ht" onclick="copyText(this)">#2026카리브해크루즈</span>
+      <span class="ht" onclick="copyText(this)">#여행스타그램</span>
+      <span class="ht" onclick="copyText(this)">#해외여행</span>
+      <span class="ht" onclick="copyText(this)">#크루즈추천</span>
+      <span class="ht" onclick="copyText(this)">#8월여행</span>
+      <span class="ht" onclick="copyText(this)">#RCIcruise</span>
+      <span class="ht" onclick="copyText(this)">#cruiselife</span>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast">✅ 복사 완료!</div>
+
+<script>
+function showToast() {
+  const t = document.getElementById('toast');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
+function copyAll() {
+  const el = document.getElementById('caption-feed');
+  navigator.clipboard.writeText(el.innerText).then(() => showToast());
+}
+function copyBlock(btn) {
+  const box = btn.nextElementSibling;
+  navigator.clipboard.writeText(box.innerText).then(() => showToast());
+}
+function copySlide(el) {
+  navigator.clipboard.writeText(el.innerText.replace('복사','').trim()).then(() => showToast());
+}
+function copyText(el) {
+  navigator.clipboard.writeText(el.innerText).then(() => showToast());
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="/">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4PPLZNG');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>블로그 초안 | MSC 무지카 지중해 7박 (2026.09.01)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #f5f5f5; color: #333; }
+    .admin-bar { position: sticky; top: 0; z-index: 999; background: #1a1a2e; color: #fff; padding: 10px 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; }
+    .admin-bar strong { color: #ffd700; }
+    .copy-all-btn { margin-left: auto; background: #4caf50; color: #fff; border: none; padding: 7px 18px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 700; }
+    .copy-all-btn:hover { background: #388e3c; }
+    .wrapper { max-width: 800px; margin: 30px auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.1); }
+    .section-wrap { position: relative; }
+    .section-wrap:hover .copy-section-btn { opacity: 1; }
+    .copy-section-btn { position: absolute; top: 10px; right: 10px; opacity: 0; transition: opacity .2s; background: #0077cc; color: #fff; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+    .post-title { font-size: 26px; font-weight: 900; line-height: 1.4; padding: 32px 32px 8px; color: #0a2540; }
+    .post-meta { padding: 0 32px 24px; font-size: 13px; color: #888; }
+    .post-meta span { margin-right: 12px; }
+    .hero-img { width: 100%; height: 380px; object-fit: cover; display: block; }
+    .section { padding: 28px 32px; border-bottom: 1px solid #eee; }
+    .section:last-child { border-bottom: none; }
+    h2 { font-size: 20px; font-weight: 800; color: #0077cc; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #e8f4fd; }
+    h3 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 18px 0 8px; }
+    p { font-size: 15px; line-height: 1.9; margin-bottom: 12px; }
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    li { font-size: 15px; line-height: 2; }
+    .img-row { display: flex; gap: 8px; margin: 16px 0; }
+    .img-row img { flex: 1; height: 200px; object-fit: cover; border-radius: 6px; }
+    .img-single { width: 100%; border-radius: 6px; margin: 16px 0; object-fit: cover; max-height: 340px; display: block; }
+    .info-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .info-table th { background: #0077cc; color: #fff; padding: 10px 14px; text-align: left; }
+    .info-table td { padding: 10px 14px; border-bottom: 1px solid #eee; }
+    .info-table tr:nth-child(even) td { background: #f8fbff; }
+    .price-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .price-table th { background: #0a2540; color: #fff; padding: 12px 16px; text-align: center; font-size: 14px; }
+    .price-table td { padding: 12px 16px; text-align: center; border-bottom: 1px solid #eee; font-size: 15px; }
+    .price-table tr.best td { background: #fff9e6; font-weight: 700; }
+    .price-table .price { color: #cc2200; font-weight: 800; font-size: 17px; }
+    .badge { background: #ffd700; color: #333; font-size: 11px; font-weight: 800; padding: 2px 6px; border-radius: 3px; margin-left: 6px; }
+    .tip-box { background: #fffbea; border-left: 4px solid #ffc107; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 16px 0; font-size: 14px; line-height: 1.8; }
+    .tip-box strong { color: #e65100; }
+    .route-box { background: #f0f7ff; border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
+    .route-step { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 15px; }
+    .route-step .day-badge { background: #0077cc; color: #fff; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 12px; white-space: nowrap; }
+    .route-step .arrow { color: #0077cc; font-weight: 700; }
+    .cta-box { background: linear-gradient(135deg, #0077cc, #0a2540); color: #fff; padding: 28px 32px; text-align: center; border-radius: 8px; margin: 20px 0; }
+    .cta-box h3 { color: #ffd700; font-size: 20px; margin-bottom: 10px; }
+    .cta-box p { font-size: 15px; opacity: .9; margin-bottom: 16px; }
+    .tags { padding: 16px 32px 28px; }
+    .tags span { display: inline-block; background: #e8f4fd; color: #0077cc; font-size: 13px; padding: 4px 10px; border-radius: 12px; margin: 3px; }
+    #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 24px; border-radius: 20px; font-size: 14px; display: none; z-index: 9999; }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4PPLZNG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="admin-bar">
+  <strong>🔒 내부용 블로그 초안</strong>
+  <span>검색엔진 차단(noindex) — 외부 비공개</span>
+  <span>|</span>
+  <span>MSC 무지카 지중해 7박 · 2026.09.01</span>
+  <button class="copy-all-btn" onclick="copyAll()">📋 전체 텍스트 복사</button>
+</div>
+
+<div class="wrapper" id="blog-content">
+
+  <!-- 제목 -->
+  <div class="section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h1 class="post-title">🚢 MSC 무지카로 떠나는 지중해 7박 8일!<br>제노바 출발 → 이비자·마르세유·바르셀로나까지 🇮🇹🇫🇷🇪🇸</h1>
+    <p class="post-meta">
+      <span>📅 2026.09.01(화) ~ 09.08(화)</span>
+      <span>🌙 7박 8일</span>
+      <span>🚢 MSC Musica (무지카)</span>
+      <span>🏁 출발·도착: 제노바</span>
+    </p>
+  </div>
+
+  <!-- 출발일 강조 박스 -->
+  <div style="background:#fff3e0;border-left:5px solid #ff6f00;padding:14px 24px;margin:0 32px 0;border-radius:0 8px 8px 0;display:flex;align-items:center;gap:14px">
+    <span style="font-size:28px">📅</span>
+    <div>
+      <div style="font-size:13px;color:#bf360c;font-weight:700;margin-bottom:2px">출발일</div>
+      <div style="font-size:20px;font-weight:900;color:#e65100">2026년 9월 1일 (화) 출발 — 7박 8일</div>
+      <div style="font-size:13px;color:#bf360c;margin-top:2px">제노바 탑승 → 2026년 9월 8일 (화) 제노바 하선</div>
+    </div>
+  </div>
+
+  <!-- 히어로 이미지 -->
+  <img class="hero-img"
+    src="https://assets.widgety.co.uk/2021/11/30/08/39/15/ab35a659-53a2-4da4-b933-d54575271524/MSC%20Cruises%20MSC%20Musica%201.jpg"
+    alt="MSC 무지카 선박 외관">
+
+  <!-- 도입부 -->
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🌊 이탈리아·프랑스·스페인을 한 크루즈로!</h2>
+    <p>안녕하세요! 크루즈 전문 여행사 <strong>크루즈링크</strong>입니다 🙋‍♀️</p>
+    <p>
+      지중해 여행을 꿈꾸고 있지만 "나라별로 따로 예약하기 복잡하다"는 고민, 한 번쯤 해보셨죠?<br>
+      이번엔 <strong>MSC 무지카 지중해 크루즈 7박 8일</strong>로 단번에 해결하세요!
+    </p>
+    <p>
+      이탈리아 <strong>제노바</strong>에서 출발해 프랑스 <strong>마르세유</strong>, 스페인 <strong>발렌시아·이비자</strong>, 사르디니아 <strong>칼리아리</strong>를 거쳐 로마의 관문 <strong>치비타베키아</strong>까지 —<br>
+      지중해 황금 노선을 한 번에 누비는 완벽한 루트입니다.
+    </p>
+    <p>
+      ✅ <strong>성수기 9월 출발</strong> — 지중해 최고의 시즌<br>
+      ✅ <strong>인사이드 객실 $903~</strong> (세금 별도)<br>
+      ✅ <strong>이비자 나이트라이프</strong> 크루즈로 즐기기
+    </p>
+    <p>👉 <a href="https://www.cruiselink.co.kr/cruise-view/?ref=MSCMU20260901GOAGOA&ship=msc-musica" target="_blank" style="color:#0077cc;font-weight:700">지금 바로 크루즈링크에서 상담받으세요 →</a></p>
+  </div>
+
+  <!-- 일정 요약 -->
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🗺️ 7박 8일 항로 한눈에 보기</h2>
+    <div class="route-box">
+      <div class="route-step">
+        <span class="day-badge">DAY 1</span>
+        <span>🇮🇹 <strong>제노바</strong> (탑승·출항)</span>
+      </div>
+      <div class="route-step">
+        <span class="day-badge">DAY 2</span>
+        <span class="arrow">▸</span>
+        <span>🇫🇷 <strong>마르세유</strong> 기항 — 카시스 절벽·노트르담 대성당</span>
+      </div>
+      <div class="route-step">
+        <span class="day-badge">DAY 3</span>
+        <span class="arrow">▸</span>
+        <span>🇪🇸 <strong>발렌시아</strong> 기항 — 예술과학도시·파에야 본고장</span>
+      </div>
+      <div class="route-step">
+        <span class="day-badge">DAY 4</span>
+        <span class="arrow">▸</span>
+        <span>🇪🇸 <strong>이비자</strong> 기항 — 에스메랄다 해변·파티의 섬</span>
+      </div>
+      <div class="route-step">
+        <span class="day-badge">DAY 5</span>
+        <span class="arrow">▸</span>
+        <span>🌊 <strong>항해의 날</strong> — 선상 완전 정복</span>
+      </div>
+      <div class="route-step">
+        <span class="day-badge">DAY 6</span>
+        <span class="arrow">▸</span>
+        <span>🇮🇹 <strong>칼리아리(사르디니아)</strong> 기항 — 에메랄드빛 해변</span>
+      </div>
+      <div class="route-step">
+        <span class="day-badge">DAY 7</span>
+        <span class="arrow">▸</span>
+        <span>🇮🇹 <strong>치비타베키아</strong> 기항 — 로마 당일치기!</span>
+      </div>
+      <div class="route-step">
+        <span class="day-badge">DAY 8</span>
+        <span class="arrow">▸</span>
+        <span>🇮🇹 <strong>제노바</strong> 하선 → 귀국</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>💡 이 노선의 매력</strong> — 이탈리아·프랑스·스페인 3개국 + 이비자·사르디니아 인기 섬까지! 로마 당일치기까지 가능한 <strong>지중해 베스트 루트</strong>입니다.
+    </div>
+  </div>
+
+  <!-- 선박 소개 -->
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🚢 MSC 무지카 — 어떤 선박인가요?</h2>
+    <div class="img-row">
+      <img src="https://assets.widgety.co.uk/2021/11/30/08/39/15/ab35a659-53a2-4da4-b933-d54575271524/MSC%20Cruises%20MSC%20Musica%201.jpg" alt="MSC 무지카 외관">
+      <img src="https://images.unsplash.com/photo-1555990793-da11153b2473?w=800&q=80" alt="지중해 항구">
+    </div>
+    <table class="info-table">
+      <tr><th>선박명</th><td>MSC Musica (무지카)</td></tr>
+      <tr><th>취항</th><td>2006년 — 클래식 지중해 크루저</td></tr>
+      <tr><th>총 톤수</th><td>92,627 GT</td></tr>
+      <tr><th>전체 길이</th><td>293m</td></tr>
+      <tr><th>승객 정원</th><td>최대 3,013명</td></tr>
+      <tr><th>특징</th><td>클래식 이탈리아 디자인 · 지중해 전문 노선 · 가족 친화형 시설</td></tr>
+    </table>
+    <p>
+      <strong>'무지카(Musica)'</strong>는 이탈리아어로 '음악'이라는 뜻입니다.<br>
+      MSC의 중형 클래식 선박으로, 지중해 노선에 최적화된 운항 일정을 자랑합니다.
+    </p>
+    <p>
+      선내에는 <strong>4개의 레스토랑과 13개의 바</strong>, 2개의 수영장, 스파, 극장식 공연장, 카지노가 갖춰져 있습니다. 대형 선박보다 아늑하고 인간적인 크루즈 경험을 원하는 분께 적합합니다.
+    </p>
+    <div class="tip-box">
+      <strong>💡 지중해 전문 선박</strong> — MSC 무지카는 수십 년간 지중해를 누빈 클래식 크루저입니다. 기항지마다 최적의 정박 시간을 배정해 충분한 탐방이 가능합니다.
+    </div>
+  </div>
+
+  <!-- DAY별 일정 -->
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🇮🇹 DAY 1 | 제노바 탑승 — 지중해의 관문</h2>
+    <img class="img-single" src="https://images.unsplash.com/photo-1555990793-da11153b2473?w=800&q=80" alt="제노바 항구" style="height:280px">
+    <ul>
+      <li>✈️ 인천 → 밀라노 말펜사/제노바 공항 이동</li>
+      <li>🚢 오후 제노바 크루즈 터미널 탑승 수속 시작</li>
+      <li>🥂 탑승 후 Welcome Dinner & 선상 출항 파티</li>
+      <li>🌙 저녁 리구리아 해변을 배경으로 출항</li>
+    </ul>
+    <div class="tip-box">
+      <strong>💡 TIP</strong> — 탑승 전날 제노바에서 1박하면 여유롭습니다. 구 항구(Porto Antico), 크리스토퍼 콜럼버스 생가, 구시가 카루기(Caruggi) 골목 탐방 추천!
+    </div>
+  </div>
+
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🇫🇷 DAY 2 | 마르세유 기항 — 프로방스의 향기</h2>
+    <div class="img-row">
+      <img src="https://images.unsplash.com/photo-1545127398-14699f92334b?w=800&q=80" alt="마르세유 항구">
+      <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80" alt="프로방스">
+    </div>
+    <h3>🏛️ 마르세유 추천 코스</h3>
+    <ul>
+      <li>⛪ <strong>노트르담 드 라 가르드 성당</strong> — 마르세유 전경 조망 포인트 (입장 무료)</li>
+      <li>🏖️ <strong>카시스 & 칼랑크</strong> — 에메랄드빛 석회암 절벽 해변 (보트 투어 €15~)</li>
+      <li>🐟 <strong>부야베스(Bouillabaisse)</strong> — 마르세유 전통 해산물 수프, 현지 식당 필수!</li>
+      <li>🛍️ <strong>올드 포트(Vieux-Port)</strong> — 어시장·기념품·카페 집결지</li>
+    </ul>
+    <div class="tip-box">
+      <strong>💡 TIP</strong> — 칼랑크 보트 투어는 현지에서 바로 구매 가능하지만 성수기 9월엔 조기 마감이 많습니다. 선상 액티비티 프로그램을 통해 미리 예약하세요!
+    </div>
+  </div>
+
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🇪🇸 DAY 3 | 발렌시아 기항 — 파에야의 본고장</h2>
+    <ul>
+      <li>🏛️ <strong>예술과학도시(Ciudad de las Artes y las Ciencias)</strong> — 현대 건축의 걸작 (입장 €15~)</li>
+      <li>🥘 <strong>정통 파에야</strong> — 발렌시아식 파에야는 토마토 없는 오리지널! 구시가 레스토랑 추천</li>
+      <li>🏖️ <strong>말바로사 해변</strong> — 발렌시아 시내에서 트램으로 20분. 지중해 백사장!</li>
+      <li>🏙️ <strong>발렌시아 대성당</strong> — 성배(Holy Grail) 보관 장소로 유명</li>
+    </ul>
+    <div class="tip-box">
+      <strong>💡 TIP</strong> — 항구에서 시내까지 버스 또는 택시로 20분. 파에야 맛집은 점심 시간(13:00~15:00)에만 운영하는 곳이 많으니 일정을 잘 짜세요!
+    </div>
+  </div>
+
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🇪🇸 DAY 4 | 이비자 기항 — 지중해 파티의 섬</h2>
+    <div class="img-row">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="이비자 해변">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="카리브해 해변">
+    </div>
+    <ul>
+      <li>🏖️ <strong>사 칼레타(Sa Caleta) 해변</strong> — 유네스코 세계유산 인접, 황금 모래해변</li>
+      <li>🏯 <strong>이비자 구시가(Dalt Vila)</strong> — 유네스코 세계문화유산 성곽 도시</li>
+      <li>🛍️ <strong>구 항구 기념품 쇼핑</strong> — 이비자 트렌디 브랜드·수공예품</li>
+      <li>🌅 <strong>에스 베드라 노을</strong> — 이비자 최고의 일몰 스폿</li>
+    </ul>
+    <div class="tip-box">
+      <strong>💡 TIP</strong> — 이비자는 나이트클럽으로 유명하지만 낮의 이비자는 또 다른 매력! 유네스코 구시가 역사지구 탐방과 에메랄드빛 해변이 여행의 하이라이트가 됩니다.
+    </div>
+  </div>
+
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🌊 DAY 5 | 항해의 날 — 선내 완전 정복</h2>
+    <ul>
+      <li>🏊 갑판 수영장에서 지중해 햇살 만끽</li>
+      <li>💆 MSC 스파 — 마사지·사우나·증기탕</li>
+      <li>🎭 저녁 메인 극장 라이브 쇼 & 뮤지컬 공연</li>
+      <li>🍷 이탈리아 와인 테이스팅 클래스 (유료, 사전 신청)</li>
+      <li>🎰 카지노 & 바 호핑</li>
+      <li>🌇 포멀 나이트 — 드레스업 후 정찬 레스토랑 🥂</li>
+    </ul>
+  </div>
+
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🇮🇹 DAY 6 | 칼리아리(사르디니아) 기항 — 에메랄드빛 보석 섬</h2>
+    <ul>
+      <li>🏖️ <strong>포에토 해변(Poetto Beach)</strong> — 8km 황금 모래해변, 지중해 최고 수질</li>
+      <li>🦩 <strong>몰렌타르지우스 자연보호구역</strong> — 플라밍고 서식지 (가을 이동 시즌)</li>
+      <li>🏯 <strong>칼리아리 성채(Castello)</strong> — 구시가 언덕에서 사르디니아 전경 조망</li>
+      <li>🍷 <strong>카놀라우 와인</strong> — 사르디니아 토착 포도 품종, 세계 최고 장수 지역의 비결</li>
+    </ul>
+    <div class="tip-box">
+      <strong>💡 TIP</strong> — 칼리아리는 사르디니아의 수도입니다. 이탈리아 본토와는 다른 독특한 문화와 언어를 가진 곳. 현지 치즈 페코리노와 말로렉두스(파스타) 꼭 드세요!
+    </div>
+  </div>
+
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🇮🇹 DAY 7 | 치비타베키아 기항 — 로마 당일치기!</h2>
+    <div class="img-row">
+      <img src="https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800&q=80" alt="로마 콜로세움">
+      <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=800&q=80" alt="로마 트레비 분수">
+    </div>
+    <p>치비타베키아는 로마에서 기차로 1시간 거리. 크루즈 기항지 중 로마를 당일치기로 방문할 수 있는 황금 기회입니다!</p>
+    <h3>🚂 치비타베키아 → 로마 이동</h3>
+    <ul>
+      <li>기차: 치비타베키아역 → 로마 테르미니역 (약 1시간, €6~10)</li>
+      <li>택시/셔틀버스: 약 1시간~1시간 30분 (€80~120)</li>
+    </ul>
+    <h3>🏛️ 로마 추천 코스 (효율 당일치기)</h3>
+    <ul>
+      <li>🏟️ <strong>콜로세움</strong> — 사전 예약 필수! (입장료 €18~, 줄 서면 2시간 이상)</li>
+      <li>⛲ <strong>트레비 분수</strong> — 동전 던지고 소원 빌기 (무료, 항상 혼잡)</li>
+      <li>🏛️ <strong>판테온</strong> — 2,000년 된 로마 신전 (입장 €5)</li>
+      <li>🍕 <strong>로마식 피자</strong> — 나폴리와 다른 크리스피 씬 크러스트, 테르미니역 근처 추천</li>
+    </ul>
+    <div class="tip-box">
+      <strong>⚠️ 중요 TIP — 귀선 시간 엄수!</strong><br>
+      로마에서 치비타베키아까지 기차 최소 1시간. 귀선 마감 <strong>최소 45분 전</strong>에 항구 도착 목표로 역산하세요!<br>
+      예: 귀선 마감 18:00 → 치비타베키아역 도착 17:15 → 로마 출발 16:00 이전
+    </div>
+  </div>
+
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🎉 DAY 8 | 제노바 하선 — 지중해의 추억을 안고</h2>
+    <ul>
+      <li>🌅 이른 아침 제노바 입항 & 하선 수속</li>
+      <li>짐은 전날 밤 객실 문 앞에 미리 내놓으세요</li>
+      <li>✈️ 제노바 공항 또는 밀라노 말펜사 공항으로 이동</li>
+      <li>✈️ 인천 귀국 항공편 탑승</li>
+    </ul>
+    <div class="tip-box">
+      <strong>💡 귀국 TIP</strong> — 하선은 보통 오전 7~10시. 밀라노 말펜사까지 차로 약 1시간 30분. <strong>오후 3시 이후 항공편</strong>으로 여유롭게 예약 권장.
+    </div>
+  </div>
+
+  <!-- 요금 -->
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>💰 2026년 9월 출발 요금 안내</h2>
+    <table class="price-table">
+      <thead>
+        <tr><th>객실 타입</th><th>1인 요금</th><th>비고</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>인사이드 (창문 없음)</td>
+          <td class="price">$903~</td>
+          <td>약 131만원~</td>
+        </tr>
+        <tr class="best">
+          <td>오션뷰 / 발코니 <span class="badge">추천</span></td>
+          <td class="price">문의</td>
+          <td>크루즈링크 문의 ⭐</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>※ 1인 기준 / 세금·항만세 별도 / 항공료 미포함 / 환율 약 1,450원 기준 환산<br>
+    ※ 조기 예약 시 할인 가능 — 크루즈링크로 문의해 주세요!</p>
+    <div class="tip-box">
+      <strong>💡 포함 사항</strong> — 객실 + 기본 식사(메인 레스토랑·뷔페) + 선내 엔터테인먼트<br><br>
+      <strong>💡 불포함 사항</strong> — 항공권 + 기항지 투어 + 음료 패키지 + 스파 + 팁(1인 1일 약 $16)
+    </div>
+  </div>
+
+  <!-- 준비물 체크리스트 -->
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>🎒 지중해 크루즈 준비물 체크리스트</h2>
+    <ul>
+      <li>☑ 여권 (유효기간 6개월 이상)</li>
+      <li>☑ 여행자보험 (크루즈 여행 필수!)</li>
+      <li>☑ 포멀 나이트용 의상 — 재킷(남성) / 드레스·원피스(여성)</li>
+      <li>☑ 선크림 SPF50+ — 갑판 자외선 강함</li>
+      <li>☑ 선글라스·모자</li>
+      <li>☑ 편한 걷기 신발 (기항지 돌아다닐 때 필수)</li>
+      <li>☑ 유로화 현금 (기항지 소액 쇼핑·버스·팁)</li>
+      <li>☑ 크로스백 or 소형 백팩 (기항지 투어용)</li>
+      <li>☑ 멀미약 (바다에서 흔들릴 수 있어요)</li>
+      <li>☑ 전자기기 충전기·멀티어댑터 (유럽형)</li>
+    </ul>
+  </div>
+
+  <!-- 추천 대상 -->
+  <div class="section section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <h2>✅ 이런 분께 강력 추천합니다!</h2>
+    <ul>
+      <li>✅ 이탈리아·프랑스·스페인 유럽 3개국을 한 번 여행으로 끝내고 싶은 분</li>
+      <li>✅ 9월 성수기 지중해를 합리적으로 즐기고 싶은 분</li>
+      <li>✅ 로마·마르세유·이비자를 크루즈로 한꺼번에 경험하고 싶은 분</li>
+      <li>✅ 지중해 허니문·커플 여행을 계획 중인 분</li>
+      <li>✅ 지중해 섬 여행(이비자·사르디니아)에 특히 관심 있는 분</li>
+    </ul>
+  </div>
+
+  <!-- CTA 이미지 -->
+  <div class="section" style="background:#f8f9fa;text-align:center;padding:28px 32px">
+    <img src="https://kimdaeri-bot.github.io/cruiselink-v2/assets/images/cta-trust.png"
+         alt="크루즈링크는 9개 글로벌 선사 공식 판매사"
+         style="max-width:100%;border-radius:12px;display:inline-block">
+  </div>
+
+  <!-- CTA 배너 3개 -->
+  <div class="section" style="background:#f8f9fa;">
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;padding:8px 0">
+      <a href="tel:02-3788-9119" style="display:block;text-decoration:none">
+        <img src="https://kimdaeri-bot.github.io/cruiselink-v2/assets/images/cta-phone.png" alt="전화 문의 02-3788-9119" style="height:100px;border-radius:12px;display:block">
+      </a>
+      <a href="https://pf.kakao.com/_xgYbJG" target="_blank" style="display:block;text-decoration:none">
+        <img src="https://kimdaeri-bot.github.io/cruiselink-v2/assets/images/cta-kakao.png" alt="카카오톡 상담" style="height:100px;border-radius:12px;display:block">
+      </a>
+      <a href="https://www.cruiselink.co.kr" target="_blank" style="display:block;text-decoration:none">
+        <img src="https://kimdaeri-bot.github.io/cruiselink-v2/assets/images/cta-web.png" alt="홈페이지 바로가기" style="height:100px;border-radius:12px;display:block">
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:16px;line-height:2.2;font-size:15px">
+      💬 카카오: <a href="https://pf.kakao.com/_xgYbJG" target="_blank" style="color:#0077cc;font-weight:700">https://pf.kakao.com/_xgYbJG</a><br>
+      🌐 홈페이지: <a href="https://www.cruiselink.co.kr" target="_blank" style="color:#0077cc;font-weight:700">https://www.cruiselink.co.kr</a>
+    </div>
+  </div>
+
+  <!-- 태그 -->
+  <div class="tags section-wrap">
+    <button class="copy-section-btn" onclick="copySection(this)">복사</button>
+    <span>#지중해크루즈</span>
+    <span>#MSC무지카</span>
+    <span>#MSC크루즈</span>
+    <span>#이비자크루즈</span>
+    <span>#마르세유크루즈</span>
+    <span>#로마당일치기</span>
+    <span>#발렌시아크루즈</span>
+    <span>#사르디니아</span>
+    <span>#2026지중해크루즈</span>
+    <span>#크루즈링크</span>
+    <span>#유럽크루즈</span>
+    <span>#허니문크루즈</span>
+    <span>#크루즈추천</span>
+    <span>#해외여행</span>
+    <span>#9월여행</span>
+  </div>
+
+</div>
+
+<div id="toast">✅ 복사 완료!</div>
+
+<script>
+function showToast() {
+  const t = document.getElementById('toast');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
+function copyAll() {
+  const el = document.getElementById('blog-content');
+  let text = '';
+  el.querySelectorAll('h1, h2, h3, p, li, .route-step, .tags').forEach(s => {
+    if (s.classList.contains('copy-section-btn')) return;
+    const txt = s.innerText.trim();
+    if (txt) text += txt + '\n\n';
+  });
+  navigator.clipboard.writeText(text).then(() => showToast()).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta); showToast();
+  });
+}
+function copySection(btn) {
+  const section = btn.parentElement;
+  let text = '';
+  section.querySelectorAll('h1,h2,h3,p,li,.route-step').forEach(el => {
+    if (el.classList.contains('copy-section-btn')) return;
+    const txt = el.innerText.trim();
+    if (txt) text += txt + '\n\n';
+  });
+  navigator.clipboard.writeText(text).then(() => showToast());
+}
+</script>
+</body>
+</html>
