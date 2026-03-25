@@ -1,117 +1,160 @@
 [
   {
-    "product": "지중해 11박 크루즈",
-    "cruiseline": "Explora Journeys",
-    "ship": "익스플로라 II",
-    "dateFrom": "2026-05-28",
-    "ports": "이스탄불 → 보드룸 → Pátmos → 피레우스 → Páros → 로도스 → At Sea → 코르푸 → Hvar Island → Rijeka → Fusina",
-    "price": "문의",
-    "ref": "EXPLORAEP20260528ISTFSA",
-    "name": "송기정",
-    "email": "keejoung@gmail.com",
-    "phone": "3177724586",
-    "pax": "2",
-    "cabin": "오션뷰",
-    "message": "Keejoung Song",
-    "id": "1773353977418",
-    "timestamp": "2026-03-12T22:19:37.418Z",
-    "status": "상담완료"
-  },
-  {
-    "product": "지중해 7박 크루즈",
-    "cruiseline": "Explora Journeys",
-    "ship": "익스플로라 II",
-    "dateFrom": "2026-06-01",
-    "ports": "피레우스 → Páros → 로도스 → At Sea → 코르푸 → Hvar Island → Rijeka → Fusina",
-    "price": "문의",
-    "ref": "EXPLORAEP20260601PIRFSA",
-    "name": "Keejoung Song",
-    "email": "keejoung@gmail.com",
-    "phone": "3177724586",
-    "pax": "2",
-    "cabin": "오션뷰",
-    "message": "Keejoung Song",
-    "id": "1773354062165",
-    "timestamp": "2026-03-12T22:21:02.165Z",
-    "status": "상담완료"
-  },
-  {
-    "product": "지중해 9박 크루즈",
+    "id": "1774100000001",
+    "timestamp": "2026-03-25T02:17:40.000Z",
+    "status": "신규",
+    "product": "MSC 월드 마시아 한국·대만 3박",
     "cruiseline": "MSC Cruises",
-    "ship": "MSC 스플렌디다",
-    "dateFrom": "2027-05-06",
-    "ports": "이스탄불 → 코르푸 → 바리 → 트리에스테 → 스플리트 → 피레우스 → 쿠사다시",
+    "ship": "MSC 월드 마시아",
+    "dateFrom": "2027-03-09",
+    "ports": "",
     "price": "문의",
-    "ref": "MSCSP20270506ISTIST",
-    "name": "Keejoung Song",
-    "email": "keejoung@gmail.com",
-    "phone": "3177724586",
+    "ref": "",
+    "name": "안유빈",
+    "email": "compia9@naver.com",
+    "phone": "01094455869",
     "pax": "2",
-    "cabin": "오션뷰",
-    "message": "Keejoung Song,seonhee Song",
-    "id": "1773361124905",
-    "timestamp": "2026-03-13T00:18:44.905Z",
+    "cabin": "스위트",
+    "message": "없음"
+  },
+  {
+    "product": "한국·대만 3박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 벨리시마",
+    "dateFrom": "2027-06-20",
+    "ports": "인천 → Keelung (Chilung)",
+    "price": "문의",
+    "ref": "MSCBE20270620INCKEE",
+    "name": "박중내",
+    "email": "jungnae79@naver.com",
+    "phone": "01097660543",
+    "pax": "4",
+    "cabin": "내측",
+    "message": "park jungnae",
+    "id": "1774354665178",
+    "timestamp": "2026-03-24T12:17:45.178Z",
     "status": "요금안내 완료",
     "fareHistory": [
       {
-        "date": "2026. 3. 13.",
-        "pax": 2,
+        "date": "2026. 03. 25. 오전 11:17",
+        "pax": 4,
         "types": [
           {
             "name": "인사이드",
-            "val": 1479
-          },
-          {
-            "name": "오션뷰",
-            "val": 1629
-          },
-          {
-            "name": "발코니",
-            "val": 1729
+            "val": 174,
+            "raw": "174"
           }
         ],
-        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": ""
+        "remarks": "* 디럭스 내측 4인실 총 요금 기준입니다.\n\n* 요금 세부 사항\n- 포함사항 : 크루즈요금 + TAX\n- 불포함사항 : 편도 항공권, 현지 호텔비, 기항지관광, 선상팁, 선내 유료서비스, 여행자보험 등"
       }
     ]
   },
   {
-    "product": "일본·한국·Hong Kong 11박 크루즈",
-    "cruiseline": "Royal Caribbean International",
-    "ship": "내비게이터 오브 더 시즈",
-    "dateFrom": "2026-10-18",
-    "ports": "요코하마 → 나가사키 → Seogwipo → 홍콩 → 찬마이 → 싱가포르",
+    "product": "지중해 7박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 월드 아시아",
+    "dateFrom": "2027-02-01",
+    "ports": "치비타베키아 → 메시나 → 발레타 → 바르셀로나 → 마르세유 → 제노바",
     "price": "문의",
-    "ref": "RCINV11I018-181026",
-    "name": "김연정",
-    "email": "klove4868@gmail.com",
-    "phone": "01092762155",
+    "ref": "MSCAS20270201CVVCVV",
+    "name": "이나영",
+    "email": "lny0619@gmail.xn--com-db3mme233k",
+    "phone": "01011111111",
     "pax": "2",
     "cabin": "발코니",
-    "message": "발코니타입 금액은 안보이는데 객실예약 불가한가요?",
-    "id": "1773363926185",
-    "timestamp": "2026-03-13T01:05:26.185Z",
+    "message": "없음",
+    "id": "1774338173967",
+    "timestamp": "2026-03-24T07:42:53.967Z",
     "status": "요금안내 완료",
     "fareHistory": [
       {
-        "date": "2026. 3. 13.",
+        "date": "2026. 03. 24. 오후 04:50",
         "pax": 2,
         "types": [
           {
-            "name": "인사이드",
-            "val": 2928.61
+            "name": "오션뷰",
+            "val": 1109,
+            "raw": "1109"
           },
           {
-            "name": "스위트",
-            "val": 7328.61
+            "name": "발코니",
+            "val": 1249,
+            "raw": "1249"
           }
         ],
-        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": ""
+        "remarks": "[선실 카테고리 안내]\n* Infinite Ocean View (VL1) - Deck 10~11\n* Deluxe Balcony (BR1) - Deck 9~10\n\n[WIFI & 음료 패키지 포함 시 요금]\n* Infinite Ocean View (VL1) - Deck 10~11 : 2인 총 $2,858\n* Deluxe Balcony (BR1) - Deck 9~10 : 2인 총 $3,138\n\n[요금 세부사항]\n- 포함사항 : 크루즈요금 + tax\n- 불포함사항 : 왕복 항공권, 현지 호텔비, 선상팁, 기항지 관광, 기타 선내 유료 서비스, 여행자 보험 등"
+      }
+    ]
+  },
+  {
+    "product": "지중해 7박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 신포니아",
+    "dateFrom": "2027-02-06",
+    "ports": "Valencia → 바르셀로나 → 마르세유 → 제노바 → Livorno → 치비타베키아",
+    "price": "문의",
+    "ref": "MSCSX20270206VLCVLC",
+    "name": "김벽용",
+    "email": "azaaza9825@naver.com",
+    "phone": "01050459825",
+    "pax": "2",
+    "cabin": "오션뷰",
+    "message": "Kim byeok Yong\nChang Yeong a",
+    "id": "1774318594806",
+    "timestamp": "2026-03-24T02:16:34.806Z",
+    "status": "요금안내 완료",
+    "fareHistory": [
+      {
+        "date": "2026. 03. 24. 오후 05:07",
+        "pax": 2,
+        "types": [
+          {
+            "name": "오션뷰",
+            "val": 789,
+            "raw": "789"
+          }
+        ],
+        "air": 0,
+        "etc": 0,
+        "remarks": "* Junior Oceanview Deck 7~8 (OM1) 선실 기준의 요금입니다.\n\n* 요금 세부 사항\n- 포함사항 : 크루즈 요금 + tax\n- 불포함사항 : 왕복 항공권, 현지 호텔비, 기항지 관광, 선상팁, 기타 선내 유료서비스, 여행자보험 등"
+      }
+    ]
+  },
+  {
+    "product": "지중해 7박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 월드 아시아",
+    "dateFrom": "2027-02-01",
+    "ports": "치비타베키아 → 메시나 → 발레타 → 바르셀로나 → 마르세유 → 제노바",
+    "price": "문의",
+    "ref": "MSCAS20270201CVVCVV",
+    "name": "박현진",
+    "email": "y7083bb@gmail.com",
+    "phone": "01044307977",
+    "pax": "4",
+    "cabin": "내측",
+    "message": "방2개(성인2,18세 1 ,14세 1), 커넥팅룸",
+    "id": "1774279627637",
+    "timestamp": "2026-03-23T15:27:07.637Z",
+    "status": "요금안내 완료",
+    "fareHistory": [
+      {
+        "date": "2026. 03. 24. 오후 05:01",
+        "pax": 4,
+        "types": [
+          {
+            "name": "인사이드",
+            "val": 879,
+            "raw": "879"
+          }
+        ],
+        "air": 0,
+        "etc": 0,
+        "remarks": "* Deluxe Interior 선실 (IR1) 기준 요금입니다.\n\n* 현재 10층 또는 14층에서 옆방으로 나란히 배정 가능한 선실은 있으나, 커넥팅 선실은 보이지 않아 예약이 불가한 것으로 확인됩니다.\n  또한 다른 카테고리로도 현재 예약 가능한 커넥팅 선실은 확인되지 않습니다.\n\n* 요금 세부 사항\n- 포함사항 : 크루즈 요금 + tax\n- 불포함 사항 : 왕복 항공권, 현지 호텔비, 기항지 관광, 선상팁, 기타 선내 유료 서비스, 여행자보험 등\n  "
       }
     ]
   },
@@ -128,38 +171,42 @@
     "phone": "01037614511",
     "pax": "2",
     "cabin": "발코니",
-    "message": "Whasup Lee\nMinkyoung Choi",
-    "id": "1773476050320",
-    "timestamp": "2026-03-14T08:14:10.320Z",
+    "message": "없음",
+    "id": "1774233533453",
+    "timestamp": "2026-03-23T02:38:53.453Z",
+    "status": "결제완료"
+  },
+  {
+    "product": "지중해 7박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 디비나",
+    "dateFrom": "2026-06-29",
+    "ports": "쿠사다시 → Marmaris → 나폴리 → 치비타베키아 → 미코노스",
+    "price": "문의",
+    "ref": "MSCDI20260629KUSKUS",
+    "name": "김윤아",
+    "email": "ssevi_44@naver.com",
+    "phone": "01040158374",
+    "pax": "2",
+    "cabin": "발코니",
+    "message": "없음",
+    "id": "1773928530446",
+    "timestamp": "2026-03-19T13:55:30.446Z",
     "status": "요금안내 완료",
     "fareHistory": [
       {
-        "date": "2026. 3. 16.",
+        "date": "2026. 03. 20. 오전 10:34",
         "pax": 2,
         "types": [
           {
             "name": "발코니",
-            "val": 419
+            "val": 1559,
+            "raw": "1559"
           }
         ],
-        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": ""
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 2,
-        "types": [
-          {
-            "name": "발코니",
-            "val": 419
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
+        "remarks": "* 프리미엄 발코니 (BL2) 기준 요금 (10~11층 배정 가능)\n* 포함 사항 : 크루즈 요금 + TAX\n* 불포함 사항 : 왕복 항공권, 현지 호텔비, 기항지 관광 선상팁, 기타 선내 유료 서비스, 여행자보험 등"
       }
     ]
   },
@@ -171,252 +218,49 @@
     "ports": "도쿄 → 가고시마 → 인천",
     "price": "문의",
     "ref": "MSCBE20270610TYOINC",
-    "name": "유원지",
-    "email": "yuclick@naver.com",
-    "phone": "01091955251",
-    "pax": "4",
+    "name": "김지나",
+    "email": "kjn5664@naver.com",
+    "phone": "01088330290",
+    "pax": "2",
     "cabin": "발코니",
-    "message": "성인3명 (65세이상2명)+ 14세 아동1명 \nmsc 2회차 탑승",
-    "id": "1773540380933",
-    "timestamp": "2026-03-15T02:06:20.933Z",
+    "message": "KIM JI NA\nJO SUNG YEOL",
+    "id": "1773787024037",
+    "timestamp": "2026-03-17T22:37:04.037Z",
     "status": "요금안내 완료",
     "fareHistory": [
       {
-        "date": "2026. 3. 16.",
-        "pax": 4,
+        "date": "2026. 03. 18. 오후 04:45",
+        "pax": 2,
         "types": [
           {
             "name": "발코니",
-            "val": 396.75
+            "val": 579,
+            "raw": "579"
           }
         ],
-        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": "요금 세부사항 : $599 * 성인 2명 + $299 * 성인 1명 + $90 어린이 1명 = 총 $1,587"
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 4,
-        "types": [
-          {
-            "name": "발코니",
-            "val": 396.75
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": "요금 세부사항 : $599 * 성인 2명 + $299 * 성인 1명 + $90 어린이 1명 = 총 $1,587"
+        "remarks": "* 디럭스 발코니 BR1 기준, 8~10층 예약 가능\n* 포함 사항 : 크루즈 요금 + TAX\n* 불포함 사항 : 편도 항공권, 현지 호텔비, 기항지 관광, 여행자보험, 선상팁, 기타 선내 유료 서비스 등\n"
       }
     ]
   },
   {
-    "product": "한국·대만 3박 크루즈",
+    "product": "일본·한국 4박 크루즈",
     "cruiseline": "MSC Cruises",
     "ship": "MSC 벨리시마",
-    "dateFrom": "2027-06-20",
-    "ports": "인천 → Keelung (Chilung)",
+    "dateFrom": "2027-06-10",
+    "ports": "도쿄 → 가고시마 → 인천",
     "price": "문의",
-    "ref": "MSCBE20270620INCKEE",
+    "ref": "MSCBE20270610TYOINC",
     "name": "김미선",
     "email": "sa641234@naver.com",
     "phone": "01037818329",
     "pax": "6~10",
     "cabin": "내측",
-    "message": "없음",
-    "id": "1773579696799",
-    "timestamp": "2026-03-15T13:01:36.799Z",
-    "status": "요금안내 완료",
-    "fareHistory": [
-      {
-        "date": "2026. 3. 16.",
-        "pax": 10,
-        "types": [
-          {
-            "name": "인사이드",
-            "val": 199
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 10,
-        "types": [
-          {
-            "name": "인사이드",
-            "val": 199
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
-      }
-    ]
-  },
-  {
-    "product": "지중해 6박 크루즈",
-    "cruiseline": "MSC Cruises",
-    "ship": "MSC 씨뷰",
-    "dateFrom": "2026-11-12",
-    "ports": "바르셀로나 → 마르세유 → 제노바 → 치비타베키아 → Ajaccio, Corsica",
-    "price": "문의",
-    "ref": "MSCSV20261112BCNBCN",
-    "name": "서한빛",
-    "email": "shb3572@naver.com",
-    "phone": "01011111111",
-    "pax": "2",
-    "cabin": "발코니",
-    "message": "없음",
-    "id": "1773628392113",
-    "timestamp": "2026-03-16T02:33:12.113Z",
+    "message": "Kimmisun",
+    "id": "1773642175321",
+    "timestamp": "2026-03-16T06:22:55.321Z",
     "status": "요금안내 완료"
-  },
-  {
-    "product": "지중해 10박 크루즈",
-    "cruiseline": "Regent Seven Seas Cruises",
-    "ship": "세븐 시즈 보이저",
-    "dateFrom": "2026-03-23",
-    "ports": "리스본 → Portimão → Casablanca → Agadir → Sailing the Atlantic Ocean → Las Palmas de Gran Canaria → Santa Cruz de Tenerife → Funchal, Madeira → Cádiz → Málaga",
-    "price": "문의",
-    "ref": "REGENTVOY260323",
-    "name": "김한나",
-    "email": "khn0781@naver.com",
-    "phone": "01063044424",
-    "pax": "4",
-    "cabin": "오션뷰",
-    "message": "kim hanna",
-    "id": "1773633321979",
-    "timestamp": "2026-03-16T03:55:21.979Z",
-    "status": "상담완료"
-  },
-  {
-    "product": "한국·대만 3박 크루즈",
-    "cruiseline": "MSC Cruises",
-    "ship": "MSC 벨리시마",
-    "dateFrom": "2027-06-20",
-    "ports": "인천 → Keelung (Chilung)",
-    "price": "문의",
-    "ref": "MSCBE20270620INCKEE",
-    "name": "김대윤",
-    "email": "daeyun71@naver.com",
-    "phone": "01055295727",
-    "pax": "3",
-    "cabin": "스위트",
-    "message": "DAEYUN KIM",
-    "id": "1773633427270",
-    "timestamp": "2026-03-16T03:57:07.270Z",
-    "status": "요금안내 완료",
-    "fareHistory": [
-      {
-        "date": "2026. 3. 16.",
-        "pax": 3,
-        "types": [
-          {
-            "name": "스위트",
-            "val": 559
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": "* Premium Suite Aurea (SL1) 선실 기준"
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 3,
-        "types": [
-          {
-            "name": "스위트",
-            "val": 559
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": "* Premium Suite Aurea (SL1) 선실 기준"
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 3,
-        "types": [
-          {
-            "name": "스위트",
-            "val": 559
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 3,
-        "types": [
-          {
-            "name": "스위트",
-            "val": 559
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 3,
-        "types": [
-          {
-            "name": "스위트",
-            "val": 559
-          }
-        ],
-        "tax": 0,
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
-      },
-      {
-        "date": "2026. 3. 16.",
-        "pax": 3,
-        "types": [
-          {
-            "name": "오션뷰",
-            "val": 239,
-            "raw": "239"
-          },
-          {
-            "name": "발코니",
-            "val": 349,
-            "raw": "349"
-          }
-        ],
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
-      },
-      {
-        "date": "2026. 03. 16. 오후 02:02",
-        "pax": 3,
-        "types": [
-          {
-            "name": "스위트",
-            "val": 349,
-            "raw": "349"
-          }
-        ],
-        "air": 0,
-        "etc": 0,
-        "remarks": ""
-      }
-    ]
   },
   {
     "product": "한국·대만 3박 크루즈",
@@ -773,22 +617,211 @@
     ]
   },
   {
-    "product": "일본·한국 4박 크루즈",
+    "product": "한국·대만 3박 크루즈",
     "cruiseline": "MSC Cruises",
     "ship": "MSC 벨리시마",
-    "dateFrom": "2027-06-10",
-    "ports": "도쿄 → 가고시마 → 인천",
+    "dateFrom": "2027-06-20",
+    "ports": "인천 → Keelung (Chilung)",
     "price": "문의",
-    "ref": "MSCBE20270610TYOINC",
+    "ref": "MSCBE20270620INCKEE",
+    "name": "김대윤",
+    "email": "daeyun71@naver.com",
+    "phone": "01055295727",
+    "pax": "3",
+    "cabin": "스위트",
+    "message": "DAEYUN KIM",
+    "id": "1773633427270",
+    "timestamp": "2026-03-16T03:57:07.270Z",
+    "status": "요금안내 완료",
+    "fareHistory": [
+      {
+        "date": "2026. 3. 16.",
+        "pax": 3,
+        "types": [
+          {
+            "name": "스위트",
+            "val": 559
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": "* Premium Suite Aurea (SL1) 선실 기준"
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 3,
+        "types": [
+          {
+            "name": "스위트",
+            "val": 559
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": "* Premium Suite Aurea (SL1) 선실 기준"
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 3,
+        "types": [
+          {
+            "name": "스위트",
+            "val": 559
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 3,
+        "types": [
+          {
+            "name": "스위트",
+            "val": 559
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 3,
+        "types": [
+          {
+            "name": "스위트",
+            "val": 559
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 3,
+        "types": [
+          {
+            "name": "오션뷰",
+            "val": 239,
+            "raw": "239"
+          },
+          {
+            "name": "발코니",
+            "val": 349,
+            "raw": "349"
+          }
+        ],
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      },
+      {
+        "date": "2026. 03. 16. 오후 02:02",
+        "pax": 3,
+        "types": [
+          {
+            "name": "스위트",
+            "val": 349,
+            "raw": "349"
+          }
+        ],
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      }
+    ]
+  },
+  {
+    "product": "지중해 10박 크루즈",
+    "cruiseline": "Regent Seven Seas Cruises",
+    "ship": "세븐 시즈 보이저",
+    "dateFrom": "2026-03-23",
+    "ports": "리스본 → Portimão → Casablanca → Agadir → Sailing the Atlantic Ocean → Las Palmas de Gran Canaria → Santa Cruz de Tenerife → Funchal, Madeira → Cádiz → Málaga",
+    "price": "문의",
+    "ref": "REGENTVOY260323",
+    "name": "김한나",
+    "email": "khn0781@naver.com",
+    "phone": "01063044424",
+    "pax": "4",
+    "cabin": "오션뷰",
+    "message": "kim hanna",
+    "id": "1773633321979",
+    "timestamp": "2026-03-16T03:55:21.979Z",
+    "status": "상담완료"
+  },
+  {
+    "product": "지중해 6박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 씨뷰",
+    "dateFrom": "2026-11-12",
+    "ports": "바르셀로나 → 마르세유 → 제노바 → 치비타베키아 → Ajaccio, Corsica",
+    "price": "문의",
+    "ref": "MSCSV20261112BCNBCN",
+    "name": "서한빛",
+    "email": "shb3572@naver.com",
+    "phone": "01011111111",
+    "pax": "2",
+    "cabin": "발코니",
+    "message": "없음",
+    "id": "1773628392113",
+    "timestamp": "2026-03-16T02:33:12.113Z",
+    "status": "요금안내 완료"
+  },
+  {
+    "product": "한국·대만 3박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 벨리시마",
+    "dateFrom": "2027-06-20",
+    "ports": "인천 → Keelung (Chilung)",
+    "price": "문의",
+    "ref": "MSCBE20270620INCKEE",
     "name": "김미선",
     "email": "sa641234@naver.com",
     "phone": "01037818329",
     "pax": "6~10",
     "cabin": "내측",
-    "message": "Kimmisun",
-    "id": "1773642175321",
-    "timestamp": "2026-03-16T06:22:55.321Z",
-    "status": "요금안내 완료"
+    "message": "없음",
+    "id": "1773579696799",
+    "timestamp": "2026-03-15T13:01:36.799Z",
+    "status": "요금안내 완료",
+    "fareHistory": [
+      {
+        "date": "2026. 3. 16.",
+        "pax": 10,
+        "types": [
+          {
+            "name": "인사이드",
+            "val": 199
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 10,
+        "types": [
+          {
+            "name": "인사이드",
+            "val": 199
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      }
+    ]
   },
   {
     "product": "일본·한국 4박 크루즈",
@@ -798,63 +831,43 @@
     "ports": "도쿄 → 가고시마 → 인천",
     "price": "문의",
     "ref": "MSCBE20270610TYOINC",
-    "name": "김지나",
-    "email": "kjn5664@naver.com",
-    "phone": "01088330290",
-    "pax": "2",
+    "name": "유원지",
+    "email": "yuclick@naver.com",
+    "phone": "01091955251",
+    "pax": "4",
     "cabin": "발코니",
-    "message": "KIM JI NA\nJO SUNG YEOL",
-    "id": "1773787024037",
-    "timestamp": "2026-03-17T22:37:04.037Z",
+    "message": "성인3명 (65세이상2명)+ 14세 아동1명 \nmsc 2회차 탑승",
+    "id": "1773540380933",
+    "timestamp": "2026-03-15T02:06:20.933Z",
     "status": "요금안내 완료",
     "fareHistory": [
       {
-        "date": "2026. 03. 18. 오후 04:45",
-        "pax": 2,
+        "date": "2026. 3. 16.",
+        "pax": 4,
         "types": [
           {
             "name": "발코니",
-            "val": 579,
-            "raw": "579"
+            "val": 396.75
           }
         ],
+        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": "* 디럭스 발코니 BR1 기준, 8~10층 예약 가능\n* 포함 사항 : 크루즈 요금 + TAX\n* 불포함 사항 : 편도 항공권, 현지 호텔비, 기항지 관광, 여행자보험, 선상팁, 기타 선내 유료 서비스 등\n"
-      }
-    ]
-  },
-  {
-    "product": "지중해 7박 크루즈",
-    "cruiseline": "MSC Cruises",
-    "ship": "MSC 디비나",
-    "dateFrom": "2026-06-29",
-    "ports": "쿠사다시 → Marmaris → 나폴리 → 치비타베키아 → 미코노스",
-    "price": "문의",
-    "ref": "MSCDI20260629KUSKUS",
-    "name": "김윤아",
-    "email": "ssevi_44@naver.com",
-    "phone": "01040158374",
-    "pax": "2",
-    "cabin": "발코니",
-    "message": "없음",
-    "id": "1773928530446",
-    "timestamp": "2026-03-19T13:55:30.446Z",
-    "status": "요금안내 완료",
-    "fareHistory": [
+        "remarks": "요금 세부사항 : $599 * 성인 2명 + $299 * 성인 1명 + $90 어린이 1명 = 총 $1,587"
+      },
       {
-        "date": "2026. 03. 20. 오전 10:34",
-        "pax": 2,
+        "date": "2026. 3. 16.",
+        "pax": 4,
         "types": [
           {
             "name": "발코니",
-            "val": 1559,
-            "raw": "1559"
+            "val": 396.75
           }
         ],
+        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": "* 프리미엄 발코니 (BL2) 기준 요금 (10~11층 배정 가능)\n* 포함 사항 : 크루즈 요금 + TAX\n* 불포함 사항 : 왕복 항공권, 현지 호텔비, 기항지 관광 선상팁, 기타 선내 유료 서비스, 여행자보험 등"
+        "remarks": "요금 세부사항 : $599 * 성인 2명 + $299 * 성인 1명 + $90 어린이 1명 = 총 $1,587"
       }
     ]
   },
@@ -871,168 +884,155 @@
     "phone": "01037614511",
     "pax": "2",
     "cabin": "발코니",
-    "message": "없음",
-    "id": "1774233533453",
-    "timestamp": "2026-03-23T02:38:53.453Z",
-    "status": "결제완료"
-  },
-  {
-    "product": "지중해 7박 크루즈",
-    "cruiseline": "MSC Cruises",
-    "ship": "MSC 월드 아시아",
-    "dateFrom": "2027-02-01",
-    "ports": "치비타베키아 → 메시나 → 발레타 → 바르셀로나 → 마르세유 → 제노바",
-    "price": "문의",
-    "ref": "MSCAS20270201CVVCVV",
-    "name": "박현진",
-    "email": "y7083bb@gmail.com",
-    "phone": "01044307977",
-    "pax": "4",
-    "cabin": "내측",
-    "message": "방2개(성인2,18세 1 ,14세 1), 커넥팅룸",
-    "id": "1774279627637",
-    "timestamp": "2026-03-23T15:27:07.637Z",
+    "message": "Whasup Lee\nMinkyoung Choi",
+    "id": "1773476050320",
+    "timestamp": "2026-03-14T08:14:10.320Z",
     "status": "요금안내 완료",
     "fareHistory": [
       {
-        "date": "2026. 03. 24. 오후 05:01",
-        "pax": 4,
+        "date": "2026. 3. 16.",
+        "pax": 2,
+        "types": [
+          {
+            "name": "발코니",
+            "val": 419
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      },
+      {
+        "date": "2026. 3. 16.",
+        "pax": 2,
+        "types": [
+          {
+            "name": "발코니",
+            "val": 419
+          }
+        ],
+        "tax": 0,
+        "air": 0,
+        "etc": 0,
+        "remarks": ""
+      }
+    ]
+  },
+  {
+    "product": "일본·한국·Hong Kong 11박 크루즈",
+    "cruiseline": "Royal Caribbean International",
+    "ship": "내비게이터 오브 더 시즈",
+    "dateFrom": "2026-10-18",
+    "ports": "요코하마 → 나가사키 → Seogwipo → 홍콩 → 찬마이 → 싱가포르",
+    "price": "문의",
+    "ref": "RCINV11I018-181026",
+    "name": "김연정",
+    "email": "klove4868@gmail.com",
+    "phone": "01092762155",
+    "pax": "2",
+    "cabin": "발코니",
+    "message": "발코니타입 금액은 안보이는데 객실예약 불가한가요?",
+    "id": "1773363926185",
+    "timestamp": "2026-03-13T01:05:26.185Z",
+    "status": "요금안내 완료",
+    "fareHistory": [
+      {
+        "date": "2026. 3. 13.",
+        "pax": 2,
         "types": [
           {
             "name": "인사이드",
-            "val": 879,
-            "raw": "879"
+            "val": 2928.61
+          },
+          {
+            "name": "스위트",
+            "val": 7328.61
           }
         ],
+        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": "* Deluxe Interior 선실 (IR1) 기준 요금입니다.\n\n* 현재 10층 또는 14층에서 옆방으로 나란히 배정 가능한 선실은 있으나, 커넥팅 선실은 보이지 않아 예약이 불가한 것으로 확인됩니다.\n  또한 다른 카테고리로도 현재 예약 가능한 커넥팅 선실은 확인되지 않습니다.\n\n* 요금 세부 사항\n- 포함사항 : 크루즈 요금 + tax\n- 불포함 사항 : 왕복 항공권, 현지 호텔비, 기항지 관광, 선상팁, 기타 선내 유료 서비스, 여행자보험 등\n  "
+        "remarks": ""
       }
     ]
   },
   {
-    "product": "지중해 7박 크루즈",
+    "product": "지중해 9박 크루즈",
     "cruiseline": "MSC Cruises",
-    "ship": "MSC 신포니아",
-    "dateFrom": "2027-02-06",
-    "ports": "Valencia → 바르셀로나 → 마르세유 → 제노바 → Livorno → 치비타베키아",
+    "ship": "MSC 스플렌디다",
+    "dateFrom": "2027-05-06",
+    "ports": "이스탄불 → 코르푸 → 바리 → 트리에스테 → 스플리트 → 피레우스 → 쿠사다시",
     "price": "문의",
-    "ref": "MSCSX20270206VLCVLC",
-    "name": "김벽용",
-    "email": "azaaza9825@naver.com",
-    "phone": "01050459825",
+    "ref": "MSCSP20270506ISTIST",
+    "name": "Keejoung Song",
+    "email": "keejoung@gmail.com",
+    "phone": "3177724586",
     "pax": "2",
     "cabin": "오션뷰",
-    "message": "Kim byeok Yong\nChang Yeong a",
-    "id": "1774318594806",
-    "timestamp": "2026-03-24T02:16:34.806Z",
+    "message": "Keejoung Song,seonhee Song",
+    "id": "1773361124905",
+    "timestamp": "2026-03-13T00:18:44.905Z",
     "status": "요금안내 완료",
     "fareHistory": [
       {
-        "date": "2026. 03. 24. 오후 05:07",
+        "date": "2026. 3. 13.",
         "pax": 2,
         "types": [
           {
-            "name": "오션뷰",
-            "val": 789,
-            "raw": "789"
-          }
-        ],
-        "air": 0,
-        "etc": 0,
-        "remarks": "* Junior Oceanview Deck 7~8 (OM1) 선실 기준의 요금입니다.\n\n* 요금 세부 사항\n- 포함사항 : 크루즈 요금 + tax\n- 불포함사항 : 왕복 항공권, 현지 호텔비, 기항지 관광, 선상팁, 기타 선내 유료서비스, 여행자보험 등"
-      }
-    ]
-  },
-  {
-    "product": "지중해 7박 크루즈",
-    "cruiseline": "MSC Cruises",
-    "ship": "MSC 월드 아시아",
-    "dateFrom": "2027-02-01",
-    "ports": "치비타베키아 → 메시나 → 발레타 → 바르셀로나 → 마르세유 → 제노바",
-    "price": "문의",
-    "ref": "MSCAS20270201CVVCVV",
-    "name": "이나영",
-    "email": "lny0619@gmail.xn--com-db3mme233k",
-    "phone": "01011111111",
-    "pax": "2",
-    "cabin": "발코니",
-    "message": "없음",
-    "id": "1774338173967",
-    "timestamp": "2026-03-24T07:42:53.967Z",
-    "status": "요금안내 완료",
-    "fareHistory": [
-      {
-        "date": "2026. 03. 24. 오후 04:50",
-        "pax": 2,
-        "types": [
+            "name": "인사이드",
+            "val": 1479
+          },
           {
             "name": "오션뷰",
-            "val": 1109,
-            "raw": "1109"
+            "val": 1629
           },
           {
             "name": "발코니",
-            "val": 1249,
-            "raw": "1249"
+            "val": 1729
           }
         ],
+        "tax": 0,
         "air": 0,
         "etc": 0,
-        "remarks": "[선실 카테고리 안내]\n* Infinite Ocean View (VL1) - Deck 10~11\n* Deluxe Balcony (BR1) - Deck 9~10\n\n[WIFI & 음료 패키지 포함 시 요금]\n* Infinite Ocean View (VL1) - Deck 10~11 : 2인 총 $2,858\n* Deluxe Balcony (BR1) - Deck 9~10 : 2인 총 $3,138\n\n[요금 세부사항]\n- 포함사항 : 크루즈요금 + tax\n- 불포함사항 : 왕복 항공권, 현지 호텔비, 선상팁, 기항지 관광, 기타 선내 유료 서비스, 여행자 보험 등"
+        "remarks": ""
       }
     ]
   },
   {
-    "product": "한국·대만 3박 크루즈",
-    "cruiseline": "MSC Cruises",
-    "ship": "MSC 벨리시마",
-    "dateFrom": "2027-06-20",
-    "ports": "인천 → Keelung (Chilung)",
+    "product": "지중해 7박 크루즈",
+    "cruiseline": "Explora Journeys",
+    "ship": "익스플로라 II",
+    "dateFrom": "2026-06-01",
+    "ports": "피레우스 → Páros → 로도스 → At Sea → 코르푸 → Hvar Island → Rijeka → Fusina",
     "price": "문의",
-    "ref": "MSCBE20270620INCKEE",
-    "name": "박중내",
-    "email": "jungnae79@naver.com",
-    "phone": "01097660543",
-    "pax": "4",
-    "cabin": "내측",
-    "message": "park jungnae",
-    "id": "1774354665178",
-    "timestamp": "2026-03-24T12:17:45.178Z",
-    "status": "요금안내 완료",
-    "fareHistory": [
-      {
-        "date": "2026. 03. 25. 오전 11:17",
-        "pax": 4,
-        "types": [
-          {
-            "name": "인사이드",
-            "val": 174,
-            "raw": "174"
-          }
-        ],
-        "air": 0,
-        "etc": 0,
-        "remarks": "* 디럭스 내측 4인실 총 요금 기준입니다.\n\n* 요금 세부 사항\n- 포함사항 : 크루즈요금 + TAX\n- 불포함사항 : 편도 항공권, 현지 호텔비, 기항지관광, 선상팁, 선내 유료서비스, 여행자보험 등"
-      }
-    ]
-  },
-  {
-    "id": "1774100000001",
-    "timestamp": "2026-03-25T02:17:40.000Z",
-    "status": "신규",
-    "product": "MSC 월드 마시아 한국·대만 3박",
-    "cruiseline": "MSC Cruises",
-    "ship": "MSC 월드 마시아",
-    "dateFrom": "2027-03-09",
-    "ports": "",
-    "price": "문의",
-    "ref": "",
-    "name": "안유빈",
-    "email": "compia9@naver.com",
-    "phone": "01094455869",
+    "ref": "EXPLORAEP20260601PIRFSA",
+    "name": "Keejoung Song",
+    "email": "keejoung@gmail.com",
+    "phone": "3177724586",
     "pax": "2",
-    "cabin": "스위트",
-    "message": "없음"
+    "cabin": "오션뷰",
+    "message": "Keejoung Song",
+    "id": "1773354062165",
+    "timestamp": "2026-03-12T22:21:02.165Z",
+    "status": "상담완료"
+  },
+  {
+    "product": "지중해 11박 크루즈",
+    "cruiseline": "Explora Journeys",
+    "ship": "익스플로라 II",
+    "dateFrom": "2026-05-28",
+    "ports": "이스탄불 → 보드룸 → Pátmos → 피레우스 → Páros → 로도스 → At Sea → 코르푸 → Hvar Island → Rijeka → Fusina",
+    "price": "문의",
+    "ref": "EXPLORAEP20260528ISTFSA",
+    "name": "송기정",
+    "email": "keejoung@gmail.com",
+    "phone": "3177724586",
+    "pax": "2",
+    "cabin": "오션뷰",
+    "message": "Keejoung Song",
+    "id": "1773353977418",
+    "timestamp": "2026-03-12T22:19:37.418Z",
+    "status": "상담완료"
   }
 ]
