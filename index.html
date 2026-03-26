@@ -1924,7 +1924,7 @@ function kringSearchCruises(criteria) {
   return r.slice(0,5);
 }
 
-function kringAddMsg(text, isBot, products=[]) {
+function kringAddMsg(text, isBot, products=[], isHtml=false) {
   const box = document.getElementById('kringMessages');
   const now = new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
   const div = document.createElement('div');
@@ -1944,7 +1944,7 @@ function kringAddMsg(text, isBot, products=[]) {
 
   const bubble = document.createElement('div');
   bubble.style.cssText = `max-width:82%;background:${isBot?'#fff':'var(--navy)'};color:${isBot?'#222':'#fff'};border-radius:${isBot?'4px 16px 16px 16px':'16px 4px 16px 16px'};padding:9px 12px;font-size:.82rem;line-height:1.6;box-shadow:0 1px 3px rgba(0,0,0,.07)`;
-  bubble.innerHTML = text.replace(/\n/g,'<br>') + productHTML;
+  bubble.innerHTML = (isHtml ? text : text.replace(/\n/g,'<br>')) + productHTML;
 
   const time = document.createElement('div');
   time.style.cssText = `font-size:.65rem;color:#bbb;margin-top:2px;text-align:${isBot?'left':'right'}`;
@@ -2046,22 +2046,27 @@ async function kringAISendText(text) {
   kringHideTyping();
   kringHistory.push({role:'assistant',content:reply});
 
-  // AI 텍스트에서 상품명 언급 시 해당 줄 끝에 바로 버튼 삽입
-  let htmlReply = reply
+  const htmlReply = reply
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/https?:\/\/[^\s<]+/g,'');
+    .replace(/https?:\/\/[^\s<]+/g,'')
+    .replace(/\n/g,'<br>');
 
-  // 각 상품의 선박명이 텍스트에 언급되면 해당 줄 끝에 버튼 인라인 삽입
-  products.forEach(p => {
-    const shipEscaped = p.shipTitle.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-    const btnHtml = ` <a href="/cruise-view/?ref=${p.ref}" target="_blank" style="display:inline-block;padding:3px 10px;background:var(--navy);color:#fff;font-size:.72rem;font-weight:700;border-radius:12px;text-decoration:none;white-space:nowrap;vertical-align:middle">상세보기 →</a>`;
-    // 선박명 뒤 첫 번째 줄바꿈 전에 버튼 삽입 (중복 방지: 첫 번째 매칭만)
-    htmlReply = htmlReply.replace(new RegExp(`(${shipEscaped}[^\\n]*)`), `$1${btnHtml}`);
-  });
+  // 상품 카드: 각 일정 정보 + 상세보기 버튼 한 줄로
+  const productCardsHtml = products.slice(0,5).map(p => {
+    const nights = p.nights || p.cruise_nights || '';
+    const date = p.dateFrom || p.date_from || '';
+    const starts = p.startsAt?.name || '';
+    const route = (p.portRoute || '').replace(/→/g,'▸').substring(0, 40);
+    return `<a href="/cruise-view/?ref=${encodeURIComponent(p.ref)}" target="_blank" style="display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f0f4ff;border:1px solid #c5d4f0;border-radius:10px;padding:9px 12px;margin-top:7px;text-decoration:none;color:inherit">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.82rem;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.shipTitle}${nights ? ' · '+nights+'박' : ''}</div>
+        <div style="font-size:.74rem;color:#555;margin-top:2px">${date}${starts ? ' · '+starts : ''}${route ? '<br><span style="color:#777">'+route+'</span>' : ''}</div>
+      </div>
+      <span style="flex-shrink:0;background:var(--navy);color:#fff;font-size:.72rem;font-weight:700;border-radius:10px;padding:5px 10px;white-space:nowrap">상세보기 →</span>
+    </a>`;
+  }).join('');
 
-  htmlReply = htmlReply.replace(/\n/g,'<br>');
-  // 버튼 이미 인라인 삽입했으므로 하단 카드는 표시 안 함
-  kringAddMsg(htmlReply.replace(/<br>/g,'\n'), true, []);
+  kringAddMsg(htmlReply + productCardsHtml, true, [], true);
   kringSetQuick(rule?.quickSet || null);
 }
 
