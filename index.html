@@ -1760,6 +1760,16 @@ function kringParseCriteria(text) {
   if (ymMatch) c.yearMonth = `${ymMatch[1]}-${ymMatch[2].padStart(2,'0')}`;
   const yOnly = t.match(/(\d{4})년/);
   if (yOnly && !ymMatch) c.year = yOnly[1];
+  // 연도 없이 월만 있는 경우 (예: "8월", "8월달") → 올해 또는 내년 기준
+  if (!ymMatch) {
+    const mOnly = t.match(/(\d{1,2})월/);
+    if (mOnly) {
+      const mo = parseInt(mOnly[1]);
+      const now = new Date();
+      const yr = (mo < now.getMonth() + 1) ? now.getFullYear() + 1 : now.getFullYear();
+      c.yearMonth = `${yr}-${String(mo).padStart(2,'0')}`;
+    }
+  }
 
   // ── 선박명 파싱 (실제 DB 선박명 기준) ──
   const shipMap = [
