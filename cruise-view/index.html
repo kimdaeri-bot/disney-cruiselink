@@ -611,7 +611,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (startDate) {
           const d = new Date(startDate);
           d.setDate(d.getDate() + day.day - 1);
-          dayLabel = DAYS_EN[d.getDay()];
+          dayLabel = DAYS_KO[d.getDay()] + '요일';
           dateLabel = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
         } else {
           dayLabel = `Day ${day.day}`;
@@ -623,7 +623,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         let rowClass = '';
 
         if (isSeaDay) {
-          portCell = `<span class="itin-sea-label">🌊 In the sea</span>`;
+          portCell = `<span class="itin-sea-label">🌊 크루징 - 해상일정</span>`;
           rowClass = 'itin-tr-sea';
         } else {
           const portName = Translations.portName(loc.name);
