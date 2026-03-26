@@ -1502,5 +1502,23 @@
     "id": "1774527279103",
     "timestamp": "2026-03-26T12:14:39.103Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "Royal Caribbean International",
+    "ship": "Explorer of the Seas",
+    "dateFrom": "2026-03-26",
+    "price": "",
+    "message": "[고객] 카리브해 26년 8월 크루즈 상품있니\n[AI] 안녕하세요. 크루즈링크입니다.\n\n죄송하지만 현재 제 목록에는 2026년 8월 카리브해 상품이 없습니다.\n\n더 많은 상품 정보는 카카오톡으로 문의해 주시면 확인 후 안내드릴 수 있습니다.\n\nhttps://pf.kakao.com/_xgYbJG",
+    "source": "kring-ai",
+    "id": "1774527325934",
+    "timestamp": "2026-03-26T12:15:25.934Z",
+    "status": "신규"
   }
 ]
