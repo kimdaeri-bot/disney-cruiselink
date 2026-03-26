@@ -244,6 +244,9 @@
 
     <div class="quick-replies" id="quickReplies"></div>
 
+    <div style="padding:8px 16px;background:#fffde7;font-size:0.75rem;color:#795548;border-top:1px solid #ffe082;line-height:1.5">
+      AI는 실수할 수 있습니다. 안내가 부정확하다면 <a href="https://pf.kakao.com/_xgYbJG" target="_blank" style="color:#1a237e;font-weight:700">상담원에게 문의</a>해 주세요.
+    </div>
     <div class="chat-input-area">
       <textarea class="chat-input" id="chatInput" placeholder="크루즈에 대해 무엇이든 물어보세요!" rows="1"
         onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
@@ -509,6 +512,11 @@ function searchCruises(criteria) {
     results = results.filter(c => c.dateFrom && c.dateFrom.startsWith(criteria.yearMonth));
   }
 
+  if (criteria.nights) {
+    // 박수 ±1 허용
+    results = results.filter(c => Math.abs((c.nights||0) - criteria.nights) <= 1);
+  }
+
   return results.slice(0, 5);
 }
 
@@ -523,13 +531,22 @@ function parseUserCriteria(text) {
   else if (/인천도착|인천 도착|인천까지/i.test(text)) criteria.endPort = ['Incheon','Busan'];
   else if (/인천/i.test(text)) criteria.anyPort = ['Incheon','Busan'];  // 출발 또는 도착
   if (/도쿄|요코하마/i.test(text)) criteria.startPort = ['Tokyo','Yokohama'];
+  if (/부산|부산출발/i.test(text)) criteria.startPort = ['Busan'];
+  if (/오사카|간사이/i.test(text)) criteria.startPort = ['Osaka','Kobe'];
+  if (/후쿠오카/i.test(text)) criteria.startPort = ['Fukuoka'];
+  // 박수 파싱
+  const nightMatch = text.match(/(\d+)박/);
+  if (nightMatch) criteria.nights = parseInt(nightMatch[1]);
   // 지역 파싱
-  if (/지중해|유럽|이탈리아|그리스|스페인/i.test(text)) criteria.region = '지중해';
-  if (/일본|아시아|도쿄|오사카/i.test(text)) criteria.region = '아시아';
-  if (/카리브/i.test(text)) criteria.region = 'Caribbean';
+  if (/지중해|유럽|이탈리아|그리스|스페인|바르셀로나|산토리니/i.test(text)) criteria.region = '지중해';
+  if (/일본|아시아|도쿄|오사카|후쿠오카|나가사키|가고시마/i.test(text)) criteria.region = '아시아';
+  if (/카리브|카리브해|바하마/i.test(text)) criteria.region = 'Caribbean';
+  if (/알래스카|북유럽/i.test(text)) criteria.region = 'Alaska';
   // 선사 파싱
   if (/MSC|엠에스씨/i.test(text)) criteria.operator = 'MSC';
-  if (/NCL|노르웨지안/i.test(text)) criteria.operator = 'Norwegian';
+  if (/NCL|노르웨지안|노르웨이/i.test(text)) criteria.operator = 'Norwegian';
+  if (/로열|로얄|royal caribbean|RCI/i.test(text)) criteria.operator = 'Royal Caribbean';
+  if (/셀레브리티|celebrity/i.test(text)) criteria.operator = 'Celebrity';
   return criteria;
 }
 
