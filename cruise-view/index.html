@@ -131,6 +131,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             _fromLocal: true,
             _koreanTitle: lc.title || lc.shipTitleKo || lc.shipTitle || '',
             _portRouteKo: lc.portRoute || '',
+            _localImage: lc.image || '',
             ship_title: lc.shipTitle || '',
             operator_title: lc.operator || '',
             start_date: lc.dateFrom || '',
@@ -896,7 +897,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const priceStr = fromPrice ? API.formatPrice(fromPrice) : '문의';
       const countries = (holiday.countries || []).map(c => Translations.countryName(c)).join(', ');
       const route = holiday._portRouteKo || API.routeString(holiday.itinerary);
-      const coverImg = shipLive?.cover_image_href || '';
+      const coverImg = shipLive?.cover_image_href || holiday._localImage || '';
       const facts = shipLive?.ship_facts || {};
       // 로컬 JSON 한국어 타이틀 우선, 없으면 국가명 기반 생성, 최후엔 API name
       const cruiseTitle = holiday._koreanTitle
