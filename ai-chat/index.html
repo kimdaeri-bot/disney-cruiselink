@@ -541,9 +541,10 @@ async function botReply(userText) {
   conversationHistory.push({ role: 'assistant', content: reply });
 
   // 상품 추천이 있으면 카드로 표시
-  // 마크다운 기본 변환
+  // 마크다운 + URL 링크 변환
   const htmlReply = reply
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color:#1a237e;text-decoration:underline;word-break:break-all">$1</a>')
     .replace(/\n/g, '<br>');
   addMessage(htmlReply, true, products.slice(0, 3), true);
 
