@@ -125,17 +125,18 @@
 
     /* PRODUCT CARDS IN CHAT */
     .chat-product-card {
-      background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px;
-      overflow: hidden; margin-top: 8px; cursor: pointer; transition: box-shadow 0.2s;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px;
+      padding: 10px 12px; margin-top: 6px; text-decoration: none;
+      transition: background 0.15s;
     }
-    .chat-product-card:hover { box-shadow: var(--shadow-lg); }
-    .chat-product-card img { width: 100%; height: 120px; object-fit: cover; }
-    .chat-product-card-body { padding: 10px 12px; }
-    .chat-product-card-body h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-    .chat-product-card-body p { font-size: 0.78rem; color: var(--gray-700); }
+    .chat-product-card:hover { background: #e8eaf6; }
+    .chat-product-card-info { flex: 1; min-width: 0; }
+    .chat-product-card-info h4 { font-size: 0.85rem; font-weight: 700; color: var(--navy); margin: 0 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chat-product-card-info p { font-size: 0.75rem; color: var(--gray-700); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .chat-product-card-btn {
-      display: block; text-align: center; padding: 8px; background: var(--navy); color: #fff;
-      font-size: 0.82rem; font-weight: 700; text-decoration: none;
+      flex-shrink: 0; padding: 6px 12px; background: var(--navy); color: #fff;
+      font-size: 0.78rem; font-weight: 700; border-radius: 20px; white-space: nowrap;
     }
 
     /* TYPING INDICATOR */
@@ -414,13 +415,11 @@ function addMessage(text, isBot, products = [], isHtml = false) {
   if (products.length > 0) {
     productHTML = products.map(p => `
       <a href="/cruise-view/?ref=${p.ref}" target="_blank" class="chat-product-card">
-        <img src="${p.image}" alt="${p.shipTitle}" onerror="this.src='https://images.unsplash.com/photo-1548574505-5e239809ee19?w=400&q=60'">
-        <div class="chat-product-card-body">
+        <div class="chat-product-card-info">
           <h4>${p.shipTitle} ${p.nights}박</h4>
-          <p>${p.portRoute || p.destination || ''}</p>
-          <p style="color:#1a237e;font-weight:700;font-size:0.75rem;margin-top:4px">${p.dateFrom} 출발</p>
+          <p>${p.dateFrom} 출발 &middot; ${(p.portRoute||p.destination||'').split('\u2192')[0].trim()}</p>
         </div>
-        <div class="chat-product-card-btn">상세 보기 →</div>
+        <span class="chat-product-card-btn">\uC0C1\uC138 \uBCF4\uAE30 &rarr;</span>
       </a>
     `).join('');
   }
