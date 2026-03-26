@@ -466,16 +466,49 @@ function setQuickReplies(set) {
 function searchCruises(criteria) {
   if (!cruiseData.length) return [];
   let results = cruiseData;
-  if (criteria.operator) results = results.filter(c => c.operator?.includes(criteria.operator));
-  if (criteria.region) results = results.filter(c => {
-    const r = (c.destination || '') + (c.portRoute || '') + (c.regions?.join('') || '');
-    return r.toLowerCase().includes(criteria.region.toLowerCase()) ||
-      (criteria.region === '지중해' && ['Mediterranean','Mediter'].some(k => r.includes(k)));
-  });
-  // 날짜 필터: 오늘 이후
   const today = new Date().toISOString().substring(0,10);
   results = results.filter(c => c.dateFrom >= today);
-  return results.slice(0,3);
+
+  if (criteria.operator) results = results.filter(c => c.operator?.includes(criteria.operator));
+
+  if (criteria.startPort) {
+    results = results.filter(c => {
+      const s = (c.startsAt?.name || '') + (c.portRoute || '');
+      return criteria.startPort.some(p => s.toLowerCase().includes(p.toLowerCase()));
+    });
+  }
+
+  if (criteria.region) results = results.filter(c => {
+    const r = (c.destination || '') + (c.portRoute || '') + JSON.stringify(c.regions || '');
+    return r.toLowerCase().includes(criteria.region.toLowerCase()) ||
+      (criteria.region === '지중해' && ['Mediterranean','Mediter','europe','Europe'].some(k => r.includes(k))) ||
+      (criteria.region === '아시아' && ['Asia','Japan','Korea','china'].some(k => r.toLowerCase().includes(k)));
+  });
+
+  if (criteria.yearMonth) {
+    results = results.filter(c => c.dateFrom && c.dateFrom.startsWith(criteria.yearMonth));
+  }
+
+  return results.slice(0, 5);
+}
+
+function parseUserCriteria(text) {
+  const criteria = {};
+  // 날짜 파싱
+  const ymMatch = text.match(/(\d{4})[\s년]?\s*(\d{1,2})월/);
+  if (ymMatch) criteria.yearMonth = `${ymMatch[1]}-${ymMatch[2].padStart(2,'0')}`;
+  // 출발지 파싱
+  if (/로마|치비타베키아|Rome|Civitavecchia/i.test(text)) criteria.startPort = ['Civitavecchia','Rome'];
+  if (/인천|서울|한국출발/i.test(text)) criteria.startPort = ['Incheon','Busan'];
+  if (/도쿄|요코하마/i.test(text)) criteria.startPort = ['Tokyo','Yokohama'];
+  // 지역 파싱
+  if (/지중해|유럽|이탈리아|그리스|스페인/i.test(text)) criteria.region = '지중해';
+  if (/일본|아시아|도쿄|오사카/i.test(text)) criteria.region = '아시아';
+  if (/카리브/i.test(text)) criteria.region = 'Caribbean';
+  // 선사 파싱
+  if (/MSC|엠에스씨/i.test(text)) criteria.operator = 'MSC';
+  if (/NCL|노르웨지안/i.test(text)) criteria.operator = 'Norwegian';
+  return criteria;
 }
 
 async function botReply(userText) {
@@ -484,7 +517,9 @@ async function botReply(userText) {
 
   // 관련 크루즈 상품 검색
   const rule = matchRule(userText);
-  const products = rule?.search ? searchCruises(rule.search) : [];
+  const parsedCriteria = parseUserCriteria(userText);
+  const searchCriteria = Object.keys(parsedCriteria).length ? parsedCriteria : (rule?.search || {});
+  const products = searchCruises(searchCriteria);
 
   // Claude API 호출
   let reply = '';
