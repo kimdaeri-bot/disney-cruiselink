@@ -1918,6 +1918,8 @@ function kringSearchCruises(criteria) {
   if (criteria.ship) r = r.filter(c => (c.shipTitle||'').toLowerCase().includes(criteria.ship.toLowerCase()));
   if (criteria.yearMonth) r = r.filter(c => c.dateFrom?.startsWith(criteria.yearMonth));
   else if (criteria.year) r = r.filter(c => c.dateFrom?.startsWith(criteria.year));
+  if (criteria.dateFrom) r = r.filter(c => c.dateFrom >= criteria.dateFrom);
+  if (criteria.dateTo) r = r.filter(c => c.dateFrom <= criteria.dateTo);
   if (criteria.nights) r = r.filter(c => Math.abs((c.nights||0)-criteria.nights)<=1);
   return r.slice(0,5);
 }
@@ -1986,6 +1988,31 @@ function kringSetQuick(set) {
   });
 }
 
+// 검색바 현재 필터 값 읽기
+function kringReadSearchBar() {
+  const f = {};
+  try {
+    const dest = document.getElementById('filterDest')?.value;
+    if (dest) f.destination = dest;
+
+    const ops = getMultiValues(document.getElementById('msOperator'));
+    if (ops.length) f.operator = ops[0]; // 첫 번째 선사
+
+    const ports = getMultiValues(document.getElementById('msPort'));
+    if (ports.length) f.startPort = ports;
+
+    const ship = document.getElementById('filterShip')?.value.trim();
+    if (ship) f.ship = ship;
+
+    const nights = document.getElementById('filterNights')?.value;
+    if (nights) f.nights = parseInt(nights);
+
+    if (drFrom) f.dateFrom = dateStr(drFrom);
+    if (drTo) f.dateTo = dateStr(drTo);
+  } catch(e) {}
+  return f;
+}
+
 async function kringAISendText(text) {
   if (!text.trim()) return;
   kringAddMsg(text, false);
@@ -1996,8 +2023,12 @@ async function kringAISendText(text) {
 
   const rule = KRING_RULES.find(r=>r.keywords.some(k=>text.toLowerCase().includes(k)));
   const parsed = kringParseCriteria(text);
-  const searchCriteria = Object.keys(parsed).length ? parsed : (rule?.search||{});
-  if (rule?.search?.destination && !searchCriteria.destination) searchCriteria.destination = rule.search.destination;
+  const barFilters = kringReadSearchBar();
+
+  // 검색바 필터 + 텍스트 파싱 머지 (텍스트 파싱 우선)
+  const searchCriteria = Object.assign({}, barFilters, parsed);
+  if (!Object.keys(parsed).length && rule?.search) Object.assign(searchCriteria, rule.search);
+
   const products = (rule?.noProducts || !Object.keys(searchCriteria).length) ? [] : kringSearchCruises(searchCriteria);
 
   let reply = '';
@@ -2028,7 +2059,17 @@ async function kringInit() {
     kringCruiseData = await res.json();
   } catch(e) { kringCruiseData = []; }
   setTimeout(()=>{
-    kringAddMsg('안녕하세요! 크루즈 여행에 특화된 AI 크링AI 입니다. 크루즈상품을 추천해 드리거나 쉽게 찾아드릴 수 있습니다. 그 외 다양한 크루즈에 대한 질문도 가능해요!', true);
+    const bar = kringReadSearchBar();
+    const barParts = [];
+    if (bar.destination && bar.destination !== '') barParts.push(`목적지: ${bar.destination}`);
+    if (bar.operator) barParts.push(`선사: ${bar.operator}`);
+    if (bar.ship) barParts.push(`선박: ${bar.ship}`);
+    if (bar.nights) barParts.push(`${bar.nights}박`);
+    if (bar.dateFrom) barParts.push(`출발 ${bar.dateFrom}~`);
+    const barMsg = barParts.length
+      ? `안녕하세요! 크링AI입니다 🚢\n검색 필터(${barParts.join(', ')})가 설정돼 있어요. 이 조건으로 추천해 드릴까요?`
+      : '안녕하세요! 크루즈 여행에 특화된 AI 크링AI 입니다. 크루즈상품을 추천해 드리거나 쉽게 찾아드릴 수 있습니다. 그 외 다양한 크루즈에 대한 질문도 가능해요!';
+    kringAddMsg(barMsg, true);
     kringSetQuick('init');
   }, 300);
 }
