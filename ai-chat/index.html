@@ -528,7 +528,7 @@ async function botReply(userText) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         messages: conversationHistory,
-        cruiseContext: products.length ? products : searchCruises({ region: '' })
+        cruiseContext: products.length ? products : searchCruises(parsedCriteria)
       })
     });
     const data = await res.json();
