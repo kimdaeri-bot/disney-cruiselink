@@ -2079,6 +2079,26 @@ async function kringAISendText(text) {
     kringAddMsg(htmlReply, true, [], true);
   }
   kringSetQuick(rule?.quickSet || null);
+
+  // 대화 로그 저장
+  try {
+    fetch('https://cruiselink-v2.vercel.app/api/inquiry', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        product: '크링AI 채팅 문의',
+        ref: 'KRING_AI',
+        name: '크링AI 고객',
+        email: '', phone: '', pax: '', cabin: '',
+        cruiseline: products.length ? (products[0].operator || '') : '',
+        ship: products.length ? (products[0].shipTitle || '') : '',
+        dateFrom: products.length ? (products[0].dateFrom || '') : '',
+        price: '',
+        message: `[고객] ${text}\n[AI] ${reply}`,
+        source: 'kring-ai'
+      })
+    }).catch(()=>{});
+  } catch(e) {}
 }
 
 function kringAISend() { kringAISendText(document.getElementById('kringInputBox').value.trim()); }
