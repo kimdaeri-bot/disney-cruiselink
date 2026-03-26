@@ -576,19 +576,38 @@ async function botReply(userText) {
     const data = await res.json();
     reply = data.reply || '죄송합니다. 잠시 후 다시 시도해 주세요.';
   } catch (e) {
-    reply = '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+    console.error('AI 채팅 오류:', e);
+    reply = '죄송합니다. 잠시 후 다시 시도해 주세요. (오류: ' + e.message + ')';
   }
 
   hideTyping();
   conversationHistory.push({ role: 'assistant', content: reply });
 
-  // 상품 추천이 있으면 카드로 표시
-  // 마크다운 + URL 링크 변환
-  const htmlReply = reply
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/(https?:\/\/[^\s<]+)/g, '')  // URL 텍스트 제거 (상세보기 버튼 사용)
-    .replace(/\n/g, '<br>');
-  addMessage(htmlReply, true, products.slice(0, 3), true);
+  if (products.length > 0) {
+    const shortMents = ['조건에 맞는 상품을 찾았습니다 🚢','이런 일정은 어떠세요?','딱 맞는 상품을 추려봤어요.','아래 상품들을 확인해보세요!'];
+    const ment = shortMents[Math.floor(Math.random() * shortMents.length)];
+    const cardsHtml = `<div style="font-size:.83rem;color:#555;margin-bottom:4px">${ment}</div>` + products.slice(0,5).map(p => {
+      const nights = p.nights || '';
+      const date = p.dateFrom || '';
+      const starts = p.startsAt?.name || '';
+      const route = (p.portRoute || '').replace(/→/g,'▸').substring(0,45);
+      return `<a href="/cruise-view/?ref=${encodeURIComponent(p.ref)}" target="_blank" style="display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f0f4ff;border:1px solid #c5d4f0;border-radius:10px;padding:10px 12px;margin-top:7px;text-decoration:none;color:inherit">
+        <div style="flex:1;min-width:0">
+          <div style="font-size:.84rem;font-weight:700;color:#1a237e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.shipTitle}${nights?' · '+nights+'박':''}</div>
+          <div style="font-size:.75rem;color:#555;margin-top:3px">${date}${starts?' · '+starts:''}</div>
+          ${route?`<div style="font-size:.72rem;color:#888;margin-top:1px">${route}</div>`:''}
+        </div>
+        <span style="flex-shrink:0;background:#1a237e;color:#fff;font-size:.73rem;font-weight:700;border-radius:10px;padding:6px 11px;white-space:nowrap">상세보기 →</span>
+      </a>`;
+    }).join('');
+    addMessage(cardsHtml, true, [], true);
+  } else {
+    const htmlReply = reply
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(https?:\/\/[^\s<]+)/g, '')
+      .replace(/\n/g, '<br>');
+    addMessage(htmlReply, true, [], true);
+  }
 
   // 빠른 답변 버튼은 초기에만 표시, 대화 중에는 제거
   setQuickReplies(null);
