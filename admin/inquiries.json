@@ -1466,5 +1466,23 @@
     "id": "1774527235799",
     "timestamp": "2026-03-26T12:13:55.799Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "",
+    "ship": "",
+    "dateFrom": "",
+    "price": "",
+    "message": "[고객] 7월달거가 아니고 4월껀데?\n[AI] 죄송합니다. 4월 하와이 크루즈 추천입니다.\n\nPride of America (4월 출발)\n7박 | 호놀룰루 → 마우이 → 힐로 → 코나 → 나윌리윌리\nhttps://www.cruiselink.co.kr/cruise-view/?ref=NCIPOA7-20260404-07-HNL-HNL\n\nCelebrity Solstice (4월 24일 출발)\n9박 | 호놀룰루 → 코나 → 힐로 → 밴쿠버\nhttps://www.cruiselink.co.kr/cruise-view/?ref=CELEBSL9-260424\n\n두 상품 모두 하와이의 주요 기항지를 방문합니다. Pride of America는 하와이 내 4개 섬 일정이고, Celebrity Solstice는 하와이 후 캐나다로 이동하는 일정입니다.",
+    "source": "kring-ai",
+    "id": "1774527262483",
+    "timestamp": "2026-03-26T12:14:22.483Z",
+    "status": "신규"
   }
 ]
