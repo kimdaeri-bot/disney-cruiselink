@@ -1731,9 +1731,9 @@ const KRING_QUICK_SETS = {
 
 const KRING_RULES = [
   { keywords: ['안녕','처음','시작'], reply: '안녕하세요! 저는 크루즈링크 AI 상담사 크링AI입니다 🚢\n어떤 크루즈 여행을 계획하고 계신가요?', quickSet: 'init' },
-  { keywords: ['지중해','유럽','이탈리아','그리스','스페인','바르셀로나'], reply: '지중해 크루즈를 찾고 계시는군요! MSC 크루즈가 특히 인기입니다.\n\n출발 시기가 언제쯤이신가요?', quickSet: 'period', search: { region: '지중해' } },
-  { keywords: ['일본','아시아','도쿄','오사카','후쿠오카','인천'], reply: '일본/아시아 크루즈를 원하시는군요! 인천 출발 상품이 많아 편리합니다.\n\n여행 기간은 어떻게 생각하고 계세요?', quickSet: 'period', search: { region: '아시아' } },
-  { keywords: ['카리브','바하마','멕시코'], reply: '카리브해 크루즈를 찾으시는군요! 에메랄드빛 바다가 매력적인 노선입니다.\n\n출발 인원이 어떻게 되시나요?', quickSet: 'pax' },
+  { keywords: ['지중해','유럽','이탈리아','그리스','스페인','바르셀로나'], reply: '지중해 크루즈를 찾고 계시는군요! MSC 크루즈가 특히 인기입니다.\n\n출발 시기가 언제쯤이신가요?', quickSet: 'period', search: { destination: 'mediterranean' } },
+  { keywords: ['일본','아시아','도쿄','오사카','후쿠오카','인천'], reply: '일본/아시아 크루즈를 원하시는군요! 인천 출발 상품이 많아 편리합니다.\n\n여행 기간은 어떻게 생각하고 계세요?', quickSet: 'period', search: { destination: 'asia' } },
+  { keywords: ['카리브','바하마','멕시코'], reply: '카리브해 크루즈를 찾으시는군요! 에메랄드빛 바다가 매력적인 노선입니다.\n\n출발 인원이 어떻게 되시나요?', quickSet: 'pax', search: { destination: 'caribbean' } },
   { keywords: ['객실','방','내측','외측','발코니','스위트','차이'], reply: '객실 타입 안내드릴게요!\n\n🚪 내측 - 창문 없음, 가장 경제적\n🪟 외측 - 고정 유리창으로 바다 조망\n🌅 발코니 - 전용 발코니, 가장 인기\n👑 스위트 - 넓은 공간과 프리미엄 서비스', quickSet: 'cabin' },
   { keywords: ['식사','음식','다이닝','레스토랑'], reply: '크루즈 식사는 기본 메인 다이닝룸의 조식·중식·석식이 요금에 포함됩니다.\n스페셜티 레스토랑은 별도 유료입니다.', quickSet: 'init' },
   { keywords: ['비용','요금','가격','얼마','견적'], reply: '정확한 요금은 전문 상담원이 확인 후 안내해 드릴게요.\n카카오톡으로 문의해 주시면 빠르게 견적을 받으실 수 있습니다!', quickSet: 'init', showKakao: true },
@@ -1754,10 +1754,11 @@ function kringParseCriteria(text) {
   if (/도쿄|요코하마/.test(text)) c.startPort = ['Tokyo','Yokohama'];
   const nightMatch = text.match(/(\d+)박/);
   if (nightMatch) c.nights = parseInt(nightMatch[1]);
-  if (/지중해|유럽|이탈리아|그리스|스페인/.test(text)) c.region = '지중해';
-  if (/일본|아시아|도쿄|오사카|후쿠오카/.test(text)) c.region = '아시아';
-  if (/카리브|바하마/.test(text)) c.region = 'Caribbean';
-  if (/알래스카|북유럽/.test(text)) c.region = 'Alaska';
+  if (/지중해|유럽|이탈리아|그리스|스페인/.test(text)) c.destination = 'mediterranean';
+  if (/일본|아시아|도쿄|오사카|후쿠오카/.test(text)) c.destination = 'asia';
+  if (/카리브|바하마/.test(text)) c.destination = 'caribbean';
+  if (/알래스카/.test(text)) c.destination = 'alaska';
+  else if (/북유럽/.test(text)) c.destination = 'northern-europe';
   if (/MSC|엠에스씨/i.test(text)) c.operator = 'MSC';
   if (/NCL|노르웨지안/i.test(text)) c.operator = 'Norwegian';
   if (/로열|로얄|royal/i.test(text)) c.operator = 'Royal Caribbean';
@@ -1775,11 +1776,10 @@ function kringSearchCruises(criteria) {
     const s = (c.startsAt?.name||'')+(c.endsAt?.name||'')+(c.portRoute||'');
     return criteria.anyPort.some(p => s.toLowerCase().includes(p.toLowerCase()));
   });
+  if (criteria.destination) r = r.filter(c => c.destination === criteria.destination);
   if (criteria.region) r = r.filter(c => {
     const s = (c.destination||'')+(c.portRoute||'')+JSON.stringify(c.regions||'');
-    return s.toLowerCase().includes(criteria.region.toLowerCase()) ||
-      (criteria.region==='지중해' && ['Mediterranean','europe','Europe'].some(k=>s.includes(k))) ||
-      (criteria.region==='아시아' && ['Asia','Japan','Korea'].some(k=>s.toLowerCase().includes(k)));
+    return s.toLowerCase().includes(criteria.region.toLowerCase());
   });
   if (criteria.yearMonth) r = r.filter(c => c.dateFrom?.startsWith(criteria.yearMonth));
   if (criteria.nights) r = r.filter(c => Math.abs((c.nights||0)-criteria.nights)<=1);
@@ -1862,6 +1862,7 @@ async function kringAISendText(text) {
   const rule = KRING_RULES.find(r=>r.keywords.some(k=>text.toLowerCase().includes(k)));
   const parsed = kringParseCriteria(text);
   const searchCriteria = Object.keys(parsed).length ? parsed : (rule?.search||{});
+  if (rule?.search?.destination && !searchCriteria.destination) searchCriteria.destination = rule.search.destination;
   const products = (rule?.noProducts || !Object.keys(searchCriteria).length) ? [] : kringSearchCruises(searchCriteria);
 
   let reply = '';
