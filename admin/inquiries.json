@@ -1628,5 +1628,23 @@
     "id": "1774527682747",
     "timestamp": "2026-03-26T12:21:22.747Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "",
+    "ship": "",
+    "dateFrom": "",
+    "price": "",
+    "message": "[고객] 2026-12-01 · Hong Kong 이거에 대해 조금더 자세하게 설명해줘\n[AI] **Spectrum of the Seas (2026년 12월 1일 출발)**\n\n선박: Spectrum of the Seas (Royal Caribbean)\n출발일: 2026년 12월 1일\n일정: 5박\n출발지: 홍콩\n\n노선:\n홍콩 → 오키나와(나하) → 이시가키 → 홍콩 귀항\n\n선박 특징:\n- Royal Caribbean의 Spectrum 클래스 신형 선박\n- 약 5,000명 승선 가능\n- 최신 엔터테인먼트 시설 완비\n- 다양한 다이닝 옵션 (메인 다이닝룸 3식 포함, 스페셜티 레스토랑 별도)\n- 스파, 피트니스, 수상 액티비티 등 부대시설 충실\n\n일정 특징:\n- 홍콩의 역동적인 도시문화 경험\n- 오키나와의 자연과 문화 체험\n- 이시가키의 아름다운 해변과 해양 액티비티\n- 5박으로 짧지만 일본 남부의 핵심 지역 방문\n\n더 자세한 상품 정보와 객실 옵션, 요금은 카카오톡으로 문의해 주세요.\nhttps://pf.kakao.com/_xgYbJG",
+    "source": "kring-ai",
+    "id": "1774527706017",
+    "timestamp": "2026-03-26T12:21:46.017Z",
+    "status": "신규"
   }
 ]
