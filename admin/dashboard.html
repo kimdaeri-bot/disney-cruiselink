@@ -626,7 +626,8 @@
           <tr>
             <th>접수일</th>
             <th>고객 문의 내용</th>
-            <th>AI 답변 요약</th>
+            <th>AI 답변 요약 (클릭 시 전체 보기)</th>
+            <th style="width:60px">삭제</th>
           </tr>
         </thead>
         <tbody id="aiChatTableBody">
@@ -829,23 +830,79 @@
       for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
       const data = JSON.parse(new TextDecoder('utf-8').decode(bytes));
       const aiData = data.filter(d => d.ref === 'AI_CHAT' || d.ref === 'KRING_AI' || d.source === 'ai-chat' || d.source === 'kring-ai').sort((a,b) => new Date(b.timestamp||0) - new Date(a.timestamp||0));
+      window._aiChatData = data; // 전체 데이터 저장 (삭제 시 필요)
+      window._aiChatSha = file.sha;
       if (!aiData.length) {
-        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;padding:40px;color:#aaa">AI 채팅 이용 데이터가 없습니다</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:40px;color:#aaa">AI 채팅 이용 데이터가 없습니다</td></tr>';
         return;
       }
-      tbody.innerHTML = aiData.map(d => {
-        const date = d.timestamp ? new Date(d.timestamp).toLocaleString('ko-KR') : '-';
-        const msg = esc(d.message || '');
-        const userMsg = msg.match(/\[고객\] (.+?)(?:\n|\[AI\]|$)/s)?.[1]?.trim() || msg.substring(0,80);
-        const aiMsg = msg.match(/\[AI\] (.+)$/s)?.[1]?.trim() || '';
+      tbody.innerHTML = aiData.map((d,i) => {
+        const date = d.timestamp ? new Date(d.timestamp).toLocaleString('ko-KR', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}) : '-';
+        const rawMsg = d.message || '';
+        const userMsg = rawMsg.match(/\[고객\] (.+?)(?:\n\[AI\]|$)/s)?.[1]?.trim() || rawMsg.substring(0,80);
+        const aiMsg = rawMsg.match(/\[AI\] (.+)$/s)?.[1]?.trim() || '';
+        const aiShort = aiMsg.substring(0,80) + (aiMsg.length > 80 ? '...' : '');
         return `<tr>
-          <td style="white-space:nowrap;font-size:12px">${date}</td>
-          <td style="font-size:12px;max-width:300px">${esc(userMsg)}</td>
-          <td style="font-size:12px;max-width:300px;color:#555">${esc(aiMsg.substring(0,100))}${aiMsg.length>100?'...':''}</td>
+          <td style="white-space:nowrap;font-size:12px">${esc(date)}</td>
+          <td style="font-size:12px;max-width:280px">${esc(userMsg)}</td>
+          <td style="font-size:12px;max-width:280px;color:#1a237e;cursor:pointer;text-decoration:underline" onclick="showAIChatDetail(${JSON.stringify(JSON.stringify(d))})">${esc(aiShort)}</td>
+          <td style="text-align:center"><button onclick="deleteAIChat('${esc(d.id||'')}',event)" style="background:#e53935;color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:inherit">삭제</button></td>
         </tr>`;
       }).join('');
     } catch (e) {
-      tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;padding:32px;color:#e53935">오류: ${e.message}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:32px;color:#e53935">오류: ${e.message}</td></tr>`;
+    }
+  }
+
+  function showAIChatDetail(jsonStr) {
+    const d = JSON.parse(jsonStr);
+    const rawMsg = d.message || '';
+    const userMsg = rawMsg.match(/\[고객\] (.+?)(?:\n\[AI\]|$)/s)?.[1]?.trim() || '';
+    const aiMsg = rawMsg.match(/\[AI\] (.+)$/s)?.[1]?.trim() || '';
+    const date = d.timestamp ? new Date(d.timestamp).toLocaleString('ko-KR') : '-';
+    const html = `
+      <div style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center" id="aiDetailOverlay" onclick="if(event.target.id==='aiDetailOverlay')this.remove()">
+        <div style="background:#fff;border-radius:12px;padding:28px;max-width:560px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.2)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <strong style="font-size:1rem;color:#1a237e">전체 대화 내용</strong>
+            <button onclick="document.getElementById('aiDetailOverlay').remove()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#888">×</button>
+          </div>
+          <div style="font-size:12px;color:#888;margin-bottom:16px">${esc(date)}</div>
+          <div style="background:#e8f5e9;border-radius:8px;padding:12px 14px;margin-bottom:12px">
+            <div style="font-size:11px;font-weight:700;color:#2e7d32;margin-bottom:6px">👤 고객 질문</div>
+            <div style="font-size:13px;line-height:1.7;white-space:pre-wrap">${esc(userMsg)}</div>
+          </div>
+          <div style="background:#e3f2fd;border-radius:8px;padding:12px 14px">
+            <div style="font-size:11px;font-weight:700;color:#1565c0;margin-bottom:6px">🤖 AI 답변</div>
+            <div style="font-size:13px;line-height:1.7;white-space:pre-wrap">${esc(aiMsg)}</div>
+          </div>
+        </div>
+      </div>`;
+    document.body.insertAdjacentHTML('beforeend', html);
+  }
+
+  async function deleteAIChat(id, e) {
+    e.stopPropagation();
+    if (!id) return;
+    if (!confirm('이 AI 채팅 기록을 삭제하시겠습니까?')) return;
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/admin/inquiries.json`, {
+        headers: { Authorization: `Bearer ${GH_TOKEN}`, Accept: "application/vnd.github.v3+json" }
+      });
+      const file = await res.json();
+      const b64 = file.content.replace(/\n/g,'');
+      const data = JSON.parse(new TextDecoder('utf-8').decode(Uint8Array.from(atob(b64), c=>c.charCodeAt(0))));
+      const newData = data.filter(d => d.id !== id);
+      const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(newData, null, 2))));
+      await fetch(`https://api.github.com/repos/${GH_REPO}/contents/admin/inquiries.json`, {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${GH_TOKEN}`, 'Content-Type': 'application/json', Accept: "application/vnd.github.v3+json" },
+        body: JSON.stringify({ message: 'feat: AI 채팅 기록 삭제', content: newContent, sha: file.sha })
+      });
+      alert('삭제 완료');
+      loadAIChats();
+    } catch(e) {
+      alert('삭제 실패: ' + e.message);
     }
   }
 
