@@ -1538,5 +1538,23 @@
     "id": "1774527340388",
     "timestamp": "2026-03-26T12:15:40.388Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "Royal Caribbean International",
+    "ship": "Explorer of the Seas",
+    "dateFrom": "2026-03-26",
+    "price": "",
+    "message": "[고객] 카리브해 8월꺼 없다고?\n[AI] 네, 현재 제 목록에는 8월 카리브해 상품이 없습니다.\n\n다만 크루즈링크에서 취급하는 MSC, Norwegian, Royal Caribbean 등 주요 선사들은 8월에도 카리브해 운항을 하고 있으니, 더 많은 상품 정보와 8월 일정을 확인하시려면 카카오톡으로 문의해 주세요.",
+    "source": "kring-ai",
+    "id": "1774527382792",
+    "timestamp": "2026-03-26T12:16:22.792Z",
+    "status": "신규"
   }
 ]
