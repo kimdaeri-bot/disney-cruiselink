@@ -480,26 +480,47 @@ function searchCruises(criteria) {
 
 async function botReply(userText) {
   showTyping();
-  await new Promise(r => setTimeout(r, 800 + Math.random()*600));
-  hideTyping();
+  conversationHistory.push({ role: 'user', content: userText });
 
+  // 관련 크루즈 상품 검색
   const rule = matchRule(userText);
-  if (rule) {
-    const products = rule.search ? searchCruises(rule.search) : [];
-    addMessage(rule.reply, true, products);
-    setQuickReplies(rule.quickSet || 'init');
-    if (rule.showKakao) {
-      setTimeout(() => {
-        document.querySelector('.kakao-cta').scrollIntoView({behavior:'smooth'});
-      }, 500);
-    }
-    // 백오피스 저장 (비동기)
-    saveInquiry(userText, rule.reply);
-  } else {
-    addMessage(DEFAULT_REPLY, true);
-    setQuickReplies('init');
-    saveInquiry(userText, DEFAULT_REPLY);
+  const products = rule?.search ? searchCruises(rule.search) : [];
+
+  // Claude API 호출
+  let reply = '';
+  try {
+    const res = await fetch('/api/ai-chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: conversationHistory,
+        cruiseContext: products.length ? products : searchCruises({ region: '' })
+      })
+    });
+    const data = await res.json();
+    reply = data.reply || '죄송합니다. 잠시 후 다시 시도해 주세요.';
+  } catch (e) {
+    reply = '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
   }
+
+  hideTyping();
+  conversationHistory.push({ role: 'assistant', content: reply });
+
+  // 상품 추천이 있으면 카드로 표시
+  addMessage(reply, true, products.slice(0, 3));
+
+  // 퀵 리플라이 동적 설정
+  if (reply.includes('카카오') || reply.includes('견적') || reply.includes('예약')) {
+    setQuickReplies('init');
+    setTimeout(() => document.querySelector('.kakao-cta').scrollIntoView({behavior:'smooth'}), 500);
+  } else if (rule?.quickSet) {
+    setQuickReplies(rule.quickSet);
+  } else {
+    setQuickReplies('init');
+  }
+
+  // 백오피스 저장
+  saveInquiry(userText, reply);
 }
 
 function saveInquiry(userMsg, botReply) {
