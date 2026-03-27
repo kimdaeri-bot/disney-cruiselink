@@ -1346,23 +1346,5 @@
     "id": "1774570650501",
     "timestamp": "2026-03-27T00:17:30.501Z",
     "status": "신규"
-  },
-  {
-    "product": "크링AI 채팅 문의",
-    "ref": "KRING_AI",
-    "name": "크링AI 고객",
-    "email": "",
-    "phone": "",
-    "pax": "",
-    "cabin": "",
-    "cruiseline": "Princess Cruises",
-    "ship": "Royal Princess",
-    "dateFrom": "2026-05-02",
-    "price": "",
-    "message": "[고객] 5월 알래스카 크루즈 추천\n[AI] 안녕하세요. 5월 알래스카 크루즈를 원하신다면 2026년 출발을 기준으로 추천드릴 수 있습니다.\n\n현재 5월 초 알래스카 일정으로 Royal Princess, Norwegian Bliss, Celebrity Solstice, Ruby Princess, Norwegian Encore 등 다양한 상품이 있습니다. 선호하시는 선박 규모, 일정(7박/10박), 출발지(시애틀/밴쿠버)가 있으신지 알려주시면 더 맞춤형으로 추천드리겠습니다.",
-    "source": "kring-ai",
-    "id": "1774575131393",
-    "timestamp": "2026-03-27T01:32:11.393Z",
-    "status": "신규"
   }
 ]
