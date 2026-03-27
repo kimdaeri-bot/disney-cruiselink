@@ -1436,5 +1436,23 @@
     "id": "1774654927199",
     "timestamp": "2026-03-27T23:42:07.199Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "Celebrity Cruises",
+    "ship": "Celebrity Millennium",
+    "dateFrom": "2026-03-28",
+    "price": "",
+    "message": "[고객] 부산출발\n[AI] 부산 출발 상품은 현재 제 목록에 없습니다. \n\n다만 부산에 기항하는 상품이라면 안내해 드릴 수 있습니다. 혹은 인천 출발이나 도쿄 출발 등 다른 출발지의 크루즈를 원하시나요?",
+    "source": "kring-ai",
+    "id": "1774655910960",
+    "timestamp": "2026-03-27T23:58:30.960Z",
+    "status": "신규"
   }
 ]
