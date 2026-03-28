@@ -313,6 +313,7 @@
 const ANTHROPIC_KEY = ''; // 서버사이드 프록시 사용 예정
 let conversationHistory = [];
 let currentStep = 'init';
+let accumulatedCriteria = {}; // 대화 전체에서 누적된 검색 기준
 
 // 크루즈 데이터 (간략 버전)
 const CRUISE_DATA_URL = '/assets/data/cruises.json';
@@ -566,9 +567,13 @@ async function botReply(userText) {
   showTyping();
   conversationHistory.push({ role: 'user', content: userText });
 
-  // 관련 크루즈 상품 검색
+  // 현재 메시지 파싱 후 누적 기준에 병합 (새 정보가 있으면 덮어씀)
+  const parsedNow = parseUserCriteria(userText);
+  accumulatedCriteria = Object.assign({}, accumulatedCriteria, parsedNow);
+
+  // 관련 크루즈 상품 검색 (누적 기준 사용)
   const rule = matchRule(userText);
-  const parsedCriteria = parseUserCriteria(userText);
+  const parsedCriteria = accumulatedCriteria;
   const searchCriteria = Object.keys(parsedCriteria).length ? parsedCriteria : (rule?.search || {});
   const hasSearchIntent = (Object.keys(parsedCriteria).length > 0) || rule?.search;
   const products = (rule?.noProducts || !hasSearchIntent) ? [] : searchCruises(searchCriteria);
