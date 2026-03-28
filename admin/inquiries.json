@@ -1526,5 +1526,23 @@
     "id": "1774694784703",
     "timestamp": "2026-03-28T10:46:24.703Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC Bellissima",
+    "dateFrom": "2026-04-02",
+    "price": "",
+    "message": "[고객] 부산출발/도착MSC크루즈 추천\n[AI] 현재 제 목록에는 부산 출발/도착 상품이 없습니다. \n\n도쿄 출발로 부산을 기항하는 일정이 있습니다. 혹은 인천 출발 상품이나 다른 일정을 원하시나요? 원하시는 시즌이나 기간을 말씀해 주시면 맞춤 추천해 드리겠습니다.",
+    "source": "kring-ai",
+    "id": "1774695965160",
+    "timestamp": "2026-03-28T11:06:05.160Z",
+    "status": "신규"
   }
 ]
