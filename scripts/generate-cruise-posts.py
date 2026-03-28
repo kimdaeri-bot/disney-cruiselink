@@ -52,6 +52,71 @@ def format_price(price, currency='USD'):
     except:
         return str(price)
 
+DEST_KO = {
+    'Mediterranean': '지중해', 'Caribbean': '카리브해', 'Alaska': '알래스카',
+    'Northern Europe': '북유럽', 'Asia': '아시아', 'Japan': '일본·한국',
+    'South America': '남미', 'Hawaii': '하와이', 'Australia': '호주·뉴질랜드',
+    'Canary Islands': '카나리아 제도', 'Bermuda': '버뮤다',
+    'Middle East': '중동', 'Baltic': '발틱해', 'Indian Ocean': '인도양',
+    'British Isles': '영국 제도', 'Canada': '캐나다', 'USA': '미국',
+    'alaska': '알래스카', 'caribbean': '카리브해', 'mediterranean': '지중해',
+}
+CITY_KO = {
+    'Seattle': '시애틀', 'Miami': '마이애미', 'Barcelona': '바르셀로나',
+    'Rome': '로마', 'Athens': '아테네', 'Venice': '베네치아',
+    'Civitavecchia': '로마(치비타베키아)', 'Southampton': '사우샘프턴',
+    'Fort Lauderdale': '포트로더데일', 'Ft. Lauderdale': '포트로더데일',
+    'New York': '뉴욕', 'San Juan': '산후안', 'Tampa': '탬파',
+    'Galveston': '갤버스턴', 'Copenhagen': '코펜하겐', 'Amsterdam': '암스테르담',
+    'Cagliari': '칼리아리', 'Bari': '바리', 'Genoa': '제노아',
+    'Piraeus': '피레우스(아테네)', 'Singapore': '싱가포르',
+    'Tokyo': '도쿄', 'Yokohama': '요코하마', 'Shanghai': '상하이',
+    'Hong Kong': '홍콩', 'Keelung': '지룽', 'Busan': '부산',
+    'Incheon': '인천', 'Sydney': '시드니', 'Melbourne': '멜버른',
+    'Vancouver': '밴쿠버', 'San Francisco': '샌프란시스코',
+    'Los Angeles': 'LA', 'Honolulu': '호놀룰루', 'Dubai': '두바이',
+    'Lisbon': '리스본', 'Marseille': '마르세유',
+    'Port Canaveral': '올란도(포트캐너버럴)',
+}
+COUNTRY_CODES = {
+    '스페인': 'ES', '이탈리아': 'IT', '프랑스': 'FR', '그리스': 'GR',
+    '포르투갈': 'PT', '터키': 'TR', '크로아티아': 'HR', '몰타': 'MT',
+    '노르웨이': 'NO', '덴마크': 'DK', '스웨덴': 'SE', '핀란드': 'FI',
+    '영국': 'GB', '아이슬란드': 'IS', '독일': 'DE', '네덜란드': 'NL',
+    '미국': 'US', '캐나다': 'CA', '멕시코': 'MX', '자메이카': 'JM',
+    '바하마': 'BS', '쿠바': 'CU', '도미니카': 'DO', '푸에르토리코': 'PR',
+    '일본': 'JP', '한국': 'KR', '중국': 'CN', '대만': 'TW',
+    '싱가포르': 'SG', '태국': 'TH', '베트남': 'VN', '홍콩': 'HK',
+    '오만': 'OM', '아랍에미리트': 'AE', '이스라엘': 'IL', '요르단': 'JO',
+    '호주': 'AU', '뉴질랜드': 'NZ', '바베이도스': 'BB', '세인트루시아': 'LC',
+    '앤티가': 'AG', '아루바': 'AW', '퀴라소': 'CW',
+}
+
+def make_seo_title(cruise):
+    ship = cruise.get('shipTitle', '')
+    nights = cruise.get('nights', '')
+    route = cruise.get('portRoute', '') or ''
+    countries_ko = cruise.get('countriesKo', []) or []
+    destination = cruise.get('destination', '') or ''
+
+    start_city = ''
+    if route:
+        raw_city = route.split('→')[0].strip().split(',')[0].strip()
+        start_city = CITY_KO.get(raw_city, raw_city)
+
+    dest = DEST_KO.get(destination, destination) or '크루즈'
+    codes = ''.join([COUNTRY_CODES.get(c, '') for c in countries_ko[:5]])
+    countries_str = '·'.join(countries_ko[:4]) if countries_ko else dest
+
+    if start_city:
+        title = f"{start_city}에서 출발하는 {dest} {nights}박! {ship}으로 {countries_str} 완전정복"
+    else:
+        title = f"{dest} {nights}박! {ship}으로 {countries_str} 완전정복"
+
+    if codes:
+        title += f" {codes}"
+    return title
+
 def make_port_route(cruise):
     route = cruise.get('portRoute') or cruise.get('port_route') or ''
     if route:
@@ -106,8 +171,10 @@ def build_cruise_page(cruise):
     price_balcony = cruise.get('priceBalcony') or cruise.get('price_balcony') or ''
     currency = cruise.get('currency') or 'USD'
     
-    if not title_ko and ship_title:
-        title_ko = f"{ship_title} {nights}박 크루즈"
+    # SEO 최적화 제목 생성
+    title_ko = make_seo_title(cruise)
+    if not title_ko:
+        title_ko = f"{ship_title} {nights}박 크루즈" if ship_title else ''
     if not title_ko:
         return None, None
     
