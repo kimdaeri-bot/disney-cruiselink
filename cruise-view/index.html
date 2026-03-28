@@ -318,6 +318,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('ogUrl')?.setAttribute('content', `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`);
       document.getElementById('canonicalTag')?.setAttribute('href', `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`);
 
+      // Dynamic meta description
+      const descText = `${c.title} — ${c.portRoute || ''} · ${c.nights || ''}박 ${(c.nights||0)+1}일 · ${c.operator || ''} · ${c.priceInside ? (c.currency==='USD'?'$':c.currency)+c.priceInside+'~' : '문의'}. 크루즈링크에서 예약하세요.`;
+      document.getElementById('metaDesc')?.setAttribute('content', descText.slice(0,160));
+      document.getElementById('twTitle')?.setAttribute('content', `${c.title} - 크루즈링크`);
+      document.getElementById('twDesc')?.setAttribute('content', descText.slice(0,160));
+      document.getElementById('twImage')?.setAttribute('content', c.image || '');
+
+      // TouristTrip / Offer Schema (JSON-LD, injected dynamically)
+      const existingSchema = document.getElementById('cruiseSchema');
+      if (existingSchema) existingSchema.remove();
+      const fromPrice = c.priceInside || c.priceOutside || c.priceBalcony;
+      const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "TouristTrip",
+        "name": c.title,
+        "description": descText.slice(0, 300),
+        "image": c.image || '',
+        "url": `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`,
+        "touristType": "크루즈 여행",
+        "itinerary": {
+          "@type": "ItemList",
+          "name": c.portRoute || '',
+          "numberOfItems": c.nights || 0
+        },
+        "provider": {
+          "@type": "TravelAgency",
+          "name": "크루즈링크",
+          "url": "https://www.cruiselink.co.kr"
+        },
+        "offers": fromPrice ? {
+          "@type": "Offer",
+          "price": fromPrice,
+          "priceCurrency": c.currency || "USD",
+          "availability": "https://schema.org/InStock",
+          "url": `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`
+        } : undefined,
+        "startDate": c.dateFrom || '',
+        "endDate": c.dateTo || ''
+      };
+      // Remove undefined fields
+      Object.keys(schemaData).forEach(k => schemaData[k] === undefined && delete schemaData[k]);
+      const schemaEl = document.createElement('script');
+      schemaEl.id = 'cruiseSchema';
+      schemaEl.type = 'application/ld+json';
+      schemaEl.textContent = JSON.stringify(schemaData);
+      document.head.appendChild(schemaEl);
+
       let html = '';
 
       // === HERO ===
