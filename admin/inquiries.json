@@ -1616,5 +1616,23 @@
     "id": "1774715197960",
     "timestamp": "2026-03-28T16:26:37.960Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "Celebrity Cruises",
+    "ship": "Celebrity Equinox",
+    "dateFrom": "2026-09-03",
+    "price": "",
+    "message": "[고객] 지중해 9월 celebrity로 추천해줘\n[AI] 2026년 9월 지중해 출발 Celebrity 크루즈 5개 상품입니다.\n\n바르셀로나, 피레우스(아테네), 치비타베키아(로마) 등에서 출발하는 8박~11박 일정으로, 지중해의 주요 항구와 그리스 섬들을 둘러보실 수 있습니다.",
+    "source": "kring-ai",
+    "id": "1774715240361",
+    "timestamp": "2026-03-28T16:27:20.361Z",
+    "status": "신규"
   }
 ]
