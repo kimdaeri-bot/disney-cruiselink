@@ -17,7 +17,7 @@ CRUISES_INDEX = os.path.join(OUT_DIR, 'index.html')
 os.makedirs(OUT_DIR, exist_ok=True)
 
 TODAY = datetime.now().strftime('%Y-%m-%d')
-DAILY_LIMIT = 20
+DAILY_LIMIT = 200
 
 def load_cruises():
     """모든 cruises json 파일에서 크루즈 데이터 로드"""
