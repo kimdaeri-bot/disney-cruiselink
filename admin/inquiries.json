@@ -2012,5 +2012,23 @@
     "id": "1774797965634",
     "timestamp": "2026-03-29T15:26:05.634Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC Bellissima",
+    "dateFrom": "2026-04-02",
+    "price": "",
+    "message": "[고객] 부산출발 포난트크루즈\n[AI] 부산 출발 포난트 크루즈 상품을 검색했는데, 현재 제 목록에는 해당 상품이 없습니다.\n\n더 구체적인 출발 시기나 목적지를 알려주시면 도움을 드리겠습니다.",
+    "source": "kring-ai",
+    "id": "1774822206440",
+    "timestamp": "2026-03-29T22:10:06.440Z",
+    "status": "신규"
   }
 ]
