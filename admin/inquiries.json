@@ -1742,5 +1742,23 @@
     "id": "1774782244670",
     "timestamp": "2026-03-29T11:04:04.670Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "Celebrity Cruises",
+    "ship": "Celebrity Millennium",
+    "dateFrom": "2027-05-01",
+    "price": "",
+    "message": "[고객] 2027년5월 부산출잘일정\n[AI] 2027년 5월 부산 출발 크루즈 일정을 찾았습니다.\n\n구체적으로 어느 노선을 원하시나요? 일본 주변, 알래스카, 아시아 등 목적지를 말씀해 주시면 더 정확하게 추천해 드리겠습니다.",
+    "source": "kring-ai",
+    "id": "1774782275885",
+    "timestamp": "2026-03-29T11:04:35.885Z",
+    "status": "신규"
   }
 ]
