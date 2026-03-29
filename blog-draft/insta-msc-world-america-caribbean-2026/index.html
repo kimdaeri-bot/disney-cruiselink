@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>인스타 초안 | MSC World America 카리브해 7박 (2026.10.03)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #333; }
+
+    .admin-bar { position: sticky; top: 0; z-index: 999; background: #1a1a2e; color: #fff; padding: 10px 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; }
+    .admin-bar strong { color: #ffd700; }
+    .copy-all-btn { margin-left: auto; background: #E1306C; color: #fff; border: none; padding: 7px 18px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 700; }
+    .copy-all-btn:hover { background: #c1255a; }
+
+    .wrapper { max-width: 860px; margin: 30px auto; padding: 0 16px 60px; }
+
+    .block { background: #fff; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.07); position: relative; }
+    .block-label { font-size: 11px; font-weight: 800; color: #E1306C; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+    .block:hover .copy-btn { opacity: 1; }
+    .copy-btn { position: absolute; top: 14px; right: 16px; opacity: 0; transition: opacity .2s; background: #E1306C; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; }
+
+    .slides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 8px; }
+    .slide { background: linear-gradient(145deg, #0a2540, #0077cc); color: #fff; border-radius: 10px; aspect-ratio: 1/1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; position: relative; cursor: pointer; transition: transform .15s; }
+    .slide:hover { transform: scale(1.02); }
+    .slide:hover .slide-copy { opacity: 1; }
+    .slide-copy { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.2); border: none; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; opacity: 0; transition: opacity .2s; }
+    .slide-num { font-size: 11px; font-weight: 800; opacity: .5; margin-bottom: 10px; letter-spacing: 1px; }
+    .slide-title { font-size: 17px; font-weight: 900; line-height: 1.4; margin-bottom: 8px; }
+    .slide-sub { font-size: 12px; opacity: .8; line-height: 1.6; }
+    .slide-price { font-size: 22px; font-weight: 900; color: #FFD700; margin: 8px 0 4px; }
+
+    .caption-box { background: #fff8f0; border-left: 4px solid #E1306C; padding: 16px 20px; border-radius: 0 8px 8px 0; font-size: 15px; line-height: 2; white-space: pre-wrap; font-family: inherit; }
+
+    .hashtags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .ht { background: #f0f2ff; color: #3d5af1; font-size: 13px; padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: background .15s; }
+    .ht:hover { background: #3d5af1; color: #fff; }
+
+    .story { background: linear-gradient(160deg, #006064, #00897b, #26c6da); color: #fff; border-radius: 10px; aspect-ratio: 9/16; max-width: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px 14px; cursor: pointer; position: relative; }
+    .story:hover .slide-copy { opacity: 1; }
+    .story-title { font-size: 15px; font-weight: 900; line-height: 1.4; margin-bottom: 8px; }
+    .story-sub { font-size: 11px; opacity: .85; line-height: 1.6; }
+    .stories-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
+
+    #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #E1306C; color: #fff; padding: 10px 24px; border-radius: 20px; font-size: 14px; display: none; z-index: 9999; }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4PPLZNG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="admin-bar">
+  <strong>📸 인스타그램 초안</strong>
+  <span>noindex — 외부 비공개</span>
+  <span>|</span>
+  <span>MSC World America 카리브해 7박 · 2026.10.03</span>
+  <button class="copy-all-btn" onclick="copyAll()">📋 전체 캡션 복사</button>
+</div>
+
+<div class="wrapper" id="insta-content">
+
+  <!-- 캐러셀 슬라이드 -->
+  <div class="block">
+    <div class="block-label">📱 피드 캐러셀 — 슬라이드 텍스트 (6장)</div>
+    <p style="font-size:13px;color:#888;margin-bottom:16px">각 슬라이드 클릭 → 텍스트 복사. 디자인 툴(미리캔버스·캔바 등)에 붙여넣기하세요.</p>
+    <div class="slides-grid">
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#004d40,#00695c)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 01</div>
+        <div class="slide-title">🌴 MSC 최신 선박으로<br>카리브해 7박!</div>
+        <div class="slide-sub">MSC World America<br>2026년 10월 3일 출발<br>마이애미 출발·귀항</div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#1a237e,#283593)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 02</div>
+        <div class="slide-title">🗺️ 7박 8일 루트</div>
+        <div class="slide-sub">
+          📍 마이애미 출항 (10/3)<br>
+          🇩🇴 푸에르토 플라타<br>
+          🇵🇷 산후안(Puerto Rico)<br>
+          🏝️ 오션 케이 프라이빗 아일랜드<br>
+          📍 마이애미 귀항 (10/10)
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#e65100,#f57c00)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 03</div>
+        <div class="slide-title">🚢 MSC World America<br>2025년 신조 선박!</div>
+        <div class="slide-sub">
+          세계 최대급 215,000톤<br>
+          수영장 6개 · 워터파크<br>
+          아이스링크 · 4D 영화관<br>
+          MSC Yacht Club 최고급 구역<br>
+          마이애미 전용 모항 운영
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#006064,#00838f)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 04</div>
+        <div class="slide-title">🏝️ 오션 케이<br>MSC 전용 파라다이스</div>
+        <div class="slide-sub">
+          승객 전용 프라이빗 아일랜드<br>
+          맑고 투명한 바하마 해수 🌊<br>
+          스노클링 · 카약 · 패들보드<br>
+          수중 관람 시설<br>
+          비치 바 & 선셋 파티 🌅
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#b71c1c,#c62828)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 05</div>
+        <div class="slide-title">💰 요금 안내</div>
+        <div class="slide-sub">인사이드 (신조 특가)</div>
+        <div class="slide-price">$589~</div>
+        <div class="slide-sub">발코니 · 스위트는 문의<br><small style="opacity:.7">1인 기준 · 항공 별도</small></div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#4a148c,#6a1b9a)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 06</div>
+        <div class="slide-title">📞 지금 바로 상담!</div>
+        <div class="slide-sub">
+          크루즈링크<br>
+          9개 글로벌 선사 공식 판매사<br><br>
+          💬 카카오톡 @크루즈링크<br>
+          🌐 www.cruiselink.co.kr
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 피드 캡션 (메인) -->
+  <div class="block">
+    <div class="block-label">✍️ 피드 캡션 (메인 포스팅용)</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="caption-box" id="caption-feed">인스타그램 포스팅 — MSC World America 카리브해 7박 크루즈
+
+🌴 2025년 데뷔한 MSC 최신 선박으로 카리브해를?
+이 가격, 이 선박, 이 루트 — 조합이 너무 완벽합니다.
+프라이빗 아일랜드에서 열대 바다에 뛰어드는 기분 느껴보셨나요? 🌊
+
+
+📍 MSC World America 카리브해 크루즈
+🗓 2026년 10월 3일 출발 (7박 8일)
+✈️ 마이애미 출발·귀항
+
+🗺 DAY BY DAY
+DAY1  🚢 마이애미 탑승 → 카리브해 출항
+DAY2  🌊 항해의 날 (선내 모든 시설 오픈)
+DAY3  🇩🇴 푸에르토 플라타 — 황금 해변 & 케이블카
+DAY4  🇵🇷 산후안(PR) — 올드타운 + 카리브 럼주
+DAY5  🏝️ 오션 케이 — MSC 전용 프라이빗 아일랜드
+DAY6-7  🎭 항해 (쇼·카지노·스파·쇼핑 마지막 기회)
+DAY8  🏠 마이애미 귀항
+
+🌟 신선 하이라이트
+✔ MSC World America: 2025년 신조 선박 = 새것의 모든 것
+✔ 오션 케이: MSC 승객만 들어가는 진짜 프라이빗 아일랜드
+✔ 산후안 올드타운: UNESCO 세계유산 구도심 산책
+✔ 아이스링크, 워터파크, 브로드웨이 공연 — 선내에서 다 됩니다
+
+💰 요금 (1인 기준 · 항공 별도)
+인사이드 $589~ (신조 특가!)
+발코니 · 스위트는 크루즈링크 문의
+
+📞 크루즈링크 상담
+전화 1599-0000
+카카오톡 @크루즈링크
+홈페이지 www.cruiselink.co.kr
+
+크루즈링크는 9개 글로벌 선사 공식 판매사입니다 🚢</div>
+  </div>
+
+  <!-- 릴스 자막 -->
+  <div class="block">
+    <div class="block-label">🎬 릴스 자막 (15-30초 숏폼)</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="caption-box">[ 릴스 자막 스크립트 ]
+
+(0-3초)
+"2025년 최신 선박으로 카리브해를?"
+
+(3-8초)
+MSC World America
+마이애미 출발 카리브 7박 🌴
+2026년 10월 3일 출발
+
+(8-15초)
+하이라이트: 오션 케이
+MSC 전용 프라이빗 아일랜드
+맑은 열대 바다에 첫 발을 딛는 순간... 🏝️
+
+(15-20초)
+인사이드 $589부터
+크루즈링크에서 상담받으세요
+
+(자막 CTA)
+📞 1599-0000 | @크루즈링크</div>
+  </div>
+
+  <!-- 스토리 슬라이드 -->
+  <div class="block">
+    <div class="block-label">📲 스토리 슬라이드 (3장)</div>
+    <p style="font-size:13px;color:#888;margin-bottom:16px">스토리 슬라이드 클릭 시 텍스트 복사됩니다.</p>
+    <div class="stories-row">
+
+      <div class="story" onclick="copySlide(this)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">STORY 01</div>
+        <div class="story-title">🌴 카리브해<br>크루즈 7박</div>
+        <div class="story-sub">MSC World America<br>2026.10.03 출발<br>마이애미 → 카리브<br>7박 8일</div>
+      </div>
+
+      <div class="story" onclick="copySlide(this)" style="background:linear-gradient(160deg,#004d40,#00897b,#26c6da)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">STORY 02</div>
+        <div class="story-title">🏝️ 이게 진짜<br>프라이빗 아일랜드</div>
+        <div class="story-sub">
+          오션 케이 (Ocean Cay)<br>MSC 전용 섬<br>스노클링 · 카약<br>비치 바 · 선셋 파티<br>일반 여행으로는 못 가요!
+        </div>
+      </div>
+
+      <div class="story" onclick="copySlide(this)" style="background:linear-gradient(160deg,#b71c1c,#e53935,#ef9a9a)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">STORY 03</div>
+        <div class="story-title">💰 $589~<br>카리브 7박</div>
+        <div class="story-sub">
+          2025년 신조 선박 특가<br>인사이드 $589~<br>스위트·발코니 문의<br><br>
+          크루즈링크 상담<br>📞 1599-0000
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 해시태그 -->
+  <div class="block">
+    <div class="block-label"># 해시태그 세트</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="hashtags">
+      <span class="ht" onclick="copyHt(this)">#카리브해크루즈</span>
+      <span class="ht" onclick="copyHt(this)">#MSC크루즈</span>
+      <span class="ht" onclick="copyHt(this)">#MSCWorldAmerica</span>
+      <span class="ht" onclick="copyHt(this)">#오션케이</span>
+      <span class="ht" onclick="copyHt(this)">#프라이빗아일랜드</span>
+      <span class="ht" onclick="copyHt(this)">#마이애미크루즈</span>
+      <span class="ht" onclick="copyHt(this)">#카리브크루즈</span>
+      <span class="ht" onclick="copyHt(this)">#열대크루즈</span>
+      <span class="ht" onclick="copyHt(this)">#신조선박</span>
+      <span class="ht" onclick="copyHt(this)">#미국크루즈</span>
+      <span class="ht" onclick="copyHt(this)">#크루즈여행</span>
+      <span class="ht" onclick="copyHt(this)">#크루즈링크</span>
+      <span class="ht" onclick="copyHt(this)">#산후안</span>
+      <span class="ht" onclick="copyHt(this)">#푸에르토리코</span>
+      <span class="ht" onclick="copyHt(this)">#cruise</span>
+      <span class="ht" onclick="copyHt(this)">#caribbean</span>
+      <span class="ht" onclick="copyHt(this)">#oceancay</span>
+      <span class="ht" onclick="copyHt(this)">#cruiselife</span>
+    </div>
+  </div>
+
+</div><!-- /.wrapper -->
+
+<div id="toast">✅ 복사되었습니다!</div>
+
+<script>
+function showToast() {
+  const t = document.getElementById('toast');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 1800);
+}
+function copyAll() {
+  const caption = document.getElementById('caption-feed').textContent;
+  navigator.clipboard ? navigator.clipboard.writeText(caption).then(showToast) : legacyCopy(caption);
+}
+function copyBlock(btn) {
+  const box = btn.nextElementSibling;
+  const text = box.textContent;
+  navigator.clipboard ? navigator.clipboard.writeText(text).then(showToast) : legacyCopy(text);
+}
+function copySlide(el) {
+  const text = el.innerText.replace(/^복사\n?/,'');
+  navigator.clipboard ? navigator.clipboard.writeText(text).then(showToast) : legacyCopy(text);
+}
+function copyHt(el) {
+  navigator.clipboard ? navigator.clipboard.writeText(el.textContent).then(showToast) : legacyCopy(el.textContent);
+}
+function legacyCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  showToast();
+}
+</script>
+</body>
+</html>
