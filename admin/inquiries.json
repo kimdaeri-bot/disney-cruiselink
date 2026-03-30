@@ -2157,7 +2157,7 @@
     "cruiseline": "MSC Cruises",
     "ship": "MSC 벨리시마",
     "dateFrom": "2027-06-10",
-    "ports": "",
+    "ports": "도쿄 → 가고시마 → 인천",
     "price": "문의",
     "ref": "MSCBE20270610TYOINC",
     "name": "TEST",
@@ -2168,6 +2168,6 @@
     "message": "TEST",
     "id": "1774844784246",
     "timestamp": "2026-03-30T04:26:24.246Z",
-    "status": "신규"
+    "status": "상담완료"
   }
 ]
