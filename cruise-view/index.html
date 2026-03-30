@@ -710,7 +710,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       let tableHtml = `<div class="itin-wrap">
         <table class="itin-table">
-          <thead><tr><th>요일</th><th>날짜</th><th class="itin-th-port">도시 / 항구</th><th>출항시각</th><th>도착시각</th></tr></thead>
+          <thead><tr><th>날짜</th><th>요일</th><th class="itin-th-port">도시 / 항구</th><th>출항시각</th><th>도착시각</th></tr></thead>
           <tbody>`;
 
       for (const day of filledDays) {
@@ -725,7 +725,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           const d = new Date(startDate);
           d.setDate(d.getDate() + day.day - 1);
           dayLabel = DAYS_KO[d.getDay()] + '요일';
-          dateLabel = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+          dateLabel = `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
         } else {
           dayLabel = `Day ${day.day}`;
         }
@@ -750,8 +750,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         tableHtml += `<tr class="${rowClass}">
-          <td class="itin-td-day"><strong>${dayLabel}</strong></td>
           <td class="itin-td-date">${dateLabel}</td>
+          <td class="itin-td-day"><strong>${dayLabel}</strong></td>
           <td class="itin-td-port">${portCell}</td>
           <td class="itin-td-time">${arrCell}</td>
           <td class="itin-td-time">${depCell}</td>
