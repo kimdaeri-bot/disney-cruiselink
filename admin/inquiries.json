@@ -2349,5 +2349,23 @@
     "id": "1774909378735",
     "timestamp": "2026-03-30T22:22:58.735Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC Bellissima",
+    "dateFrom": "2026-04-02",
+    "price": "",
+    "message": "[고객] 부산출발5일상품\n[AI] 부산 출발 5일 상품을 찾아봤는데, 제 목록에는 현재 없습니다.\n\nAI가 일정을 찾지 못했어요. 조금 더 자세히 질문해주시거나 직접 검색 또는 카카오톡으로 문의 주시면 빠르게 도와드리겠습니다.",
+    "source": "kring-ai",
+    "id": "1774909474552",
+    "timestamp": "2026-03-30T22:24:34.552Z",
+    "status": "신규"
   }
 ]
