@@ -2169,5 +2169,23 @@
     "id": "1774863205999",
     "timestamp": "2026-03-30T09:33:25.999Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC Bellissima",
+    "dateFrom": "2026-04-02",
+    "price": "",
+    "message": "[고객] 일본 크루즈 보여줘\n[AI] 일본 출발/기항 크루즈 상품 5건을 찾았습니다.\n\n4월 도쿄 출발부터 5박~12박 일정까지 다양하게 준비되어 있습니다. 원하시는 출발일, 박수, 특정 기항지가 있으시면 말씀해 주세요.",
+    "source": "kring-ai",
+    "id": "1774876272474",
+    "timestamp": "2026-03-30T13:11:12.474Z",
+    "status": "신규"
   }
 ]
