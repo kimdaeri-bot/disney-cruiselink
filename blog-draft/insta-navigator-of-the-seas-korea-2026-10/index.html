@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="/">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4PPLZNG');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>인스타 초안 | 내비게이터 오브 더 시즈 한국/일본 11박 (2026.10.18)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #333; }
+    .admin-bar { position: sticky; top: 0; z-index: 999; background: #1a1a2e; color: #fff; padding: 10px 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; }
+    .admin-bar strong { color: #ffd700; }
+    .copy-all-btn { margin-left: auto; background: #E1306C; color: #fff; border: none; padding: 7px 18px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 700; }
+    .copy-all-btn:hover { background: #c1255a; }
+    .wrapper { max-width: 860px; margin: 30px auto; padding: 0 16px 60px; }
+    .block { background: #fff; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.07); position: relative; }
+    .block-label { font-size: 11px; font-weight: 800; color: #E1306C; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+    .block:hover .copy-btn { opacity: 1; }
+    .copy-btn { position: absolute; top: 14px; right: 16px; opacity: 0; transition: opacity .2s; background: #E1306C; color: #fff; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; }
+    .slides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 8px; }
+    .slide { background: linear-gradient(145deg, #0a2540, #00695c); color: #fff; border-radius: 10px; aspect-ratio: 1/1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; position: relative; cursor: pointer; transition: transform .15s; }
+    .slide:hover { transform: scale(1.02); }
+    .slide:hover .slide-copy { opacity: 1; }
+    .slide-copy { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.2); border: none; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; opacity: 0; transition: opacity .2s; }
+    .slide-num { font-size: 11px; font-weight: 800; opacity: .5; margin-bottom: 10px; letter-spacing: 1px; }
+    .slide-title { font-size: 17px; font-weight: 900; line-height: 1.4; margin-bottom: 8px; }
+    .slide-sub { font-size: 12px; opacity: .8; line-height: 1.6; }
+    .slide-price { font-size: 22px; font-weight: 900; color: #FFD700; margin: 8px 0 4px; }
+    .caption-box { background: #fff8f0; border-left: 4px solid #E1306C; padding: 16px 20px; border-radius: 0 8px 8px 0; font-size: 15px; line-height: 2; white-space: pre-wrap; font-family: inherit; }
+    .hashtags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .ht { background: #f0f2ff; color: #3d5af1; font-size: 13px; padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: background .15s; }
+    .ht:hover { background: #3d5af1; color: #fff; }
+    .story { background: linear-gradient(160deg, #0a2540, #006064, #00838f); color: #fff; border-radius: 10px; aspect-ratio: 9/16; max-width: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px 14px; cursor: pointer; position: relative; }
+    .story:hover .slide-copy { opacity: 1; }
+    .story-title { font-size: 15px; font-weight: 900; line-height: 1.4; margin-bottom: 8px; }
+    .story-sub { font-size: 11px; opacity: .85; line-height: 1.6; }
+    .stories-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
+    #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #E1306C; color: #fff; padding: 10px 24px; border-radius: 20px; font-size: 14px; display: none; z-index: 9999; }
+  </style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4PPLZNG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="admin-bar">
+  <strong>📸 인스타그램 초안</strong>
+  <span>noindex — 외부 비공개</span>
+  <span>|</span>
+  <span>내비게이터 오브 더 시즈 한국/일본 11박 · 2026.10.18</span>
+  <button class="copy-all-btn" onclick="copyAll()">📋 전체 캡션 복사</button>
+</div>
+
+<div class="wrapper" id="insta-content">
+
+  <!-- 캐러셀 슬라이드 -->
+  <div class="block">
+    <div class="block-label">📱 피드 캐러셀 — 슬라이드 텍스트 (6장)</div>
+    <p style="font-size:13px;color:#888;margin-bottom:16px">각 슬라이드 클릭 → 텍스트 복사. 미리캔버스·캔바 등에 붙여넣기하세요.</p>
+    <div class="slides-grid">
+
+      <div class="slide" onclick="copySlide(this)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 01</div>
+        <div class="slide-title">🌏 일본·한국·홍콩·<br>베트남·싱가포르를<br>크루즈 한 번에?</div>
+        <div class="slide-sub">Navigator of the Seas<br>동아시아 11박 크루즈<br>2026년 10월 18일 출발</div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#1b5e20,#2e7d32)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 02</div>
+        <div class="slide-title">🗺️ DAY BY DAY</div>
+        <div class="slide-sub">
+          🇯🇵 요코하마 출항 (D1)<br>
+          🇯🇵 나가사키 (D2)<br>
+          🇰🇷 제주도 서귀포 (D3)<br>
+          🌊 항해 (D4~5)<br>
+          🇭🇰 홍콩 (D6)<br>
+          🇻🇳 찬마이/다낭 (D7)<br>
+          🌊 항해 (D8~10)<br>
+          🇸🇬 싱가포르 하선 (D11~12)
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#880e4f,#ad1457)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 03</div>
+        <div class="slide-title">🇰🇷 제주도 서귀포<br>기항 하이라이트</div>
+        <div class="slide-sub">
+          🌊 천지연 폭포 (항구에서 도보)<br>
+          🗿 제주 돌하르방<br>
+          🍊 서귀포 올레시장 흑돼지<br>
+          🌋 성산일출봉 (유네스코)<br><br>
+          외국 크루즈가 제주도에 온다!
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#bf360c,#d84315)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 04</div>
+        <div class="slide-title">🇭🇰 홍콩 & 🇸🇬 싱가포르<br>신선 하이라이트</div>
+        <div class="slide-sub">
+          홍콩 빅토리아 피크 야경 🌃<br>
+          딤섬 미쉐린 맛집 팀호완 🥟<br>
+          싱가포르 가든스 바이 더 베이 🌳<br>
+          마리나 베이 샌즈 루프탑 수영장 🏊<br>
+          호커 센터 현지 음식 투어 🍜
+        </div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#1a237e,#283593)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 05</div>
+        <div class="slide-title">💰 요금 안내</div>
+        <div class="slide-sub">인사이드</div>
+        <div class="slide-price">$2,045~</div>
+        <div class="slide-sub">스위트 $4,789~<br><small style="opacity:.7">1인 기준 · 항공 별도</small><br><br>일본+한국+홍콩+베트남+싱가포르<br>5개국 크루즈로 한 번에!</div>
+      </div>
+
+      <div class="slide" onclick="copySlide(this)" style="background:linear-gradient(145deg,#e65100,#f57c00)">
+        <button class="slide-copy">복사</button>
+        <div class="slide-num">SLIDE 06</div>
+        <div class="slide-title">📞 지금 바로<br>상담하세요!</div>
+        <div class="slide-sub">
+          크루즈링크<br>
+          9개 글로벌 선사 공식 판매사<br><br>
+          💬 카카오톡 @크루즈링크<br>
+          🌐 www.cruiselink.co.kr
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 피드 캡션 -->
+  <div class="block">
+    <div class="block-label">✍️ 피드 캡션 (메인 포스팅용)</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="caption-box" id="caption-feed">🌏 항공권 5장 살 돈으로 5개국을 크루즈로 한 번에?
+
+일본 → 한국(제주도) → 홍콩 → 베트남 → 싱가포르
+로얄캐리비안 Navigator of the Seas 동아시아 크루즈 🛳️
+
+━━━━━━━━━━━━━━━━━━━━
+📅 2026년 10월 18일 출발
+🌙 11박 12일 / 요코하마 → 싱가포르
+━━━━━━━━━━━━━━━━━━━━
+
+✅ 요코하마(도쿄) — 가을 일본의 시작
+✅ 나가사키 — 역사·문화·나가사키 짬뽕
+✅ 서귀포(제주도) — 천지연 폭포·돌하르방·흑돼지
+✅ 홍콩 — 빅토리아 피크 야경·딤섬 미쉐린·빅토리아 항구
+✅ 찬마이/다낭 — 호이안 등불 축제·후에 황궁
+✅ 싱가포르 — 가든스 바이 더 베이·마리나 베이 샌즈
+
+외국 크루즈에서 제주도를 기항한다는 특별한 경험 🇰🇷
+10월 가을 아시아 크루즈 — 이 노선이 얼마나 나오겠어요?
+
+💰 인사이드 $2,045~ / 스위트 $4,789~
+
+━━━━━━━━━━━━━━━━━━━━
+크루즈링크는 9개 글로벌 선사 공식 판매사입니다.
+프로모션 요금 + 전문 상담 + 한국어 지원까지.
+━━━━━━━━━━━━━━━━━━━━
+
+💬 카카오 pf.kakao.com/_xgYbJG
+📞 02-3788-9119
+🌐 www.cruiselink.co.kr</div>
+  </div>
+
+  <!-- 짧은 캡션 -->
+  <div class="block">
+    <div class="block-label">✍️ 짧은 릴스 캡션 (30초 영상용)</div>
+    <button class="copy-btn" onclick="copyBlock(this)">복사</button>
+    <div class="caption-box" id="caption-short">🌏 일본에서 출발해 제주도 찍고 싱가포르로 끝나는 크루즈
+
+나가사키·제주도·홍콩·다낭·싱가포르 — 5개국 11박 한 번에 🛳️
+10월 가을 시즌, 동아시아 크루즈의 끝판왕
+
+📅 2026.10.18 요코하마 출발
+💰 $2,045~ / 크루즈링크 공식 상담 → 링크 바이오</div>
+  </div>
+
+  <!-- 스토리 슬라이드 -->
+  <div class="block">
+    <div class="block-label">📖 스토리 슬라이드 (3장)</div>
+    <div class="stories-row">
+
+      <div class="story" onclick="copySlide(this)">
+        <button class="slide-copy">복사</button>
+        <div class="story-title">🌏 동아시아<br>5개국 크루즈</div>
+        <div class="story-sub">
+          일본·한국·홍콩<br>베트남·싱가포르<br><br>
+          11박 12일<br>2026.10.18 출발<br><br>
+          $2,045~
+        </div>
+      </div>
+
+      <div class="story" onclick="copySlide(this)" style="background:linear-gradient(160deg,#1b5e20,#2e7d32,#388e3c)">
+        <button class="slide-copy">복사</button>
+        <div class="story-title">🇰🇷 외국 크루즈가<br>제주도에!</div>
+        <div class="story-sub">
+          서귀포 기항<br>
+          천지연 폭포<br>
+          성산일출봉<br>
+          올레시장 흑돼지<br><br>
+          외국 크루즈에서<br>제주도를 방문하는<br>특별한 경험
+        </div>
+      </div>
+
+      <div class="story" onclick="copySlide(this)" style="background:linear-gradient(160deg,#e65100,#f57c00,#ff9800)">
+        <button class="slide-copy">복사</button>
+        <div class="story-title">📞 지금 상담</div>
+        <div class="story-sub">
+          크루즈링크<br>
+          9개 선사 공식 판매사<br><br>
+          카카오 DM<br>또는<br>
+          02-3788-9119<br><br>
+          www.cruiselink.co.kr
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 해시태그 -->
+  <div class="block">
+    <div class="block-label">🏷️ 해시태그 세트</div>
+    <button class="copy-btn" onclick="copyHashtags()">복사</button>
+    <div class="hashtags">
+      <span class="ht" onclick="copyText(this)">#로얄캐리비안</span>
+      <span class="ht" onclick="copyText(this)">#NavigatoroftheSeas</span>
+      <span class="ht" onclick="copyText(this)">#내비게이터오브더시즈</span>
+      <span class="ht" onclick="copyText(this)">#아시아크루즈</span>
+      <span class="ht" onclick="copyText(this)">#한국일본크루즈</span>
+      <span class="ht" onclick="copyText(this)">#제주크루즈</span>
+      <span class="ht" onclick="copyText(this)">#홍콩크루즈</span>
+      <span class="ht" onclick="copyText(this)">#싱가포르크루즈</span>
+      <span class="ht" onclick="copyText(this)">#동아시아크루즈</span>
+      <span class="ht" onclick="copyText(this)">#베트남크루즈</span>
+      <span class="ht" onclick="copyText(this)">#크루즈여행</span>
+      <span class="ht" onclick="copyText(this)">#RCI크루즈</span>
+      <span class="ht" onclick="copyText(this)">#2026크루즈</span>
+      <span class="ht" onclick="copyText(this)">#크루즈링크</span>
+      <span class="ht" onclick="copyText(this)">#10월여행</span>
+      <span class="ht" onclick="copyText(this)">#가을크루즈</span>
+      <span class="ht" onclick="copyText(this)">#cruise</span>
+      <span class="ht" onclick="copyText(this)">#asiacruise</span>
+      <span class="ht" onclick="copyText(this)">#royalcaribbean</span>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast">✅ 복사 완료!</div>
+
+<script>
+function showToast() {
+  const t = document.getElementById('toast');
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
+function copyAll() {
+  const feed = document.getElementById('caption-feed').innerText;
+  const short = document.getElementById('caption-short').innerText;
+  navigator.clipboard.writeText(feed + '\n\n---\n\n' + short).then(() => showToast());
+}
+function copyBlock(btn) {
+  const box = btn.nextElementSibling;
+  navigator.clipboard.writeText(box.innerText).then(() => showToast());
+}
+function copySlide(el) {
+  const text = el.innerText.replace(/복사/g, '').trim();
+  navigator.clipboard.writeText(text).then(() => showToast());
+}
+function copyText(el) {
+  navigator.clipboard.writeText(el.innerText).then(() => showToast());
+}
+function copyHashtags() {
+  const tags = [...document.querySelectorAll('.ht')].map(e => e.innerText).join(' ');
+  navigator.clipboard.writeText(tags).then(() => showToast());
+}
+</script>
+</body>
+</html>
