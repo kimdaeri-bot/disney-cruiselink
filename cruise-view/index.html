@@ -439,7 +439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </button>
           </div>
           <div class="meta">
-            <span>📅 ${API.formatDateKo(c.dateFrom)} ~ ${API.formatDateKo(c.dateTo)}</span>
+            <span>📅 ${API.formatDateKo(c.dateFrom)} ~ ${(() => { if (c.dateTo) return API.formatDateKo(c.dateTo); const d = new Date(c.dateFrom); d.setDate(d.getDate() + (c.nights||0)); return API.formatDateKo(d.toISOString().slice(0,10)); })()}</span>
             <span>🌙 ${nights}박 ${nights+1}일</span>
             <span>🚢 ${c.shipTitleKo || Translations.shipName(c.shipTitle)}</span>
             <span>🌏 ${countries}</span>
@@ -704,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       // 날짜별 테이블 생성
       const rawStart = holiday.date_from || holiday.departure_date || holiday.start_date || '';
-      const startDate = rawStart ? new Date(rawStart) : null;
+      const startDate = rawStart ? (/^\d{4}-\d{2}-\d{2}$/.test(rawStart) ? (() => { const [y,m,d] = rawStart.split('-').map(Number); return new Date(y,m-1,d); })() : new Date(rawStart)) : null;
       const DAYS_KO = ['일','월','화','수','목','금','토'];
       const DAYS_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
