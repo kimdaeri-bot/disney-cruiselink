@@ -320,7 +320,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const koName = Translations.facilityNameSmart(rawName);
         const rawDesc = cleanText(item.description || '').slice(0, 150);
         const koDesc = Translations.facilityKo[rawName]?.desc || Translations.koOnly(rawDesc) || '';
-        return { name: koName, image: item.images?.[0]?.href || '', desc: koDesc };
+        const koDetail = Translations.facilityKo[rawName]?.detail || '';
+        const koTags = Translations.facilityKo[rawName]?.tags || [];
+        return { name: koName, image: item.images?.[0]?.href || '', desc: koDesc, detail: koDetail, tags: koTags };
       });
       const rawTeaser = cleanText(sl.teaser || '');
       const koTeaser = Translations.koOnly(rawTeaser) || '';
@@ -623,10 +625,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               // item.name은 normalizeShipLive에서 이미 한글화됨
               const name = item.name;
               const desc = item.desc || '';
+              const detail = item.detail || '';
+              const tags = item.tags || [];
               html += `<div class="facility-slide">`;
               if (item.image) html += `<img src="${item.image}" alt="${name}" loading="lazy">`;
-              html += `<div class="facility-slide-body"><div class="facility-slide-name">${name}</div>`;
-              if (desc) html += `<div class="facility-slide-desc">${desc}</div>`;
+              html += `<div class="facility-slide-body">`;
+              html += `<div class="facility-slide-name">${name}</div>`;
+              if (tags.length) html += `<div class="facility-tags">${tags.map(t=>`<span class="facility-tag">${t}</span>`).join('')}</div>`;
+              if (detail) html += `<div class="facility-slide-detail">${detail}</div>`;
+              else if (desc) html += `<div class="facility-slide-desc">${desc}</div>`;
               html += `</div></div>`;
             });
             html += `</div>`;
@@ -1774,6 +1781,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .facility-slide img, .cabin-card img { cursor: zoom-in; }
     .facility-slide img:hover, .cabin-card img:hover { opacity: 0.9; }
     .facility-slides { user-select: none; -webkit-user-select: none; }
+    .facility-tags { display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 4px; }
+    .facility-tag { background:#e8eaf6;color:#3949ab;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap; }
+    .facility-slide-detail { font-size:0.83rem;color:#555;line-height:1.65;margin-top:4px; }
+    .facility-slide-desc { font-size:0.83rem;color:#666;line-height:1.6;margin-top:4px; }
     #lightbox.open { display:flex !important; }
   </style>
 
