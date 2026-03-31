@@ -46,7 +46,9 @@ const API = {
     if (!this._miniCache) {
       try {
         const res = await fetch('assets/data/cruises-mini.json');
-        this._miniCache = res.ok ? await res.json() : [];
+        const all = res.ok ? await res.json() : [];
+        // MSC 전용 사이트 — MSC만 필터
+        this._miniCache = all.filter(c => (c.operator || '').toLowerCase().includes('msc'));
       } catch { this._miniCache = []; }
     }
     const cutoff = (() => { const d = new Date(); d.setMonth(d.getMonth() + 2); return d.toISOString().slice(0, 10); })();
@@ -78,7 +80,9 @@ const API = {
     if (this._allCruisesCache) return this._allCruisesCache;
     try {
       const res = await fetch('assets/data/cruises.json');
-      this._allCruisesCache = await res.json();
+      const all = await res.json();
+      // MSC 전용 사이트 — MSC Cruises만 필터링
+      this._allCruisesCache = all.filter(c => (c.operator || '').toLowerCase().includes('msc'));
     } catch { this._allCruisesCache = []; }
     return this._allCruisesCache;
   },
