@@ -2637,5 +2637,23 @@
     "id": "1774934888042",
     "timestamp": "2026-03-31T05:28:08.042Z",
     "status": "신규"
+  },
+  {
+    "product": "지중해 7박 크루즈",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC 스플렌디다",
+    "dateFrom": "2026-04-25",
+    "ports": "",
+    "price": "문의",
+    "ref": "MSCSP20260425BCNBCN",
+    "name": "장선이",
+    "email": "info@cruiselink.co.kr",
+    "phone": "8237889119",
+    "pax": "4",
+    "cabin": "오션뷰",
+    "message": "없음",
+    "id": "1774937420458",
+    "timestamp": "2026-03-31T06:10:20.458Z",
+    "status": "신규"
   }
 ]
