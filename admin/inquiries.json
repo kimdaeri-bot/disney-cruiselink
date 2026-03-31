@@ -2583,5 +2583,23 @@
     "id": "1774928861465",
     "timestamp": "2026-03-31T03:47:41.465Z",
     "status": "신규"
+  },
+  {
+    "product": "크링AI 채팅 문의",
+    "ref": "KRING_AI",
+    "name": "크링AI 고객",
+    "email": "",
+    "phone": "",
+    "pax": "",
+    "cabin": "",
+    "cruiseline": "MSC Cruises",
+    "ship": "MSC Orchestra",
+    "dateFrom": "2026-03-31",
+    "price": "",
+    "message": "[고객] 7박\n[AI] 2026년 11월 바르셀로나 출발 7박 크루즈 상품 5개가 있습니다.\n\n지중해 노선으로 제노바, 마르세유, 발렌시아 등을 기항하는 상품들이며, 모두 MSC 선박입니다. 원하시는 기항지나 선박이 있으신가요?",
+    "source": "kring-ai",
+    "id": "1774928883398",
+    "timestamp": "2026-03-31T03:48:03.398Z",
+    "status": "신규"
   }
 ]
