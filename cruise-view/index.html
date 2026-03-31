@@ -11,19 +11,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" id="canonicalTag" href="https://www.cruiselink.co.kr/cruise-view/">
+  <link rel="canonical" id="canonicalTag" href="https://msc.cruiselink.co.kr/cruise-view/">
   <meta property="og:site_name" content="크루즈링크">
   <meta property="og:type" content="product">
   <meta id="ogTitle" property="og:title" content="크루즈링크 - 크루즈 상품 상세">
   <meta id="ogDesc" property="og:description" content="크루즈링크에서 최적의 크루즈 여행을 찾아보세요.">
-  <meta id="ogImage" property="og:image" content="https://www.cruiselink.co.kr/assets/images/og-image.jpg">
-  <meta id="ogUrl" property="og:url" content="https://www.cruiselink.co.kr/cruise-view/">
+  <meta id="ogImage" property="og:image" content="https://msc.cruiselink.co.kr/assets/images/og-image.jpg">
+  <meta id="ogUrl" property="og:url" content="https://msc.cruiselink.co.kr/cruise-view/">
   <meta id="metaDesc" name="description" content="크루즈 상세 정보 — 일정, 가격, 선실 등급, 기항지, 포함 사항을 한눈에 확인하세요. 크루즈링크에서 최적의 크루즈를 예약하세요.">
   <meta name="twitter:card" content="summary_large_image">
   <meta id="twTitle" name="twitter:title" content="크루즈 상세 | 크루즈링크">
   <meta id="twDesc" name="twitter:description" content="크루즈 상세 정보 — 일정, 가격, 선실 등급, 기항지, 포함 사항을 한눈에 확인하세요.">
-  <meta id="twImage" name="twitter:image" content="https://www.cruiselink.co.kr/assets/images/og-image.jpg">
-  <title>크루즈 상세 - 크루즈링크</title>
+  <meta id="twImage" name="twitter:image" content="https://msc.cruiselink.co.kr/assets/images/og-image.jpg">
+  <title>MSC 크루즈 상세 | 크루즈링크</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="shortcut icon" href="favicon.ico">
@@ -377,8 +377,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('ogTitle')?.setAttribute('content', `${c.title} - 크루즈링크`);
       document.getElementById('ogDesc')?.setAttribute('content', `${c.portRoute || ''} · ${c.nights || ''}박 · ${c.operator || ''} · $${c.priceInside || ''}~`);
       document.getElementById('ogImage')?.setAttribute('content', c.image || '');
-      document.getElementById('ogUrl')?.setAttribute('content', `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`);
-      document.getElementById('canonicalTag')?.setAttribute('href', `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`);
+      document.getElementById('ogUrl')?.setAttribute('content', `https://msc.cruiselink.co.kr/cruise-view/?ref=${ref}`);
+      document.getElementById('canonicalTag')?.setAttribute('href', `https://msc.cruiselink.co.kr/cruise-view/?ref=${ref}`);
 
       // Dynamic meta description
       const descText = `${c.title} — ${c.portRoute || ''} · ${c.nights || ''}박 ${(c.nights||0)+1}일 · ${c.operator || ''} · ${c.priceInside ? (c.currency==='USD'?'$':c.currency)+c.priceInside+'~' : '문의'}. 크루즈링크에서 예약하세요.`;
@@ -397,7 +397,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         "name": c.title,
         "description": descText.slice(0, 300),
         "image": c.image || '',
-        "url": `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`,
+        "url": `https://msc.cruiselink.co.kr/cruise-view/?ref=${ref}`,
         "touristType": "크루즈 여행",
         "itinerary": {
           "@type": "ItemList",
@@ -414,7 +414,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "price": schemaFromPrice,
           "priceCurrency": c.currency || "USD",
           "availability": "https://schema.org/InStock",
-          "url": `https://www.cruiselink.co.kr/cruise-view/?ref=${ref}`
+          "url": `https://msc.cruiselink.co.kr/cruise-view/?ref=${ref}`
         } : undefined,
         "startDate": c.dateFrom || '',
         "endDate": c.dateTo || ''
@@ -1703,7 +1703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const params = new URLSearchParams(location.search);
       const ref = params.get('ref');
       const url = ref
-        ? 'https://www.cruiselink.co.kr/c/' + ref + '.html'
+        ? 'https://msc.cruiselink.co.kr/c/' + ref + '.html'
         : location.href;
       const titleEl = document.querySelector('.detail-hero h1');
       const title = titleEl ? titleEl.innerText.replace('🚢 ','') : document.title;
