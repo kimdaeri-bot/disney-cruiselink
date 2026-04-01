@@ -117,19 +117,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // ── 선사 메타데이터 ──
     const OPERATORS = [
       {
-        short: 'MSC', name: 'MSC Cruises', nameKo: 'MSC 크루즈',
-        logo: 'assets/images/logos/msc.png',
-        desc: 'MSC 크루즈는 세계 최대의 개인 소유 크루즈 선사로, 총 25척의 선박을 보유하고 있습니다. 지중해, 아시아, 카리브해 등 전 세계 150개 이상의 항구를 운항하며, 이탈리아 장인 정신과 현대적인 럭셔리를 결합한 독특한 크루즈 경험을 제공합니다.',
-      },
-      {
-        short: 'Explora Journeys', name: 'Explora Journeys', nameKo: '익스플로라 저니',
-        logo: '',
-        desc: '익스플로라 저니는 MSC 그룹의 럭셔리 크루즈 브랜드로 2023년 출범했습니다. 5척의 소형 럭셔리 선박을 통해 세계 각지의 독보적인 여행 경험을 제공하며, 개방형 갑판, 고급 레스토랑, 프라이빗 풀을 갖춘 현대적인 디자인이 특징입니다.',
+        short: 'Disney Cruise Line', name: 'Disney Cruise Line', nameKo: '디즈니 크루즈',
+        logo: 'assets/images/logos/disney.svg',
+        desc: '디즈니 크루즈 라인은 월트 디즈니 컴퍼니의 크루즈 브랜드로, 가족 크루즈의 최고봉으로 꼽힙니다. 8척의 선박에서 디즈니·마블·스타워즈 캐릭터와의 만남, 브로드웨이 수준의 공연, 어린이 전용 클럽 등 온 가족이 즐길 수 있는 마법 같은 경험을 제공합니다.',
       },
     ];
 
     let allShips = [];
-    let currentFilter = 'MSC';
+    let currentFilter = 'Disney Cruise Line';
 
     async function loadShips() {
       const grid = document.getElementById('shipGrid');
