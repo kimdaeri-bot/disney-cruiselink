@@ -372,11 +372,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         @media(max-width:700px){.dr-popup{width:calc(100vw - 32px);left:0}.dr-months{flex-direction:column}}
       </style>
       <nav class="cruise-tabs-nav" id="cruiseTabsNav">
-        <button class="cruise-tab-btn active cruise-tab-featured" onclick="switchTab(this,'incheon')">한국출발</button>
+        <button class="cruise-tab-btn active cruise-tab-featured" onclick="switchTab(this,'incheon')">한국출발·일본</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'mediterranean')">지중해</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'alaska')">알래스카</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'caribbean')">카리브해</button>
-        <button class="cruise-tab-btn" onclick="switchTab(this,'korea')">일본·아시아</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'northern-europe')">북유럽</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'asia')">아시아·중동</button>
       </nav>
@@ -1524,6 +1523,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           // 알래스카: MSC만 필터링하여 최대 10개
           const allAlaska = (await API.filterCruises({ dest: 'alaska' }) || []);
           cruisesRaw = allAlaska.filter(c => (c.operator||'').toLowerCase().includes('msc'));
+        } else if (dest === 'asia') {
+          // 아시아·중동: MSC, 한국/일본 제외 (두바이·중동·동남아 등)
+          const allAsia = (await API.filterCruises({ dest: 'asia' }) || []);
+          const koreaJapanKeywords = ['한국', '일본', '도쿄', '오사카', '나고야', '나하', '후쿠오카', 'tokyo', 'osaka', 'incheon', 'busan', 'japan', 'korea', 'naha', 'okinawa', 'fukuoka'];
+          cruisesRaw = allAsia.filter(c => {
+            if (!(c.operator||'').toLowerCase().includes('msc')) return false;
+            const title = (c.title || c.name || '').toLowerCase();
+            const startName = ((c.startsAt?.nameKo || c.startsAt?.name || '')).toLowerCase();
+            const endName = ((c.endsAt?.nameKo || c.endsAt?.name || '')).toLowerCase();
+            return !koreaJapanKeywords.some(kw => title.includes(kw) || startName.includes(kw) || endName.includes(kw));
+          });
         } else {
           cruisesRaw = (await API.getMiniCruises(dest, 30)).filter(c => (c.operator||'').toLowerCase().includes('msc')).slice(0,10);
         }
