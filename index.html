@@ -183,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="filter-group">
         <label>선사</label>
         <div class="multi-select" id="msOperator" style="pointer-events:none;opacity:1;cursor:default">
-          <div class="multi-select-display" style="background:#f0f4ff;border-color:#c5d4f5;color:var(--navy);font-weight:700">Disney Cruise</div>
+          <div class="multi-select-display" style="background:#f0f4ff;border-color:#c5d4f5;color:var(--navy);font-weight:700">디즈니 크루즈</div>
           <div class="multi-select-dropdown" style="display:none" onclick="event.stopPropagation()">
             <div style="display:flex;flex-direction:column">
               <div class="ms-option selected" data-value="Disney Cruise Line">Disney Cruise</div>
@@ -368,12 +368,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         @media(max-width:700px){.dr-popup{width:calc(100vw - 32px);left:0}.dr-months{flex-direction:column}}
       </style>
       <nav class="cruise-tabs-nav" id="cruiseTabsNav">
-        <button class="cruise-tab-btn active cruise-tab-featured" onclick="switchTab(this,'caribbean')">카리브해</button>
+        <button class="cruise-tab-btn active cruise-tab-featured" onclick="switchTab(this,'southeast-asia')">아시아 크루즈</button>
+        <button class="cruise-tab-btn" onclick="switchTab(this,'caribbean')">카리브해</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'alaska')">알래스카</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'mediterranean')">지중해</button>
         <button class="cruise-tab-btn" onclick="switchTab(this,'northern-europe')">북유럽</button>
-        <button class="cruise-tab-btn" onclick="switchTab(this,'asia')">아시아·중동</button>
-        <button class="cruise-tab-btn" onclick="switchTab(this,'incheon')">한국출발·일본</button>
       </nav>
       <div class="tab-slider-wrap" id="tabSliderWrap">
         <button class="tab-arrow tab-arrow-left disabled" id="tabArrowLeft" onclick="slideTab(-1)" aria-label="이전">&#8249;</button>
@@ -392,20 +391,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
       <div class="promo-slider">
         <div class="promo-slides" id="promoSlides">
-          <div class="promo-slide" style="background: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&q=80') center/cover;">
-            <h3>🌊 2026 지중해 크루즈</h3>
-            <p>바르셀로나, 로마, 산토리니... 지중해의 보석같은 도시들을 만나보세요</p>
-            <a href="https://kimdaeri-bot.github.io/disney-cruiselink/search/?dest=mediterranean&operator=MSC+Cruises" class="btn btn-orange" style="width:fit-content">MSC 지중해 크루즈 보기 →</a>
+          <div class="promo-slide" style="background: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80') center/cover;">
+            <h3>🌏 Disney Adventure — 싱가포르 출발</h3>
+            <p>싱가포르 출발 동남아 3~4박. Disney Adventure 신조선으로 말레이시아·태국·베트남 기항. 온 가족이 함께하는 마법 같은 항해!</p>
+            <a href="search/?dest=southeast-asia&operator=Disney+Cruise+Line" class="btn btn-orange" style="width:fit-content">아시아 크루즈 보기 →</a>
           </div>
           <div class="promo-slide" style="background: url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=80') center/cover;">
-            <h3>🧊 MSC 알래스카 특가</h3>
-            <p>MSC Poesia 7박 빙하·주노·케치칸·빅토리아. 시애틀 출발 2026년 5월~9월 매주 운항!</p>
-            <a href="https://kimdaeri-bot.github.io/disney-cruiselink/search/?dest=alaska&operator=MSC+Cruises" class="btn btn-orange" style="width:fit-content">MSC 알래스카 크루즈 보기 →</a>
+            <h3>🧊 Disney Wonder — 알래스카</h3>
+            <p>밴쿠버 출발 알래스카 빙하 크루즈. 빙하와 야생동물의 대자연에서 펼쳐지는 디즈니 마법!</p>
+            <a href="search/?dest=alaska&operator=Disney+Cruise+Line" class="btn btn-orange" style="width:fit-content">알래스카 크루즈 보기 →</a>
           </div>
-          <div class="promo-slide" style="background: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=80') center/cover;">
-            <h3>🎌 한국/일본 출발 크루즈</h3>
-            <p>부산, 후쿠오카, 나가사키, 오키나와 — 가까운 크루즈 여행</p>
-            <a href="https://kimdaeri-bot.github.io/disney-cruiselink/search/?dest=korea&operator=MSC+Cruises" class="btn btn-white" style="width:fit-content">MSC 한국·일본 크루즈 보기 →</a>
+          <div class="promo-slide" style="background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80') center/cover;">
+            <h3>🌴 Disney Wish — 카리브해</h3>
+            <p>포트캐나베럴 출발 카리브해. 마블·스타워즈 전용 공간 탑재. 바하마·멕시코 기항!</p>
+            <a href="search/?dest=caribbean&operator=Disney+Cruise+Line" class="btn btn-white" style="width:fit-content">카리브해 크루즈 보기 →</a>
           </div>
         </div>
       </div>
@@ -1604,7 +1603,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.addEventListener('resize', updateTabArrows);
 
     // 첫 탭 자동 로드
-    switchTab(document.querySelector('.cruise-tab-btn'), 'incheon');
+    switchTab(document.querySelector('.cruise-tab-btn'), 'southeast-asia');
 
     loadRecommended();
     loadRecommended2();
